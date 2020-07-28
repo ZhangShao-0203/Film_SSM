@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.OrdertMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Ordert" >
+    <id column="OID" property="oid" jdbcType="DECIMAL" />
+    <result column="VID" property="vid" jdbcType="DECIMAL" />
+    <result column="SID" property="sid" jdbcType="DECIMAL" />
+    <result column="NUM" property="num" jdbcType="DECIMAL" />
+    <result column="OTIME" property="otime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ORDERT
+    where OID = #{oid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Ordert" >
+    insert into ORDERT (OID, VID, SID, 
+      NUM, OTIME)
+    values (#{oid,jdbcType=DECIMAL}, #{vid,jdbcType=DECIMAL}, #{sid,jdbcType=DECIMAL}, 
+      #{num,jdbcType=DECIMAL}, #{otime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Ordert" >
+    update ORDERT
+    set VID = #{vid,jdbcType=DECIMAL},
+      SID = #{sid,jdbcType=DECIMAL},
+      NUM = #{num,jdbcType=DECIMAL},
+      OTIME = #{otime,jdbcType=TIMESTAMP}
+    where OID = #{oid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select OID, VID, SID, NUM, OTIME
+    from ORDERT
+    where OID = #{oid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select OID, VID, SID, NUM, OTIME
+    from ORDERT
+  </select>
+</mapper>

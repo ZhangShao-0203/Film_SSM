@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.ScreenMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Screen" >
+    <id column="SID" property="sid" jdbcType="DECIMAL" />
+    <result column="CID" property="cid" jdbcType="DECIMAL" />
+    <result column="MID" property="mid" jdbcType="DECIMAL" />
+    <result column="VIID" property="viid" jdbcType="DECIMAL" />
+    <result column="STIME" property="stime" jdbcType="TIMESTAMP" />
+    <result column="SPRICE" property="sprice" jdbcType="OTHER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SCREEN
+    where SID = #{sid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Screen" >
+    insert into SCREEN (SID, CID, MID, 
+      VIID, STIME, SPRICE
+      )
+    values (#{sid,jdbcType=DECIMAL}, #{cid,jdbcType=DECIMAL}, #{mid,jdbcType=DECIMAL}, 
+      #{viid,jdbcType=DECIMAL}, #{stime,jdbcType=TIMESTAMP}, #{sprice,jdbcType=OTHER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Screen" >
+    update SCREEN
+    set CID = #{cid,jdbcType=DECIMAL},
+      MID = #{mid,jdbcType=DECIMAL},
+      VIID = #{viid,jdbcType=DECIMAL},
+      STIME = #{stime,jdbcType=TIMESTAMP},
+      SPRICE = #{sprice,jdbcType=OTHER}
+    where SID = #{sid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select SID, CID, MID, VIID, STIME, SPRICE
+    from SCREEN
+    where SID = #{sid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select SID, CID, MID, VIID, STIME, SPRICE
+    from SCREEN
+  </select>
+</mapper>

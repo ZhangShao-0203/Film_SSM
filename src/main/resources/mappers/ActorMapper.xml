@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.ActorMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Actor" >
+    <id column="ACID" property="acid" jdbcType="DECIMAL" />
+    <result column="ACNAME" property="acname" jdbcType="VARCHAR" />
+    <result column="ACPHOTO" property="acphoto" jdbcType="VARCHAR" />
+    <result column="ACSORT" property="acsort" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ACTOR
+    where ACID = #{acid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Actor" >
+    insert into ACTOR (ACID, ACNAME, ACPHOTO, 
+      ACSORT)
+    values (#{acid,jdbcType=DECIMAL}, #{acname,jdbcType=VARCHAR}, #{acphoto,jdbcType=VARCHAR}, 
+      #{acsort,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Actor" >
+    update ACTOR
+    set ACNAME = #{acname,jdbcType=VARCHAR},
+      ACPHOTO = #{acphoto,jdbcType=VARCHAR},
+      ACSORT = #{acsort,jdbcType=VARCHAR}
+    where ACID = #{acid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ACID, ACNAME, ACPHOTO, ACSORT
+    from ACTOR
+    where ACID = #{acid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ACID, ACNAME, ACPHOTO, ACSORT
+    from ACTOR
+  </select>
+</mapper>

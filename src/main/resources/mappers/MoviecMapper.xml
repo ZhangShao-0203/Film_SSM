@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.MoviecMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Moviec" >
+    <id column="MCID" property="mcid" jdbcType="DECIMAL" />
+    <result column="MCNAME" property="mcname" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from MOVIEC
+    where MCID = #{mcid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Moviec" >
+    insert into MOVIEC (MCID, MCNAME)
+    values (#{mcid,jdbcType=DECIMAL}, #{mcname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Moviec" >
+    update MOVIEC
+    set MCNAME = #{mcname,jdbcType=VARCHAR}
+    where MCID = #{mcid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select MCID, MCNAME
+    from MOVIEC
+    where MCID = #{mcid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select MCID, MCNAME
+    from MOVIEC
+  </select>
+</mapper>

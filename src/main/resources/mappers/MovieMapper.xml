@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.MovieMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Movie" >
+    <id column="MID" property="mid" jdbcType="DECIMAL" />
+    <result column="MNAMEC" property="mnamec" jdbcType="VARCHAR" />
+    <result column="MNAMEE" property="mnamee" jdbcType="VARCHAR" />
+    <result column="MSORT" property="msort" jdbcType="VARCHAR" />
+    <result column="MLENG" property="mleng" jdbcType="VARCHAR" />
+    <result column="UPTIME" property="uptime" jdbcType="VARCHAR" />
+    <result column="DETAILS" property="details" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from MOVIE
+    where MID = #{mid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Movie" >
+    insert into MOVIE (MID, MNAMEC, MNAMEE, 
+      MSORT, MLENG, UPTIME, 
+      DETAILS, PHOTO)
+    values (#{mid,jdbcType=DECIMAL}, #{mnamec,jdbcType=VARCHAR}, #{mnamee,jdbcType=VARCHAR}, 
+      #{msort,jdbcType=VARCHAR}, #{mleng,jdbcType=VARCHAR}, #{uptime,jdbcType=VARCHAR}, 
+      #{details,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Movie" >
+    update MOVIE
+    set MNAMEC = #{mnamec,jdbcType=VARCHAR},
+      MNAMEE = #{mnamee,jdbcType=VARCHAR},
+      MSORT = #{msort,jdbcType=VARCHAR},
+      MLENG = #{mleng,jdbcType=VARCHAR},
+      UPTIME = #{uptime,jdbcType=VARCHAR},
+      DETAILS = #{details,jdbcType=VARCHAR},
+      PHOTO = #{photo,jdbcType=VARCHAR}
+    where MID = #{mid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select MID, MNAMEC, MNAMEE, MSORT, MLENG, UPTIME, DETAILS, PHOTO
+    from MOVIE
+    where MID = #{mid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select MID, MNAMEC, MNAMEE, MSORT, MLENG, UPTIME, DETAILS, PHOTO
+    from MOVIE
+  </select>
+</mapper>

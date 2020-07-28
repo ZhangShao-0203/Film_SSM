@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Admin" >
+    <id column="AID" property="aid" jdbcType="DECIMAL" />
+    <result column="ANAME" property="aname" jdbcType="VARCHAR" />
+    <result column="APASS" property="apass" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ADMIN
+    where AID = #{aid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Admin" >
+    insert into ADMIN (AID, ANAME, APASS, 
+      TEL)
+    values (#{aid,jdbcType=DECIMAL}, #{aname,jdbcType=VARCHAR}, #{apass,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Admin" >
+    update ADMIN
+    set ANAME = #{aname,jdbcType=VARCHAR},
+      APASS = #{apass,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR}
+    where AID = #{aid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select AID, ANAME, APASS, TEL
+    from ADMIN
+    where AID = #{aid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select AID, ANAME, APASS, TEL
+    from ADMIN
+  </select>
+</mapper>

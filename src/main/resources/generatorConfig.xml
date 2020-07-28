@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"></property>
+            <property name="suppressDate" value="true"></property>
+        </commentGenerator>
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:XE" userId="film" password="root"></jdbcConnection>
+        <javaModelGenerator targetPackage="com.film.pojo" targetProject="src/main/java"></javaModelGenerator>
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources"></sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.film.mapper" targetProject="src/main/java"></javaClientGenerator>
+        <table tableName="actor"></table>
+        <table tableName="admin"></table>
+        <table tableName="choose"></table>
+        <table tableName="cinema"></table>
+        <table tableName="movie"></table>
+        <table tableName="moviec"></table>
+        <table tableName="movie_actor"></table>
+        <table tableName="ordert"></table>
+        <table tableName="screen"></table>
+        <table tableName="video"></table>
+        <table tableName="vip"></table>
+    </context>
+</generatorConfiguration>

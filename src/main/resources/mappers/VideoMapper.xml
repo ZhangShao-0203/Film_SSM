@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Video" >
+    <id column="VIID" property="viid" jdbcType="DECIMAL" />
+    <result column="VINAME" property="viname" jdbcType="VARCHAR" />
+    <result column="CID" property="cid" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from VIDEO
+    where VIID = #{viid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Video" >
+    insert into VIDEO (VIID, VINAME, CID
+      )
+    values (#{viid,jdbcType=DECIMAL}, #{viname,jdbcType=VARCHAR}, #{cid,jdbcType=DECIMAL}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Video" >
+    update VIDEO
+    set VINAME = #{viname,jdbcType=VARCHAR},
+      CID = #{cid,jdbcType=DECIMAL}
+    where VIID = #{viid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select VIID, VINAME, CID
+    from VIDEO
+    where VIID = #{viid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select VIID, VINAME, CID
+    from VIDEO
+  </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.film.mapper.CinemaMapper" >
+  <resultMap id="BaseResultMap" type="com.film.pojo.Cinema" >
+    <id column="CID" property="cid" jdbcType="DECIMAL" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from CINEMA
+    where CID = #{cid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.film.pojo.Cinema" >
+    insert into CINEMA (CID, CNAME)
+    values (#{cid,jdbcType=DECIMAL}, #{cname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.film.pojo.Cinema" >
+    update CINEMA
+    set CNAME = #{cname,jdbcType=VARCHAR}
+    where CID = #{cid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select CID, CNAME
+    from CINEMA
+    where CID = #{cid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select CID, CNAME
+    from CINEMA
+  </select>
+</mapper>
