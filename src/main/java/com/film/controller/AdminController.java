@@ -1,47 +1,47 @@
 package com.film.controller;
 
-import com.film.pojo.Actor;
-import com.film.service.IActorService;
+import com.film.pojo.Admin;
+import com.film.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Permission;
 import java.util.List;
 
-@Controller("/actor")
-public class ActorController {
+@Controller
+public class AdminController {
+
     @Autowired
-    IActorService actorService;
+    IAdminService adminService;
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Actor> list(){
-        List<Actor> actors = actorService.list();
-        return actors;
+    public List<Admin> list(){
+        List<Admin> admins = adminService.list();
+        return admins;
     }
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Actor edit(int id){
-        Actor actor = actorService.get(id);
-        return actor;
+    public Admin edit(int id){
+        Admin admin = adminService.get(id);
+        return admin;
 
     }
 
     @RequestMapping("/update")
     @ResponseBody
-    public ModelAndView update(Actor actor,ModelAndView mav){
-        int i = actorService.update(actor);
+    public ModelAndView update(Admin admin, ModelAndView mav){
+        int i = adminService.update(admin);
         mav.setViewName("/");
         return mav;
     }
 
     @RequestMapping("/add")
-    public ModelAndView add(ModelAndView mav, Actor actor){
-        int i = actorService.add(actor);
+    public ModelAndView add(ModelAndView mav, Admin admin){
+        int i = adminService.add(admin);
         mav.setViewName("/");
         return mav;
     }
@@ -49,9 +49,8 @@ public class ActorController {
     @RequestMapping("/delete")
     @ResponseBody
     public int delete(int id){
-        int i = actorService.delete(id);
+        int i = adminService.delete(id);
         return i;
     }
-
 
 }
