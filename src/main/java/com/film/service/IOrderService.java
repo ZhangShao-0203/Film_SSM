@@ -9,7 +9,7 @@ public interface IOrderService {
     //添加用户
     int add(Ordert ordert);
     //查询用户
-    Cinema get(int id);
+    Ordert get(int id);
     //删除用户
     int delete(int id);
     //修改用户
