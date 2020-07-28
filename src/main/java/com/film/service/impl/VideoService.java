@@ -2,7 +2,6 @@ package com.film.service.impl;
 
 import com.film.pojo.Video;
 import com.film.service.IVideoService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

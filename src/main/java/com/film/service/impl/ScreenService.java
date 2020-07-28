@@ -3,7 +3,6 @@ package com.film.service.impl;
 import com.film.pojo.Cinema;
 import com.film.pojo.Screen;
 import com.film.service.IScreenService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class ScreenService implements IScreenService {
     }
 
     @Override
-    public Cinema get(int id) {
+    public Screen get(int id) {
         return null;
     }
 

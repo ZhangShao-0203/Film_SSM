@@ -4,7 +4,6 @@ package com.film.service.impl;
 import com.film.pojo.Vip;
 import com.film.service.IVideoService;
 import com.film.service.IVipService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

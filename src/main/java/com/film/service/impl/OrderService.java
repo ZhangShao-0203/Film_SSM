@@ -4,7 +4,6 @@ package com.film.service.impl;
 import com.film.pojo.Cinema;
 import com.film.pojo.Ordert;
 import com.film.service.IOrderService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Cinema get(int id) {
+    public Ordert get(int id) {
         return null;
     }
 

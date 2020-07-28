@@ -1,8 +1,8 @@
 package com.film.service.impl;
 
+import com.film.mapper.ChooseMapper;
 import com.film.pojo.Choose;
 import com.film.service.IChooseService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,30 +11,30 @@ import java.util.List;
 @Service
 public class ChooseService implements IChooseService {
     @Autowired
-    private IChooseService iChooseService;
+    private ChooseMapper chooseMapper;
 
     @Override
     public int add(Choose choose) {
-        return 0;
+        return chooseMapper.insert(choose);
     }
 
     @Override
     public Choose get(int id) {
-        return null;
+        return chooseMapper.selectByPrimaryKey((long) id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        return chooseMapper.deleteByPrimaryKey((long) id);
     }
 
     @Override
     public int update(Choose choose) {
-        return 0;
+        return chooseMapper.updateByPrimaryKey(choose);
     }
 
     @Override
     public List<Choose> list() {
-        return null;
+        return chooseMapper.selectAll();
     }
 }

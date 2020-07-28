@@ -17,6 +17,16 @@ public class AdminController {
     @Autowired
     IAdminService adminService;
 
+    @RequestMapping("/login")
+    @ResponseBody
+    public ModelAndView login(Admin admin,ModelAndView mav){
+        Admin admin1 = adminService.getAdmin(admin);
+        mav.setViewName("/index.html");
+        return mav;
+
+    }
+
+
     @RequestMapping("/list")
     @ResponseBody
     public List<Admin> list(){

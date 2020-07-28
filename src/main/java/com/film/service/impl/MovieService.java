@@ -3,7 +3,6 @@ package com.film.service.impl;
 
 import com.film.pojo.Movie;
 import com.film.service.IMovieService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

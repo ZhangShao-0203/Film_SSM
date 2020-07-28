@@ -4,7 +4,6 @@ package com.film.service.impl;
 import com.film.mapper.AdminMapper;
 import com.film.pojo.Admin;
 import com.film.service.IAdminService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +39,8 @@ public class AdminService implements IAdminService {
 
     @Override
     public Admin getAdmin(Admin admin) {
-        return null;
+        return adminMapper.selectByPass(admin);
     }
+
+
 }

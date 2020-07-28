@@ -33,4 +33,10 @@
     select AID, ANAME, APASS, TEL
     from ADMIN
   </select>
+
+  <select id="selectByPass" parameterType="admin" resultMap="BaseResultMap">
+    select AID, ANAME, APASS, TEL
+    from ADMIN
+    where AID = #{aid,jdbcType=DECIMAL} and APASS = #{apass,jdbcType=VARCHAR}
+  </select>
 </mapper>
