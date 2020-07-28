@@ -1,5 +1,6 @@
 package com.film.service.impl;
 
+import com.film.mapper.VideoMapper;
 import com.film.pojo.Video;
 import com.film.service.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,30 +11,30 @@ import java.util.List;
 @Service
 public class VideoService implements IVideoService {
     @Autowired
-     IVideoService iVideoService;
+    VideoMapper videoMapper;
 
     @Override
     public int add(Video video) {
-        return 0;
+        return videoMapper.insert(video);
     }
 
     @Override
     public Video get(int id) {
-        return null;
+        return videoMapper.selectByPrimaryKey((long) id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        return videoMapper.deleteByPrimaryKey((long) id);
     }
 
     @Override
     public int update(Video video) {
-        return 0;
+        return videoMapper.updateByPrimaryKey(video);
     }
 
     @Override
     public List<Video> list() {
-        return null;
+        return videoMapper.selectAll();
     }
 }

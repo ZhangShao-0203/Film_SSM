@@ -1,6 +1,7 @@
 package com.film.service.impl;
 
 
+import com.film.mapper.MovieMapper;
 import com.film.pojo.Movie;
 import com.film.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,30 +11,30 @@ import java.util.List;
 @Service
 public class MovieService implements IMovieService {
     @Autowired
-    IMovieService iMovieService;
+    MovieMapper movieMapper;
 
     @Override
     public int add(Movie movie) {
-        return 0;
+        return movieMapper.insert(movie);
     }
 
     @Override
     public Movie get(int id) {
-        return null;
+        return movieMapper.selectByPrimaryKey((long) id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        return movieMapper.deleteByPrimaryKey((long) id);
     }
 
     @Override
     public int update(Movie movie) {
-        return 0;
+        return movieMapper.updateByPrimaryKey(movie);
     }
 
     @Override
     public List<Movie> list() {
-        return null;
+        return movieMapper.selectAll();
     }
 }

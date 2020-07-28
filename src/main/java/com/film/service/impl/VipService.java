@@ -1,6 +1,7 @@
 package com.film.service.impl;
 
 
+import com.film.mapper.VipMapper;
 import com.film.pojo.Vip;
 import com.film.service.IVideoService;
 import com.film.service.IVipService;
@@ -13,31 +14,31 @@ import java.util.List;
 public class VipService implements IVipService {
 
     @Autowired
-    IVideoService iVideoService;
+    VipMapper vipMapper;
 
 
     @Override
     public int add(Vip vip) {
-        return 0;
+        return vipMapper.insert(vip);
     }
 
     @Override
     public Vip get(int id) {
-        return null;
+        return vipMapper.selectByPrimaryKey((long) id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        return vipMapper.deleteByPrimaryKey((long) id);
     }
 
     @Override
     public int update(Vip vip) {
-        return 0;
+        return vipMapper.updateByPrimaryKey(vip);
     }
 
     @Override
     public List<Vip> list() {
-        return null;
+        return vipMapper.selectAll();
     }
 }

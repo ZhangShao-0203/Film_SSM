@@ -1,6 +1,7 @@
 package com.film.service.impl;
 
 
+import com.film.mapper.OrdertMapper;
 import com.film.pojo.Cinema;
 import com.film.pojo.Ordert;
 import com.film.service.IOrderService;
@@ -12,29 +13,29 @@ import java.util.List;
 @Service
 public class OrderService implements IOrderService {
     @Autowired
-     IOrderService iOrderService;
+    OrdertMapper ordertMapper;
     @Override
     public int add(Ordert ordert) {
-        return 0;
+        return ordertMapper.insert(ordert);
     }
 
     @Override
     public Ordert get(int id) {
-        return null;
+        return ordertMapper.selectByPrimaryKey((long) id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        return ordertMapper.deleteByPrimaryKey((long) id);
     }
 
     @Override
     public int update(Ordert ordert) {
-        return 0;
+        return ordertMapper.updateByPrimaryKey(ordert);
     }
 
     @Override
     public List<Ordert> list() {
-        return null;
+        return ordertMapper.selectAll();
     }
 }

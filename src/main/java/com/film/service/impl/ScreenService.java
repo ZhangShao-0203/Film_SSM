@@ -1,5 +1,6 @@
 package com.film.service.impl;
 
+import com.film.mapper.ScreenMapper;
 import com.film.pojo.Cinema;
 import com.film.pojo.Screen;
 import com.film.service.IScreenService;
@@ -11,29 +12,29 @@ import java.util.List;
 @Service
 public class ScreenService implements IScreenService {
     @Autowired
-    IScreenService iScreenService;
+    ScreenMapper screenMapper;
     @Override
     public int add(Screen screen) {
-        return 0;
+        return screenMapper.insert(screen);
     }
 
     @Override
     public Screen get(int id) {
-        return null;
+        return screenMapper.selectByPrimaryKey((long) id);
     }
 
     @Override
     public int delete(int id) {
-        return 0;
+        return screenMapper.deleteByPrimaryKey((long) id);
     }
 
     @Override
     public int update(Screen screen) {
-        return 0;
+        return screenMapper.updateByPrimaryKey(screen);
     }
 
     @Override
     public List<Screen> list() {
-        return null;
+        return screenMapper.selectAll();
     }
 }
