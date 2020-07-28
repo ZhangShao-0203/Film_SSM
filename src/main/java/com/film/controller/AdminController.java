@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -42,7 +43,7 @@ public class AdminController {
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Admin admin){
         int i = adminService.add(admin);
-        mav.setViewName("/");
+        mav.setViewName("/index");
         return mav;
     }
 

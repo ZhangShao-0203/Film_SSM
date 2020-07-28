@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class AdminService implements IAdminService {
     @Autowired
-
    private AdminMapper adminMapper;
     @Override
     public int add(Admin admin) {

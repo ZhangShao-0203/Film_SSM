@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Permission;
 import java.util.List;
 
-@Controller("/actor")
+@Controller
+@RequestMapping("/actor")
 public class ActorController {
     @Autowired
     IActorService actorService;
