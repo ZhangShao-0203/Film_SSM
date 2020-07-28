@@ -17,6 +17,7 @@ public class ActorController {
     @Autowired
     IActorService actorService;
 
+
     @RequestMapping("/list")
     @ResponseBody
     public List<Actor> list(){

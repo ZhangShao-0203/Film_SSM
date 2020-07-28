@@ -17,4 +17,9 @@ public class hellodemo {
         mav.setViewName("admin/index");
         return mav;
     }
+    @RequestMapping("/admin/actor.html")
+    public String actor(){
+        System.out.println("actor");
+        return "admin/actor";
+    }
 }
