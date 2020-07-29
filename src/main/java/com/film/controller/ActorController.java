@@ -60,7 +60,6 @@ public class ActorController {
 
     @SneakyThrows
     @RequestMapping("/add1")
-    @ResponseBody
     public String add(Actor actor, MultipartFile doc, HttpServletRequest request) {
         System.out.println("1");
         String originalFilename = doc.getOriginalFilename();
