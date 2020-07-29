@@ -22,4 +22,10 @@ public class hellodemo {
         System.out.println("actor");
         return "admin/actor";
     }
+
+    @RequestMapping("/admin/listVip.html")
+    public String listVip(){
+        System.out.println("listVip");
+        return "admin/listVip";
+    }
 }
