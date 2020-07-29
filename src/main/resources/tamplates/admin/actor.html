@@ -285,13 +285,12 @@
         $("#fade").css({display: "block"})
         $.ajax({
             type: "post",
-            url: "actor/edit",
-            data: {acid: id},
+            url: "/actor/edit",
+            data: {"acid": id},
             success: function (data) {
-                var jsonobj = eval("(" + data + ")");
-                $("#acid").val(jsonobj.acid);
-                $("#user-name1").val(jsonobj.acname);
-                $("#state option[value='"+jsonobj.acsort+"']").attr("selected", true)
+                $("#acid").val(data.acid);
+                $("#user-name1").val(data.acname);
+                $("#state1 option[value='"+data.acsort+"']").attr("selected", true)
             }
         });
 
@@ -303,8 +302,8 @@
             btnOkClick: function () {
                 $.ajax({
                     type: "post",
-                    url: "actor/delete",
-                    data: {acid: id},
+                    url: "../actor/delete",
+                    data: {"acid": id},
                     success: function (data) {
                         show();
                     }

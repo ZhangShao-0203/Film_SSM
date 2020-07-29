@@ -2,6 +2,7 @@ package com.film.controller;
 
 import com.film.pojo.Actor;
 import com.film.service.IActorService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.security.Permission;
 import java.util.List;
 import java.util.UUID;
@@ -23,42 +25,66 @@ public class ActorController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Actor> list(){
+    public List<Actor> list() {
         List<Actor> actors = actorService.list();
         return actors;
     }
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Actor edit(int id){
-        Actor actor = actorService.get(id);
+    public Actor edit(int acid) {
+        Actor actor = actorService.get(acid);
         return actor;
-
     }
 
+    @SneakyThrows
     @RequestMapping("/update")
-    @ResponseBody
-    public ModelAndView update(Actor actor,ModelAndView mav){
+    public ModelAndView update(Actor actor, ModelAndView mav,MultipartFile doc, HttpServletRequest request) {
+        String originalFilename = doc.getOriginalFilename();
+        String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
+
+
+        String uuid = UUID.randomUUID().toString();
+        String savePath = request.getRealPath("/") + "docs/" + uuid + actor.getAcid() + substring;
+        File file = new File(savePath);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdir();
+        }
+        doc.transferTo(file);
+        //读取路径
+        String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/docs/" + uuid + actor.getAcid() + substring;
+        actor.setAcphoto(readPath);
         int i = actorService.update(actor);
-        mav.setViewName("/");
+        mav.setViewName("/admin/actor");
         return mav;
     }
 
+    @SneakyThrows
     @RequestMapping("/add")
-    public ModelAndView add(ModelAndView mav, Actor actor, MultipartFile doc, HttpServletRequest request){
+    public ModelAndView add(ModelAndView mav, Actor actor, MultipartFile doc, HttpServletRequest request) {
         String originalFilename = doc.getOriginalFilename();
         String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
-        String s = UUID.randomUUID().toString();
-        request.getRealPath("/")+"docs/"+s+doc+substring;
+
+
+        String uuid = UUID.randomUUID().toString();
+        String savePath = request.getRealPath("/") + "docs/" + uuid + actor.getAcid() + substring;
+        File file = new File(savePath);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdir();
+        }
+        doc.transferTo(file);
+        //读取路径
+        String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/docs/" + uuid + actor.getAcid() + substring;
+        actor.setAcphoto(readPath);
         int i = actorService.add(actor);
-        mav.setViewName("/");
+        mav.setViewName("/admin/actor");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = actorService.delete(id);
+    public int delete(int acid) {
+        int i = actorService.delete(acid);
         return i;
     }
 
