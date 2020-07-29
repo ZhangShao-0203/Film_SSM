@@ -7,6 +7,8 @@ public class Choose {
 
     private String seat;
 
+    private String state;
+
     public Long getChid() {
         return chid;
     }
@@ -29,5 +31,13 @@ public class Choose {
 
     public void setSeat(String seat) {
         this.seat = seat;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
