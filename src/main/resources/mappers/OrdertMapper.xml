@@ -7,6 +7,7 @@
     <result column="SID" property="sid" jdbcType="DECIMAL" />
     <result column="NUM" property="num" jdbcType="DECIMAL" />
     <result column="OTIME" property="otime" jdbcType="TIMESTAMP" />
+    <result column="CHID" property="chid" jdbcType="DECIMAL" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from ORDERT
@@ -14,25 +15,26 @@
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Ordert" >
     insert into ORDERT (OID, VID, SID, 
-      NUM, OTIME)
+      NUM, OTIME,CHID)
     values (#{oid,jdbcType=DECIMAL}, #{vid,jdbcType=DECIMAL}, #{sid,jdbcType=DECIMAL}, 
-      #{num,jdbcType=DECIMAL}, #{otime,jdbcType=TIMESTAMP})
+      #{num,jdbcType=DECIMAL}, #{otime,jdbcType=TIMESTAMP},#{chid,jdbcType=DECIMAL})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.film.pojo.Ordert" >
     update ORDERT
     set VID = #{vid,jdbcType=DECIMAL},
       SID = #{sid,jdbcType=DECIMAL},
       NUM = #{num,jdbcType=DECIMAL},
-      OTIME = #{otime,jdbcType=TIMESTAMP}
+      OTIME = #{otime,jdbcType=TIMESTAMP},
+      CHID = #{chid,jdbcType=DECIMAL}
     where OID = #{oid,jdbcType=DECIMAL}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select OID, VID, SID, NUM, OTIME
+    select OID, VID, SID, NUM, OTIME ,CHID
     from ORDERT
     where OID = #{oid,jdbcType=DECIMAL}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select OID, VID, SID, NUM, OTIME
+    select OID, VID, SID, NUM, OTIME ,CHID
     from ORDERT
   </select>
 </mapper>

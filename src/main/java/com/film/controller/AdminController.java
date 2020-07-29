@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -19,9 +20,10 @@ public class AdminController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public ModelAndView login(Admin admin,ModelAndView mav){
+    public ModelAndView login(Admin admin,ModelAndView mav,HttpSession session){
         Admin admin1 = adminService.getAdmin(admin);
-        mav.setViewName("/index.html");
+        session.setAttribute("admin1",admin1);
+        mav.setViewName("/admin/index");
         return mav;
 
     }

@@ -13,6 +13,8 @@ public class Ordert {
 
     private Date otime;
 
+    private Long chid;
+
     public Long getOid() {
         return oid;
     }
@@ -51,5 +53,13 @@ public class Ordert {
 
     public void setOtime(Date otime) {
         this.otime = otime;
+    }
+
+    public Long getChid() {
+        return chid;
+    }
+
+    public void setChid(Long chid) {
+        this.chid = chid;
     }
 }
