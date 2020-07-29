@@ -102,7 +102,7 @@
                                         <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"
                                              style="padding-top: 30px;">
                                             <form class="am-form am-form-horizontal"
-                                                  action="addActor" method="post" enctype="multipart/form-data"
+                                                  action="/actor/add" method="post" enctype="multipart/form-data"
                                             >
 
                                                 <div class="am-form-group">
@@ -153,7 +153,7 @@
 
                 <div id="light" class="white_content">
                     <form class="am-form am-form-horizontal"
-                          action="updateActor" method="post" enctype="multipart/form-data"
+                          action="/actor/update" method="post" enctype="multipart/form-data"
                     >
 
                         <div class="am-form-group">
@@ -262,19 +262,18 @@
     function show() {
         $("#show").empty();
         $.ajax({
-            url: "listActor",
+            url: "/actor/list",
             type: "post",
             dataType: "json",
             success: function (data) {
-                var jsonobj = eval("(" + data + ")");
-                for (var i = 0; i < jsonobj.length; i++) {
+                for (var i = 0; i < data.length; i++) {
                     $("#show").append("<tr>\n" +
-                        "                                    <td>" + jsonobj[i].acid + "</td>\n" +
-                        "                                    <td>" + jsonobj[i].acname + "</td>\n" +
-                        "                                    <td><img src='" + jsonobj[i].acphoto + "' width='150px' height='100px'></td>\n" +
-                        "                                    <td>" + jsonobj[i].acsort + "</td>\n" +
-                        "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + jsonobj[i].acid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                        "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + jsonobj[i].acid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                        "                                    <td>" + data[i].acid + "</td>\n" +
+                        "                                    <td>" + data[i].acname + "</td>\n" +
+                        "                                    <td><img src='" + data[i].acphoto + "' width='150px' height='100px'></td>\n" +
+                        "                                    <td>" + data[i].acsort + "</td>\n" +
+                        "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].acid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                        "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].acid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                         "                                </tr>")
                 }
             }
@@ -286,7 +285,7 @@
         $("#fade").css({display: "block"})
         $.ajax({
             type: "post",
-            url: "editActor",
+            url: "actor/edit",
             data: {acid: id},
             success: function (data) {
                 var jsonobj = eval("(" + data + ")");
@@ -304,7 +303,7 @@
             btnOkClick: function () {
                 $.ajax({
                     type: "post",
-                    url: "deleteActor",
+                    url: "actor/delete",
                     data: {acid: id},
                     success: function (data) {
                         show();
