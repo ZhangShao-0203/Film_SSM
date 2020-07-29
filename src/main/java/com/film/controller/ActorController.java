@@ -43,7 +43,6 @@ public class ActorController {
         String originalFilename = doc.getOriginalFilename();
         String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
 
-
         String uuid = UUID.randomUUID().toString();
         String savePath = request.getRealPath("/") + "docs/" + uuid + actor.getAcid() + substring;
         File file = new File(savePath);
@@ -55,17 +54,16 @@ public class ActorController {
         String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/docs/" + uuid + actor.getAcid() + substring;
         actor.setAcphoto(readPath);
         int i = actorService.update(actor);
-        mav.setViewName("/admin/actor");
+        mav.setViewName("/admin/actor.html");
         return mav;
     }
 
     @SneakyThrows
-    @RequestMapping("/add")
-    public ModelAndView add(ModelAndView mav, Actor actor, MultipartFile doc, HttpServletRequest request) {
+    @RequestMapping("/add1")
+    public String add(Actor actor, MultipartFile doc, HttpServletRequest request) {
+        System.out.println("1");
         String originalFilename = doc.getOriginalFilename();
         String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
-
-
         String uuid = UUID.randomUUID().toString();
         String savePath = request.getRealPath("/") + "docs/" + uuid + actor.getAcid() + substring;
         File file = new File(savePath);
@@ -77,8 +75,7 @@ public class ActorController {
         String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/docs/" + uuid + actor.getAcid() + substring;
         actor.setAcphoto(readPath);
         int i = actorService.add(actor);
-        mav.setViewName("/admin/actor");
-        return mav;
+        return "/admin/actor";
     }
 
     @RequestMapping("/delete")
