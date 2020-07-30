@@ -34,21 +34,14 @@
                                     <th>场次编号</th>
                                     <th>订票数量</th>
                                     <th>订票时间</th>
+                                    <th>选座</th>
                                     <th>编辑</th>
                                     <th>删除</th>
 
                                 </tr>
                                 </thead>
-                                <tbody id="showOrdert">
-                                <tr>
-                                    <td>1</td>
-                                    <td>商品1</td>
-                                    <td>肉类</td>
-                                    <td>1000</td>
-                                    <td>1000</td>
-                                    <td class="edit"><button onclick="btn_edit(1)"><i class="icon-edit bigger-120"></i>编辑</button></td>
-                                    <td class="delete"><button onclick="btn_delete(1)"><i class="icon-trash bigger-120"></i>删除</button></td>
-                                </tr>
+                                <tbody id="show">
+
                                 </tbody>
 
                             </table>
@@ -56,6 +49,34 @@
                         <!--分页显示角色信息 end-->
                     </li>
                 </ul>
+
+                <div id="light" class="white_content">
+                    <form class="am-form am-form-horizontal"
+                          action="/ordert/update" method="post" enctype="multipart/form-data" >
+
+                        <div class="am-form-group">
+                            <label for="user-name1" class="am-u-sm-3 am-form-label">
+                                放映厅名称</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="oid" required
+                                       placeholder="放映厅名称" name="oid">
+                                <small>10字以内...</small>
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <input type="submit" class="am-btn am-btn-success"
+                                       value="修改提交"/>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="javascript:void(0)"
+                       onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">点这里关闭本窗口</a>
+                </div>
+                <div id="fade" class="black_overlay"></div>
+
             </div>
         </div>
         <!--tab end-->
@@ -72,8 +93,33 @@
         $(function() {
 
             $(".tabs").slide({ trigger: "click" });
-
+            showOrdert();
         });
+
+        function showOrdert(){
+            $("#show").empty();
+            $.ajax({
+                url:"/ordert/list",
+                type:"post",
+                data:{},
+                dataType:"json",
+                success:function(data) {
+                    for (var i = 0; i <data.length ; i++) {
+                        $("#show").append("<tr>\n" +
+                            "                                    <td>"+data[i].oid+"</td>\n" +
+                            "                                    <td>"+data[i].vid+"</td>\n" +
+                            "                                    <td>"+data[i].sid+"</td>\n" +
+                            "                                    <td>"+data[i].num+"</td>\n" +
+                            "                                    <td>"+data[i].otime+"</td>\n" +
+                            "                                    <td>"+data[i].chid+"</td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].oid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].oid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                            "                                </tr>")
+                    }
+                }
+            })
+        }
+
 
 
         var btn_save = function() {
@@ -106,20 +152,36 @@
             alert(t);
         }
 
-        var btn_edit = function(id) {
-            $.jq_Panel({
-                url: "/RawMaterialsType/EditRawMaterialsType?id=" + id,
-                title: "编辑分类",
-                dialogModal: true,
-                iframeWidth: 500,
-                iframeHeight: 400
+        var btn_edit = function (id) {
+            $("#light").css({display: "block"})
+            $("#fade").css({display: "block"})
+            $.ajax({
+                type: "post",
+                url: "/ordert/edit",
+                data: {oid: id},
+                success: function (data) {
+                    $("#oid").val(data.oid);
+                    $("#vid").val(data.vid);
+                    $("#sid").val(data.sid);
+                    $("#num").val(data.num);
+                    $("#otime").val(data.otime);
+                    $("#chid").val(data.chid);
+                }
             });
+
         }
         var btn_delete = function(id) {
             $.jq_Confirm({
                 message: "您确定要删除吗?",
                 btnOkClick: function() {
-
+                    $.ajax({
+                        type: "post",
+                        url: "/ordert/delete",
+                        data: {oid:id },
+                        success: function(data) {
+                            showOrdert();
+                        }
+                    });
                 }
             });
         }

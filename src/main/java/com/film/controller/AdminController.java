@@ -22,7 +22,7 @@ public class AdminController {
     @ResponseBody
     public ModelAndView login(Admin admin,ModelAndView mav,HttpSession session){
         Admin admin1 = adminService.getAdmin(admin);
-        session.setAttribute("admin1",admin1);
+        //session.setAttribute("admin1",admin1);
         mav.setViewName("/admin/index");
         return mav;
 

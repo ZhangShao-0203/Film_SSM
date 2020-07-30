@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-    @Override
+    /*@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         //请求路径
@@ -28,5 +28,5 @@ public class LoginInterceptor implements HandlerInterceptor {
         //拦截
         response.sendRedirect(request.getContextPath()+"/fail.jsp");
         return false;
-    }
+    }*/
 }

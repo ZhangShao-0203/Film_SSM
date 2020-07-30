@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("/ordert")
 public class OrderController {
 
     @Autowired

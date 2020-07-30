@@ -29,7 +29,6 @@ public class VipController {
     public Vip edit(int id){
         Vip vip = vipService.get(id);
         return vip;
-
     }
 
     @RequestMapping("/update")

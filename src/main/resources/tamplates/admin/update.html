@@ -70,12 +70,12 @@
         $(function () {
             $.ajax({
                 type: "post",
-                url: "editAdmin",
+                url: "/admin/edit",
                 data: { },
                 dataType: "json",
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    $("#user-name1").val(jsonobj.apass);
+
+                    $("#user-name1").val(data.apass);
                 }
             });
         });

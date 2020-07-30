@@ -208,20 +208,19 @@
         function showVip(){
             $("#showVip").empty();
             $.ajax({
-                url:"listVip",
+                url:"/vip/list",
                 type:"post",
                 data:{},
                 dataType:"json",
                 success:function(data) {
-                    var jsonObj=eval("("+data+")");
-                    for (var i = 0; i <jsonObj.length ; i++) {
+                    for (var i = 0; i <data.length ; i++) {
                         $("#showVip").append("<tr>\n" +
-                            "                                    <td>"+jsonObj[i].vid+"</td>\n" +
-                            "                                    <td>"+jsonObj[i].vname+"</td>\n" +
-                            "                                    <td>"+jsonObj[i].vpass+"</td>\n" +
-                            "                                    <td>"+jsonObj[i].tel+"</td>\n" +
-                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+jsonObj[i].vid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+jsonObj[i].vid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                            "                                    <td>"+data[i].vid+"</td>\n" +
+                            "                                    <td>"+data[i].vname+"</td>\n" +
+                            "                                    <td>"+data[i].vpass+"</td>\n" +
+                            "                                    <td>"+data[i].tel+"</td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].vid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].vid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")
                     }
                 }
@@ -263,14 +262,13 @@
             $("#fade").css({display: "block"})
             $.ajax({
                 type: "post",
-                url: "editVip",
+                url: "/vip/edit",
                 data: {vid: id},
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    $("#vid").val(jsonobj.vid);
-                    $("#user-name1").val(jsonobj.vname);
-                    $("#user-pass1").val(jsonobj.vpass);
-                    $("#user-tel1").val(jsonobj.tel);
+                    $("#vid").val(data.vid);
+                    $("#user-name1").val(data.vname);
+                    $("#user-pass1").val(data.vpass);
+                    $("#user-tel1").val(data.tel);
                 }
             });
 
@@ -281,7 +279,7 @@
                 btnOkClick: function() {
                     $.ajax({
                         type: "post",
-                        url: "deleteVip",
+                        url: "/vip/delete",
                         data: {vid:id },
                         success: function(data) {
                             showVip();

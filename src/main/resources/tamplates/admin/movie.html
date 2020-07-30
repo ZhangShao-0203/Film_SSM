@@ -370,17 +370,16 @@
 
         function showyy() {
             $.ajax({
-                url: "listActor",
+                url: "/actor/list",
                 type: "post",
                 dataType: "json",
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    for (var i = 0; i < jsonobj.length; i++) {
-                        if (jsonobj[i].acsort == "演员") {
-                            $("#yy").append("<option value='" + jsonobj[i].acid + "'>" + jsonobj[i].acname + "</option>")
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].acsort == "演员") {
+                            $("#yy").append("<option value='" + data[i].acid + "'>" + data[i].acname + "</option>")
                         }
-                        if (jsonobj[i].acsort == "导演") {
-                            $("#dy").append("<option value='" + jsonobj[i].acid + "'>" + jsonobj[i].acname + "</option>")
+                        if (data[i].acsort == "导演") {
+                            $("#dy").append("<option value='" + data[i].acid + "'>" + data[i].acname + "</option>")
                         }
                     }
                 }
@@ -389,17 +388,16 @@
 
         function showyy1() {
             $.ajax({
-                url: "listActor",
+                url: "/actor/list",
                 type: "post",
                 dataType: "json",
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    for (var i = 0; i < jsonobj.length; i++) {
-                        if (jsonobj[i].acsort == "演员") {
-                            $("#yy1").append("<option value='" + jsonobj[i].acid + "'>" + jsonobj[i].acname + "</option>")
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].acsort == "演员") {
+                            $("#yy1").append("<option value='" + data[i].acid + "'>" + data[i].acname + "</option>")
                         }
-                        if (jsonobj[i].acsort == "导演") {
-                            $("#dy1").append("<option value='" + jsonobj[i].acid + "'>" + jsonobj[i].acname + "</option>")
+                        if (data[i].acsort == "导演") {
+                            $("#dy1").append("<option value='" + data[i].acid + "'>" + data[i].acname + "</option>")
                         }
                     }
                 }
@@ -409,34 +407,33 @@
         function show() {
             $("#showMovie").empty();
             $.ajax({
-                url: "listMovie",
+                url: "/movie/list",
                 type: "post",
                 dataType: "json",
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    for (var i = 0; i < jsonobj.length; i++) {
+                    for (var i = 0; i < data.length; i++) {
                         var aa="";
                         var dy="";
-                        for (var a = 0; a < jsonobj[i].arr.length; a++) {
-                            if(jsonobj[i].arr[a].acsort=="演员"){
-                                aa += jsonobj[i].arr[a].acname+" ";
+                        for (var a = 0; a < data[i].arr.length; a++) {
+                            if(data[i].arr[a].acsort=="演员"){
+                                aa += data[i].arr[a].acname+" ";
                             }
-                            if(jsonobj[i].arr[a].acsort=="导演"){
-                                dy=jsonobj[i].arr[a].acname;
+                            if(data[i].arr[a].acsort=="导演"){
+                                dy=data[i].arr[a].acname;
                             }
                         }
                         $("#showMovie").append("<tr>\n" +
-                            "                                    <td>" + jsonobj[i].mid + "</td>\n" +
-                            "                                    <td>" + jsonobj[i].mnamec + "</td>\n" +
-                            "                                    <td>" + jsonobj[i].mnamee + "</td>\n" +
-                            "                                    <td>" + jsonobj[i].msort + "</td>\n" +
-                            "                                    <td>" + jsonobj[i].mleng + "</td>\n" +
-                            "                                    <td>" + jsonobj[i].uptime + "</td>\n" +
-                            "                                    <td>" + jsonobj[i].details + "</td>\n" +
-                            "                                    <td><img src='" + jsonobj[i].photo + "' height='150px' width='150px'></td>\n" +
+                            "                                    <td>" + data[i].mid + "</td>\n" +
+                            "                                    <td>" + data[i].mnamec + "</td>\n" +
+                            "                                    <td>" + data[i].mnamee + "</td>\n" +
+                            "                                    <td>" + data[i].msort + "</td>\n" +
+                            "                                    <td>" + data[i].mleng + "</td>\n" +
+                            "                                    <td>" + data[i].uptime + "</td>\n" +
+                            "                                    <td>" + data[i].details + "</td>\n" +
+                            "                                    <td><img src='" + data[i].photo + "' height='150px' width='150px'></td>\n" +
                             "                                    <td><span style='color:red '>"+dy+"</span><br>" + aa + "</lable></td>\n" +
-                            "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + jsonobj[i].mid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                            "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + jsonobj[i].mid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].mid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].mid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")
                     }
 
@@ -452,18 +449,17 @@
             $("#fade").css({display: "block"})
             $.ajax({
                 type: "post",
-                url: "editMovie",
+                url: "/movie/edit",
                 data: {mid: id},
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    $("#mid1").val(jsonobj.mid);
-                    $("#mnamec1").val(jsonobj.mnamec);
-                    $("#mnamee1").val(jsonobj.mnamee);
-                    $("#msort1").val(jsonobj.msort);
-                    $("#mleng1").val(jsonobj.mleng);
-                    $("#uptime1").val(jsonobj.uptime);
-                    $("#details1").val(jsonobj.details);
-                    $("#photo1").val(jsonobj.photo);
+                    $("#mid1").val(data.mid);
+                    $("#mnamec1").val(data.mnamec);
+                    $("#mnamee1").val(data.mnamee);
+                    $("#msort1").val(data.msort);
+                    $("#mleng1").val(data.mleng);
+                    $("#uptime1").val(data.uptime);
+                    $("#details1").val(data.details);
+                    $("#photo1").val(data.photo);
                 }
             });
 
@@ -474,7 +470,7 @@
                 btnOkClick: function () {
                     $.ajax({
                         type: "post",
-                        url: "deleteMovie",
+                        url: "/movie/delete",
                         data: {mid: id},
                         success: function (data) {
                             show();
@@ -486,7 +482,7 @@
         var btn_add = function () {
             $.ajax({
                 type: "post",
-                url: "addMovie",
+                url: "/movie/add",
                 dataType: "json",
                 data: {
                     "mnamec": $("#mnamec").val(),

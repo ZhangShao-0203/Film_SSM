@@ -173,17 +173,16 @@
         function showCinema() {
             $("#showCinema").empty();
             $.ajax({
-                url:"listCinema",
+                url:"/cinema/list",
                 type:"post",
                 dataType:"json",
                 success:function(data) {
-                    var jsonObj=eval("("+data+")");
-                    for (var i = 0; i <jsonObj.length ; i++) {
+                    for (var i = 0; i <data.length ; i++) {
                         $("#showCinema").append("<tr>\n" +
-                            "                                    <td>"+jsonObj[i].cid+"</td>\n" +
-                            "                                    <td>"+jsonObj[i].cname+"</td>\n" +
-                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+jsonObj[i].cid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+jsonObj[i].cid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                            "                                    <td>"+data[i].cid+"</td>\n" +
+                            "                                    <td>"+data[i].cname+"</td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].cid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].cid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")
                     }
                 }
@@ -225,12 +224,11 @@
             $("#fade").css({display: "block"})
             $.ajax({
                 type: "post",
-                url: "editCinema",
+                url: "/cinema/edit",
                 data: {cid: id},
                 success: function (data) {
-                    var jsonobj = eval("(" + data + ")");
-                    $("#cid").val(jsonobj.cid);
-                    $("#user-name1").val(jsonobj.cname);
+                    $("#cid").val(data.cid);
+                    $("#user-name1").val(data.cname);
                 }
             });
 
@@ -241,7 +239,7 @@
                 btnOkClick: function() {
                     $.ajax({
                         type: "post",
-                        url: "deleteCinema",
+                        url: "/cinema/delete",
                         data: {cid:id },
                         success: function(data) {
                             showCinema();

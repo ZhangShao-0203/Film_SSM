@@ -227,13 +227,11 @@
             $("#fade").css({display: "block"})
             $.ajax({
                 type: "post",
-                url: "editVideo",
+                url: "/choose/edit",
                 data: {viid: id},
                 success: function (data) {
-                    alert(jsonobj.viid);
-                    var jsonobj = eval("(" + data + ")");
-                    $("#viid").val(jsonobj.viid);
-                    $("#user-name1").val(jsonobj.viname);
+                    $("#viid").val(data.viid);
+                    $("#user-name1").val(data.viname);
                 }
             });
 
@@ -244,7 +242,7 @@
                 btnOkClick: function() {
                     $.ajax({
                         type: "post",
-                        url: "deleteVideo",
+                        url: "/choose/delete",
                         data: {viid:id },
                         success: function(data) {
                             showVideo();
@@ -256,19 +254,18 @@
         function showVideo(){
             $("#showVideo").empty();
             $.ajax({
-                url:"listVideo",
+                url:"/choose/list",
                 type:"post",
                 data:{},
                 dataType:"json",
                 success:function(data) {
-                    var jsonObj=eval("("+data+")");
-                    for (var i = 0; i <jsonObj.length ; i++) {
+                    for (var i = 0; i <data.length ; i++) {
                         $("#showVideo").append("<tr>\n" +
-                            "                                    <td>"+jsonObj[i].viid+"</td>\n" +
-                            "                                    <td>"+jsonObj[i].viname+"</td>\n" +
-                            "                                    <td>"+jsonObj[i].cid+"</td>\n" +
-                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+jsonObj[i].viid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+jsonObj[i].viid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                            "                                    <td>"+data[i].viid+"</td>\n" +
+                            "                                    <td>"+data[i].viname+"</td>\n" +
+                            "                                    <td>"+data[i].cid+"</td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].viid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].viid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")
                     }
                 }
@@ -277,26 +274,24 @@
 
         function addCinema() {
             $.ajax({
-                url:"listCinema",
+                url:"/cinema/list",
                 type:"post",
                 dataType:"json",
                 success:function(data) {
-                    var jsonObj=eval("("+data+")");
-                    for (var i = 0; i <jsonObj.length ; i++) {
-                        $("#addCinema").append("<option value='"+jsonObj[i].cid+"'>"+jsonObj[i].cname+"</option>")
+                    for (var i = 0; i <data.length ; i++) {
+                        $("#addCinema").append("<option value='"+data[i].cid+"'>"+data[i].cname+"</option>")
                     }
                 }
             })
         }
         function addCinema2() {
             $.ajax({
-                url:"listCinema",
+                url:"/cinema/list",
                 type:"post",
                 dataType:"json",
                 success:function(data) {
-                    var jsonObj=eval("("+data+")");
-                    for (var i = 0; i <jsonObj.length ; i++) {
-                        $("#addCinema2").append("<option value='"+jsonObj[i].cid+"'>"+jsonObj[i].cname+"</option>")
+                    for (var i = 0; i <data.length ; i++) {
+                        $("#addCinema2").append("<option value='"+data[i].cid+"'>"+data[i].cname+"</option>")
                     }
                 }
             })
