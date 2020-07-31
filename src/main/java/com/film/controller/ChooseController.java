@@ -27,8 +27,8 @@ public class ChooseController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Choose edit(int id){
-        Choose choose = chooseService.get(id);
+    public Choose edit(int chid){
+        Choose choose = chooseService.get(chid);
         return choose;
 
     }
@@ -37,21 +37,21 @@ public class ChooseController {
     @ResponseBody
     public ModelAndView update(Choose choose, ModelAndView mav){
         int i = chooseService.update(choose);
-        mav.setViewName("/");
+        mav.setViewName("/admin/choose");
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Choose choose){
         int i = chooseService.add(choose);
-        mav.setViewName("/");
+        mav.setViewName("/admin/choose");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = chooseService.delete(id);
+    public int delete(int chid){
+        int i = chooseService.delete(chid);
         return i;
     }
 

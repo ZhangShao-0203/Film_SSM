@@ -14,5 +14,5 @@ public interface IVipService {
     //修改用户
     int update(Vip vip);
     //查看所有用户
-    List<Vip> list();
+    List<Vip> list(int currPage,int pageSize);
 }

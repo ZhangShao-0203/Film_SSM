@@ -99,7 +99,7 @@
                                         <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"
                                              style="padding-top: 30px;">
                                             <form class="am-form am-form-horizontal"
-                                                  action="addVip" method="post">
+                                                  action="/vip/add" method="post">
 
                                                 <div class="am-form-group">
                                                     <label for="user-name" class="am-u-sm-3 am-form-label">
@@ -146,7 +146,7 @@
 
                 <div id="light" class="white_content">
                     <form class="am-form am-form-horizontal"
-                          action="updateVip" method="post" enctype="multipart/form-data" >
+                          action="/vip/update" method="post" enctype="multipart/form-data" >
 
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-3 am-form-label">
@@ -263,7 +263,7 @@
             $.ajax({
                 type: "post",
                 url: "/vip/edit",
-                data: {vid: id},
+                data: {"vid": id},
                 success: function (data) {
                     $("#vid").val(data.vid);
                     $("#user-name1").val(data.vname);
@@ -280,7 +280,7 @@
                     $.ajax({
                         type: "post",
                         url: "/vip/delete",
-                        data: {vid:id },
+                        data: {"vid":id },
                         success: function(data) {
                             showVip();
                         }

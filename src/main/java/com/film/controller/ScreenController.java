@@ -27,8 +27,8 @@ public class ScreenController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Screen edit(int id){
-        Screen screen = screenService.get(id);
+    public Screen edit(int sid){
+        Screen screen = screenService.get(sid);
         return screen;
 
     }
@@ -37,21 +37,21 @@ public class ScreenController {
     @ResponseBody
     public ModelAndView update(Screen screen, ModelAndView mav){
         int i = screenService.update(screen);
-        mav.setViewName("/");
+        mav.setViewName("/admin/screen");
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Screen screen){
         int i = screenService.add(screen);
-        mav.setViewName("/");
+        mav.setViewName("/admin/screen");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = screenService.delete(id);
+    public int delete(int sid){
+        int i = screenService.delete(sid);
         return i;
     }
 

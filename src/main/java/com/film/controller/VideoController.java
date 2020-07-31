@@ -27,8 +27,8 @@ public class VideoController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Video edit(int id){
-        Video video = videoService.get(id);
+    public Video edit(int viid){
+        Video video = videoService.get(viid);
         return video;
 
     }
@@ -37,21 +37,21 @@ public class VideoController {
     @ResponseBody
     public ModelAndView update(Video video, ModelAndView mav){
         int i = videoService.update(video);
-        mav.setViewName("/");
+        mav.setViewName("/admin/video");
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Video video){
         int i = videoService.add(video);
-        mav.setViewName("/");
+        mav.setViewName("/admin/video");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = videoService.delete(id);
+    public int delete(int viid){
+        int i = videoService.delete(viid);
         return i;
     }
 }

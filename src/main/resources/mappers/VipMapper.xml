@@ -12,6 +12,9 @@
     where VID = #{vid,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Vip" >
+    <selectKey keyProperty="vid" order="BEFORE" resultType="Long">
+      SELECT VIP_SEQ.nextval FROM DUAL
+    </selectKey>
     insert into VIP (VID, VNAME, VPASS, 
       TEL)
     values (#{vid,jdbcType=DECIMAL}, #{vname,jdbcType=VARCHAR}, #{vpass,jdbcType=VARCHAR}, 

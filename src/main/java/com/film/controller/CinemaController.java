@@ -26,8 +26,8 @@ public class CinemaController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Cinema edit(int id){
-        Cinema cinema = cinemaService.get(id);
+    public Cinema edit(int cid){
+        Cinema cinema = cinemaService.get(cid);
         return cinema;
 
     }
@@ -36,21 +36,21 @@ public class CinemaController {
     @ResponseBody
     public ModelAndView update(Cinema cinema, ModelAndView mav){
         int i = cinemaService.update(cinema);
-        mav.setViewName("/");
+        mav.setViewName("/admin/cinema");
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Cinema cinema){
         int i = cinemaService.add(cinema);
-        mav.setViewName("/");
+        mav.setViewName("/admin/cinema");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = cinemaService.delete(id);
+    public int delete(int cid){
+        int i = cinemaService.delete(cid);
         return i;
     }
 }

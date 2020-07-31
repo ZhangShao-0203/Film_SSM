@@ -20,14 +20,14 @@ public class VipController {
     @RequestMapping("/list")
     @ResponseBody
     public List<Vip> list(){
-        List<Vip> vips = vipService.list();
+        List<Vip> vips = vipService.list(1,2);
         return vips;
     }
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Vip edit(int id){
-        Vip vip = vipService.get(id);
+    public Vip edit(int vid){
+        Vip vip = vipService.get(vid);
         return vip;
     }
 
@@ -35,21 +35,21 @@ public class VipController {
     @ResponseBody
     public ModelAndView update(Vip vip, ModelAndView mav){
         int i = vipService.update(vip);
-        mav.setViewName("/");
+        mav.setViewName("/admin/vip");
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Vip vip){
         int i = vipService.add(vip);
-        mav.setViewName("/");
+        mav.setViewName("/admin/vip");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = vipService.delete(id);
+    public int delete(int vid){
+        int i = vipService.delete(vid);
         return i;
     }
 }

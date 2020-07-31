@@ -12,6 +12,9 @@
     where AID = #{aid,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Admin" >
+    <selectKey keyProperty="aid" order="BEFORE" resultType="Long">
+      SELECT ADMIN_SEQ.nextval FROM DUAL
+    </selectKey>
     insert into ADMIN (AID, ANAME, APASS, 
       TEL)
     values (#{aid,jdbcType=DECIMAL}, #{aname,jdbcType=VARCHAR}, #{apass,jdbcType=VARCHAR}, 

@@ -3,8 +3,8 @@ package com.film.service.impl;
 
 import com.film.mapper.VipMapper;
 import com.film.pojo.Vip;
-import com.film.service.IVideoService;
 import com.film.service.IVipService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,13 @@ public class VipService implements IVipService {
     }
 
     @Override
-    public List<Vip> list() {
+    public List<Vip> list(int currPage, int pageSize) {
+
+        //分页
+        PageHelper.startPage(currPage,pageSize);//自动修改sql语句
+
         return vipMapper.selectAll();
     }
+
+
 }

@@ -26,8 +26,8 @@ public class OrderController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Ordert edit(int id){
-        Ordert ordert = orderService.get(id);
+    public Ordert edit(int oid){
+        Ordert ordert = orderService.get(oid);
         return ordert;
 
     }
@@ -36,21 +36,21 @@ public class OrderController {
     @ResponseBody
     public ModelAndView update(Ordert ordert, ModelAndView mav){
         int i = orderService.update(ordert);
-        mav.setViewName("/");
+        mav.setViewName("/admin/ordert");
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add(ModelAndView mav, Ordert ordert){
         int i = orderService.add(ordert);
-        mav.setViewName("/");
+        mav.setViewName("/admin/ordert");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = orderService.delete(id);
+    public int delete(int oid){
+        int i = orderService.delete(oid);
         return i;
     }
 

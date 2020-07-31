@@ -13,6 +13,13 @@ public class hellodemo {
         mav.setViewName("admin/index");
         return mav;
     }
+
+    @RequestMapping("/login.html")
+    public ModelAndView login(ModelAndView mav){
+        System.out.println("login");
+        mav.setViewName("admin/login");
+        return mav;
+    }
     @RequestMapping("/actor.html")
     public String actor(){
         System.out.println("actor");
@@ -58,4 +65,6 @@ public class hellodemo {
         System.out.println("vip");
         return "admin/vip";
     }
+
+
 }
