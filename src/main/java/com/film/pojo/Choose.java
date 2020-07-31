@@ -3,7 +3,7 @@ package com.film.pojo;
 public class Choose {
     private Long chid;
 
-    private Long sid;
+    private Long viid;
 
     private String seat;
 
@@ -17,12 +17,12 @@ public class Choose {
         this.chid = chid;
     }
 
-    public Long getSid() {
-        return sid;
+    public Long getViid() {
+        return viid;
     }
 
-    public void setSid(Long sid) {
-        this.sid = sid;
+    public void setViid(Long viid) {
+        this.viid = viid;
     }
 
     public String getSeat() {

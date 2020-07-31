@@ -4,9 +4,11 @@ import com.film.pojo.Actor;
 import com.film.service.IActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
+@Transactional
 public class ActorService implements IActorService {
     @Autowired
     ActorMapper actorMapper;

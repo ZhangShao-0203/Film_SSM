@@ -3,7 +3,7 @@
 <mapper namespace="com.film.mapper.ChooseMapper" >
   <resultMap id="BaseResultMap" type="com.film.pojo.Choose" >
     <id column="CHID" property="chid" jdbcType="DECIMAL" />
-    <result column="SID" property="sid" jdbcType="DECIMAL" />
+    <result column="VIID" property="viid" jdbcType="DECIMAL" />
     <result column="SEAT" property="seat" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
   </resultMap>
@@ -12,25 +12,28 @@
     where CHID = #{chid,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Choose" >
-    insert into CHOOSE (CHID, SID, SEAT ,STATE
+    <selectKey keyProperty="chid" order="BEFORE" resultType="Long">
+      SELECT CHOOSE_SEQ.nextval FROM DUAL
+    </selectKey>
+    insert into CHOOSE (CHID, VIID, SEAT ,STATE
       )
-    values (#{chid,jdbcType=DECIMAL}, #{sid,jdbcType=DECIMAL}, #{seat,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+    values (#{chid,jdbcType=DECIMAL}, #{viid,jdbcType=DECIMAL}, #{seat,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.film.pojo.Choose" >
     update CHOOSE
-    set SID = #{sid,jdbcType=DECIMAL},
+    set VIID = #{viid,jdbcType=DECIMAL},
       SEAT = #{seat,jdbcType=VARCHAR},
       STATE = #{state,jdbcType=VARCHAR}
     where CHID = #{chid,jdbcType=DECIMAL}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select CHID, SID, SEAT
+    select CHID, VIID, SEAT ,STATE
     from CHOOSE
     where CHID = #{chid,jdbcType=DECIMAL}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select CHID, SID, SEAT ,STATE
+    select CHID, VIID, SEAT ,STATE
     from CHOOSE
   </select>
 </mapper>
