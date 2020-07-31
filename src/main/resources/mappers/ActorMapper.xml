@@ -38,7 +38,8 @@
     where ACID = #{acid,jdbcType=DECIMAL}
   </select>
     <select id="selectMAll" resultMap="BaseResultMap">
-select a.*,m.mid mid,m.MNAMEE mnamee,m.MNAMEC mnamec from  ACTOR a,MOVIE_ACTOR ma,MOVIE m where ma.acid=a.acid and ma.mid=m.mid ORDER BY a.ACID ASC
+  select a.*,m.mid mid,m.MNAMEE mnamee,m.MNAMEC mnamec  from ACTOR a LEFT JOIN  MOVIE_ACTOR ma ON a.acid=ma.acid LEFT JOIN  MOVIE m ON m.mid=ma.mid
+-- select a.*,m.mid mid,m.MNAMEE mnamee,m.MNAMEC mnamec from  ACTOR a,MOVIE_ACTOR ma,MOVIE m where ma.acid=a.acid and ma.mid=m.mid ORDER BY a.ACID ASC
   </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT * from ACTOR
