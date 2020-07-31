@@ -14,11 +14,11 @@ public interface MovieActorMapper {
     //添加用户
     int add(Map<String,Object> map);
     //查询用户
-    MovieActor get(int acid,int mid);
+    List<MovieActor> selectmid(int mid);
     //删除用户
-    int delete(int mid);
+    int delete(Long mid);
     //修改用户
-    int update(int acid,int mid);
+    int update(Map<String,Object> map);
     //查看所有用户
     List<MovieActor> list();
 }

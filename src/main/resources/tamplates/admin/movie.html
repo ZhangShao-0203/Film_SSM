@@ -257,22 +257,23 @@
                             <label for="user-name" class="am-u-sm-3 am-form-label">
                                 人员</label>
                             <div class="am-u-sm-9" id="tj1">
-                                <select style="color:blue;" id="dy1" name="actorList[0].acid">
+                                <select style="color:blue;" id="dy1" name="actorList[0].acid" class="ady1">
 
                                 </select>
-                                <select id="yy1" name="actorList[0].acid">
+                                <select id="yy1" name="actorList[1].acid" class="ayy1">
 
                                 </select>
                             </div>
                             <div class="am-u-sm-9">
-                                <input type="button" id="btn1" value="添加">
+                                <input type="button" id="btn1" value="添加" onclick="btn_tj()">
+                                <input type="button" id="btn2" value="删除" onclick="btn_sc()">
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <div class="am-u-sm-9 am-u-sm-push-3">
                                 <input type="submit" class="am-btn am-btn-success"
-                                       value="添加电影"/>
+                                       value="修改电影"/>
                                 <input onclick='btn_add()' type="button"
                                        class="am-btn am-btn-success"
                                        value="添加电影"/>
@@ -299,15 +300,29 @@
 
         var num = 2;
         var num1= 2;
+        function btn_tj() {
+                $("#tj1").append($("#yy1").clone().attr({name: "actorList[" + num1 + "].acid",class:"aa",id:"yy"+num1+""}))
+
+                num1++;
+        }
+        function btn_sc() {
+            if(num1>2){
+                alert(num1)
+                num1--;
+                $("#yy"+num1+"").remove();
+
+            }else{
+                alert("没有可删除的了,必须有一个导演和演员")
+            }
+
+        }
         $(function () {
             $("#btn").click(function () {
                 $("#tj").append($("#yy").clone().attr("name", "actorList[" + num + "].acid"))
                 num++;
             })
-            $("#btn1").click(function () {
-                $("#tj1").append($("#yy1").clone().attr("name", "actorList[" + num1 + "].acid"))
-                num1++;
-            })
+
+            
             showyy();
             $(".tabs").slide({trigger: "click"});
             $("#doc").change(function (e) {
@@ -445,9 +460,14 @@
         }
 
         var btn_edit = function (id) {
+            $(".aa").remove();
+            $("#dy1").empty();
+            $("#yy1").empty();
+            num1=2;
             showyy1();
             $("#light").css({display: "block"})
             $("#fade").css({display: "block"})
+
             $.ajax({
                 type: "post",
                 url: "/movie/edit",
@@ -461,6 +481,13 @@
                     $("#uptime1").val(data.uptime);
                     $("#details1").val(data.details);
                     $("#photo1").val(data.photo);
+//                    $("#state1 option[value='" + data.acsort + "']").attr("selected", true)
+                    $(".ady1 option[value='"+data.actorList[0].acid+"']").attr("selected",true);
+                    $(".ayy1 option[value='"+data.actorList[1].acid+"']").attr("selected",true);
+                    for(var a=2;a<data.actorList.length;a++){
+                        btn_tj();
+                        $("#yy"+a+" option[value='"+data.actorList[a].acid+"']").attr("selected",true)
+                    }
                 }
             });
 

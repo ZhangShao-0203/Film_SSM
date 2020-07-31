@@ -13,6 +13,14 @@ public class MovieActor {
         this.mid = mid;
     }
 
+    @Override
+    public String toString() {
+        return "MovieActor{" +
+                "mid=" + mid +
+                ", acid=" + acid +
+                '}';
+    }
+
     public Long getAcid() {
         return acid;
     }

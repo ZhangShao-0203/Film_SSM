@@ -15,7 +15,11 @@
     select MID, ACID
     from MOVIE_ACTOR
   </select>
-    <delete id="delete" parameterType="int">
+    <select id="selectmid" resultMap="BaseResultMap">
+        select MID, ACID
+        from MOVIE_ACTOR WHERE MID=#{mid}
+    </select>
+    <delete id="delete" parameterType="long">
         DELETE FROM MOVIE_ACTOR WHERE MID=#{mid}
     </delete>
 </mapper>

@@ -2,6 +2,7 @@ package com.film.controller;
 
 import com.film.pojo.Actor;
 import com.film.pojo.Movie;
+import com.film.pojo.MovieActor;
 import com.film.service.IMovieActorService;
 import com.film.service.IMovieService;
 import lombok.SneakyThrows;
@@ -27,6 +28,7 @@ public class MovieController {
     IMovieService movieService;
     @Autowired
     IMovieActorService movieActorService;
+
     @RequestMapping("/list")
     @ResponseBody
     public List<Movie> list() {
@@ -38,6 +40,9 @@ public class MovieController {
     @ResponseBody
     public Movie edit(int mid) {
         Movie movie = movieService.get(mid);
+        List<MovieActor> movieActors = movieActorService.get(mid);
+        movie.setActorList(movieActors);
+        System.out.println("------------"+movie.getActorList().toString());
         return movie;
 
     }
@@ -45,7 +50,7 @@ public class MovieController {
     @SneakyThrows
     @RequestMapping("/update")
     @ResponseBody
-    public ModelAndView update(Movie movie,MultipartFile doc, ModelAndView mav,HttpServletRequest request) {
+    public ModelAndView update(Movie movie, MultipartFile doc, ModelAndView mav, HttpServletRequest request) {
         String originalFilename = doc.getOriginalFilename();
         String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
         String uuid = UUID.randomUUID().toString();
@@ -59,6 +64,11 @@ public class MovieController {
         String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/movies/" + uuid + movie.getMnamec() + substring;
         movie.setPhoto(readPath);
         int i = movieService.update(movie);
+        int delete = movieActorService.delete(movie.getMid());
+        Map<String, Object> map = new HashMap();
+        map.put("mid", movie.getMid());
+        map.put("list", movie.getActorList());
+        int add = movieActorService.add(map);
         mav.setViewName("/admin/movie");
         return mav;
     }
@@ -79,9 +89,9 @@ public class MovieController {
         String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/movies/" + uuid + movie.getMnamec() + substring;
         movie.setPhoto(readPath);
         int i = movieService.add(movie);
-        Map<String,Object> map=new HashMap();
-        map.put("mid",movie.getMid());
-        map.put("list",movie.getActorList());
+        Map<String, Object> map = new HashMap();
+        map.put("mid", movie.getMid());
+        map.put("list", movie.getActorList());
         int add = movieActorService.add(map);
         mav.setViewName("/admin/movie");
         return mav;

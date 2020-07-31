@@ -19,13 +19,14 @@ public class Movie {
 
     private String photo;
 
-    private List<Actor> actorList;
+    private List<MovieActor> actorList;
 
-    public List<Actor> getActorList() {
+
+    public List<MovieActor> getActorList() {
         return actorList;
     }
 
-    public void setActorList(List<Actor> actorList) {
+    public void setActorList(List<MovieActor> actorList) {
         this.actorList = actorList;
     }
 

@@ -20,18 +20,18 @@ public class MovieActorService implements IMovieActorService {
     }
 
     @Override
-    public MovieActor get(int acid, int mid) {
-        return movieActorMapper.get(acid,mid);
+    public List<MovieActor> get(int mid) {
+        return movieActorMapper.selectmid(mid);
     }
 
     @Override
-    public int delete( int mid) {
+    public int delete(Long mid) {
         return movieActorMapper.delete(mid);
     }
 
     @Override
-    public int update(int acid, int mid) {
-        return movieActorMapper.update(acid,mid);
+    public int update(Map<String,Object> map) {
+        return movieActorMapper.update(map);
     }
 
     @Override
