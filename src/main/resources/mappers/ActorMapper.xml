@@ -6,6 +6,11 @@
         <result column="ACNAME" property="acname" jdbcType="VARCHAR"/>
         <result column="ACPHOTO" property="acphoto" jdbcType="VARCHAR"/>
         <result column="ACSORT" property="acsort" jdbcType="VARCHAR"/>
+        <collection property="movieList" ofType="Movie">
+            <id column="mid" property="mid"></id>
+            <result column="mnamee" property="mnamee"></result>
+            <result column="mnamec" property="mnamec"></result>
+        </collection>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from ACTOR
@@ -32,8 +37,10 @@
     from ACTOR
     where ACID = #{acid,jdbcType=DECIMAL}
   </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-    select ACID, ACNAME, ACPHOTO, ACSORT
-    from  ACTOR ORDER BY ACID ASC
+    <select id="selectMAll" resultMap="BaseResultMap">
+select a.*,m.mid mid,m.MNAMEE mnamee,m.MNAMEC mnamec from  ACTOR a,MOVIE_ACTOR ma,MOVIE m where ma.acid=a.acid and ma.mid=m.mid ORDER BY a.ACID ASC
   </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * from ACTOR
+    </select>
 </mapper>

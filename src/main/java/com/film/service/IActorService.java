@@ -15,4 +15,5 @@ public interface IActorService {
     int update(Actor actor);
     //查看所有用户
     List<Actor> list();
+    List<Actor> listm();
 }

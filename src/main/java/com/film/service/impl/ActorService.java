@@ -36,4 +36,8 @@ public class ActorService implements IActorService {
     public List<Actor> list() {
         return actorMapper.selectAll();
     }
+    @Override
+    public List<Actor> listm() {
+        return actorMapper.selectMAll();
+    }
 }

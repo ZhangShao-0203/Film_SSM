@@ -1,6 +1,7 @@
 package com.film.controller;
 
 import com.film.pojo.Actor;
+import com.film.pojo.Movie;
 import com.film.service.IActorService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,12 @@ public class ActorController {
         List<Actor> actors = actorService.list();
         return actors;
     }
-
+    @RequestMapping("/listm")
+    @ResponseBody
+    public List<Actor> listm() {
+        List<Actor> actors = actorService.listm();
+        return actors;
+    }
     @RequestMapping("/edit")
     @ResponseBody
     public Actor edit(int acid) {

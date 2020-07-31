@@ -15,6 +15,7 @@ public interface ActorMapper {
     Actor selectByPrimaryKey(Long acid);
 
     List<Actor> selectAll();
+    List<Actor> selectMAll();
 
     int updateByPrimaryKey(Actor record);
 }
