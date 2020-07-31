@@ -10,6 +10,9 @@
     where CID = #{cid,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Cinema" >
+    <selectKey keyProperty="cid" order="BEFORE" resultType="Long">
+      SELECT CINEMA_SEQ.nextval FROM DUAL
+    </selectKey>
     insert into CINEMA (CID, CNAME)
     values (#{cid,jdbcType=DECIMAL}, #{cname,jdbcType=VARCHAR})
   </insert>

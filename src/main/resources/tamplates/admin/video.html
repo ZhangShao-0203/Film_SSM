@@ -113,7 +113,7 @@
                                                     <label for="user-email" class="am-u-sm-3 am-form-label">
                                                         电影院编号</label>
                                                     <div class="am-u-sm-9">
-                                                        <select name="groupId" required id="addCinema">
+                                                        <select name="cid" required id="addCinema">
 
                                                         </select> <small>群组</small>
                                                     </div>
@@ -137,7 +137,7 @@
 
                 <div id="light" class="white_content">
                     <form class="am-form am-form-horizontal"
-                          action="/video/update" method="post" enctype="multipart/form-data" >
+                          action="/video/update" method="post" >
 
                         <div class="am-form-group">
                             <label for="user-name1" class="am-u-sm-3 am-form-label">
@@ -150,10 +150,11 @@
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-email1" class="am-u-sm-3 am-form-label">
-                                电影院编号</label>
+                            <label for="user-name2" class="am-u-sm-3 am-form-label">
+                                电影院名称</label>
+                            <input type="hidden" name="cname" value="" id="user-name2">
                             <div class="am-u-sm-9">
-                                <select name="groupId" required id="addCinema2">
+                                <select name="cid" required id="addCinema2">
 
                                 </select> <small>群组</small>
                             </div>
@@ -286,7 +287,7 @@
         }
         function addCinema2() {
             $.ajax({
-                url:"listCinema",
+                url:"/cinema/list",
                 type:"post",
                 dataType:"json",
                 success:function(data) {

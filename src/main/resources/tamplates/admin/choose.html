@@ -104,8 +104,9 @@
                                                 <div class="am-form-group">
                                                     <label for="user-name1" class="am-u-sm-3 am-form-label">放映厅名称</label>
                                                     <div class="am-u-sm-9">
-                                                        <input type="text" id="" required
-                                                               placeholder="放映厅名称" name="viid">
+                                                        <select name="viid" required id="addVideo">
+
+                                                        </select>
                                                         <small>10字以内...</small>
                                                     </div>
                                                 </div>
@@ -144,34 +145,33 @@
 
                 <div id="light" class="white_content">
                     <form class="am-form am-form-horizontal"
-                          action="/choose/update" method="post" enctype="multipart/form-data" >
+                          action="/choose/update" method="post">
 
                         <div class="am-form-group">
                             <label for="user-name1" class="am-u-sm-3 am-form-label">
                                 放映厅名称</label>
                             <div class="am-u-sm-9">
-                                <input type="hidden" name="viid" value="" id="viid">
-                                <input type="text" id="user-name1" required
-                                       placeholder="放映厅名称" name="viname">
-                                <small>10字以内...</small>
+                                <input type="hidden" name="viname" value="" id="user-name1">
+                                <select id="addVideo2" required name="viid">
+
+                                </select>
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-name2" class="am-u-sm-3 am-form-label">
+                            <label for="seat" class="am-u-sm-3 am-form-label">
                                 座位信息</label>
                             <div class="am-u-sm-9">
-                                <input type="hidden" name="seat" value="" id="seat">
-                                <input type="text" id="user-name2" required
+                                <input type="hidden" name="chid" value=""id="chid">
+                                <input type="text"  required id="seat"
                                        placeholder="放映厅名称" name="seat">
                                 <small>10字以内...</small>
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-state" class="am-u-sm-3 am-form-label">
+                            <label for="state" class="am-u-sm-3 am-form-label">
                                 座位状态</label>
                             <div class="am-u-sm-9">
-                                <input type="hidden" name="state" value="" id="state">
-                                <input type="text" id="user-state" required
+                                <input type="text"  required id="state"
                                        placeholder="座位状态" name="state">
                                 <small>10字以内...</small>
                             </div>
@@ -204,8 +204,8 @@
 
             $(".tabs").slide({ trigger: "click" });
             showChoose();
-            addCinema();
-            addCinema2();
+            addVideo();
+            addVideo2();
 
         });
 
@@ -288,6 +288,34 @@
                             "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].chid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
                             "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].chid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")
+                    }
+                }
+            })
+        }
+
+        function addVideo() {
+            $.ajax({
+                url:"/video/list",
+                type:"post",
+                data:{},
+                dataType:"json",
+                success:function(data) {
+                    for (var i = 0; i <data.length ; i++) {
+                        $("#addVideo").append("<option value='"+data[i].viid+"'>"+data[i].viname+"</option>")
+                    }
+                }
+            })
+        }
+
+        function addVideo2() {
+            $.ajax({
+                url:"/video/list",
+                type:"post",
+                data:{},
+                dataType:"json",
+                success:function(data) {
+                    for (var i = 0; i <data.length ; i++) {
+                        $("#addVideo2").append("<option value='"+data[i].viid+"'>"+data[i].viname+"</option>")
                     }
                 }
             })

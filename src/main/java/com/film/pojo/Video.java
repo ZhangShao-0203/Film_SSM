@@ -6,6 +6,7 @@ public class Video {
     private String viname;
 
     private Long cid;
+    private Cinema cinema;
 
     public Long getViid() {
         return viid;
@@ -29,5 +30,13 @@ public class Video {
 
     public void setCid(Long cid) {
         this.cid = cid;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
     }
 }

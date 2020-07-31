@@ -998,8 +998,6 @@
                                 <div class="movie-detail movie-rt">10月1日上映</div>
 
                         </dl>
-
-
                     </div>
                 </div>
 
@@ -1242,6 +1240,49 @@
 </script>
 <script src="//s0.meituan.net/bs/?f=myfe/canary:mojo-0.1.2.js"></script>
 <script>
+    $(function() {
+        show();
+    });
+    function show() {
+        $("#showMovie").empty();
+        $.ajax({
+            url: "/movie/list",
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var aa="";
+                    var dy="";
+                    for (var a = 0; a < data[i].actorList.length; a++) {
+                        if(data[i].actorList[a].acsort=="演员"){
+                            aa += data[i].actorList[a].acname+" ";
+                        }
+                        if(data[i].actorList[a].acsort=="导演"){
+                            dy=data[i].actorList[a].acname;
+                        }
+                    }
+
+                    $("#showMovie").append("<tr>\n" +
+                        "                                    <td>" + data[i].mid + "</td>\n" +
+                        "                                    <td>" + data[i].mnamec + "</td>\n" +
+                        "                                    <td>" + data[i].mnamee + "</td>\n" +
+                        "                                    <td>" + data[i].msort + "</td>\n" +
+                        "                                    <td>" + data[i].mleng + "</td>\n" +
+                        "                                    <td>" + data[i].uptime + "</td>\n" +
+                        "                                     <td>" + data[i].details + "</td>\n" +
+                        "                                    <td><img src='" + data[i].photo + "' height='150px' width='150px'></td>\n" +
+                        "                                    <td style='text-align: center'><span style='color:red '>导演:"+dy+"</span><br>演员:" + aa + "</lable></td>\n" +
+                        "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].mid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                        "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].mid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                        "                                </tr>")
+                }
+
+            }
+
+
+        })
+    }
+
     MAInit({
         appkey: 'com.sankuai.movie.fe.mywww',
         app_name: 'maoyan-pc-web',
