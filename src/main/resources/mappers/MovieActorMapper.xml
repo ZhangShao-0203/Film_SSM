@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.film.mapper.MovieActorMapper" >
-  <resultMap id="BaseResultMap" type="com.film.pojo.MovieActor" >
-  <result column="MID" property="mid" jdbcType="DECIMAL" />
-  <result column="ACID" property="acid" jdbcType="DECIMAL" />
-</resultMap>
-  <insert id="add" parameterType="map">
-    insert into MOVIE_ACTOR (MID, ACID)
-    <foreach item="item" collection="list"  separator=",">
-      (SELECT #{mid},#{item.acid}) FROM  dual)
-    </foreach>
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap" >
+<mapper namespace="com.film.mapper.MovieActorMapper">
+    <resultMap id="BaseResultMap" type="com.film.pojo.MovieActor">
+        <result column="MID" property="mid" jdbcType="DECIMAL"/>
+        <result column="ACID" property="acid" jdbcType="DECIMAL"/>
+    </resultMap>
+    <insert id="add" parameterType="map">
+        insert into MOVIE_ACTOR (MID, ACID)
+        <foreach item="item" collection="list" separator="union all">
+            (SELECT #{mid},#{item.acid} FROM dual)
+        </foreach>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
     select MID, ACID
     from MOVIE_ACTOR
   </select>
+    <delete id="delete" parameterType="int">
+        DELETE FROM MOVIE_ACTOR WHERE MID=#{mid}
+    </delete>
 </mapper>

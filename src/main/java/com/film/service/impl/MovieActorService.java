@@ -25,13 +25,13 @@ public class MovieActorService implements IMovieActorService {
     }
 
     @Override
-    public int delete(int acid, int mid) {
-        return movieActorMapper.delete(acid,mid);
+    public int delete( int mid) {
+        return movieActorMapper.delete(mid);
     }
 
     @Override
     public int update(int acid, int mid) {
-        return movieActorMapper.delete(acid,mid);
+        return movieActorMapper.update(acid,mid);
     }
 
     @Override

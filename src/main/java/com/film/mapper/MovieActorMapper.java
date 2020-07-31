@@ -16,7 +16,7 @@ public interface MovieActorMapper {
     //查询用户
     MovieActor get(int acid,int mid);
     //删除用户
-    int delete(int acid,int mid);
+    int delete(int mid);
     //修改用户
     int update(int acid,int mid);
     //查看所有用户

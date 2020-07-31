@@ -36,15 +36,28 @@ public class MovieController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Movie edit(int id) {
-        Movie movie = movieService.get(id);
+    public Movie edit(int mid) {
+        Movie movie = movieService.get(mid);
         return movie;
 
     }
 
+    @SneakyThrows
     @RequestMapping("/update")
     @ResponseBody
-    public ModelAndView update(Movie movie, ModelAndView mav) {
+    public ModelAndView update(Movie movie,MultipartFile doc, ModelAndView mav,HttpServletRequest request) {
+        String originalFilename = doc.getOriginalFilename();
+        String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
+        String uuid = UUID.randomUUID().toString();
+        String savePath = request.getRealPath("/") + "movies/" + uuid + movie.getMnamec() + substring;
+        File file = new File(savePath);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdir();
+        }
+        doc.transferTo(file);
+        //读取路径
+        String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/movies/" + uuid + movie.getMnamec() + substring;
+        movie.setPhoto(readPath);
         int i = movieService.update(movie);
         mav.setViewName("/admin/movie");
         return mav;
@@ -76,8 +89,10 @@ public class MovieController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id) {
-        int i = movieService.delete(id);
+    public int delete(int mid) {
+        int i = movieService.delete(mid);
+        //数据库设置级联了 所以不需要这个
+        // movieActorService.delete(mid);
         return i;
     }
 }
