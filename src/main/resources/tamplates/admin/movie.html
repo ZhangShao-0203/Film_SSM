@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"
                                              style="padding-top: 30px;">
-                                            <form id="addmovie" class="am-form am-form-horizontal" action="addMovie"
+                                            <form id="addmovie" class="am-form am-form-horizontal" action="/movie/add"
                                                   method="post" enctype="multipart/form-data">
 
                                                 <div class="am-form-group">
@@ -163,10 +163,10 @@
                                                     <label for="user-name" class="am-u-sm-3 am-form-label">
                                                         人员</label>
                                                     <div class="am-u-sm-9" id="tj">
-                                                        <select style="color:blue;" id="dy" name="ry[0]">
+                                                        <select style="color:blue;" id="dy" name="actorList[0].acid">
 
                                                         </select>
-                                                        <select id="yy" name="ry[1]">
+                                                        <select id="yy" name="actorList[1].acid">
 
                                                         </select>
                                                     </div>
@@ -301,11 +301,11 @@
         var num1= 2;
         $(function () {
             $("#btn").click(function () {
-                $("#tj").append($("#yy").clone().attr("name", "ry[" + num + "]"))
+                $("#tj").append($("#yy").clone().attr("name", "actorList[" + num + "].acid"))
                 num++;
             })
             $("#btn1").click(function () {
-                $("#tj1").append($("#yy1").clone().attr("name", "ry[" + num1 + "]"))
+                $("#tj1").append($("#yy1").clone().attr("name", "actorList[" + num1 + "].acid"))
                 num1++;
             })
             showyy();
@@ -414,14 +414,15 @@
                     for (var i = 0; i < data.length; i++) {
                         var aa="";
                         var dy="";
-                        for (var a = 0; a < data[i].arr.length; a++) {
-                            if(data[i].arr[a].acsort=="演员"){
-                                aa += data[i].arr[a].acname+" ";
+                        for (var a = 0; a < data[i].actorList.length; a++) {
+                            if(data[i].actorList[a].acsort=="演员"){
+                                aa += data[i].actorList[a].acname+" ";
                             }
-                            if(data[i].arr[a].acsort=="导演"){
-                                dy=data[i].arr[a].acname;
+                            if(data[i].actorList[a].acsort=="导演"){
+                                dy=data[i].actorList[a].acname;
                             }
                         }
+
                         $("#showMovie").append("<tr>\n" +
                             "                                    <td>" + data[i].mid + "</td>\n" +
                             "                                    <td>" + data[i].mnamec + "</td>\n" +
@@ -429,9 +430,9 @@
                             "                                    <td>" + data[i].msort + "</td>\n" +
                             "                                    <td>" + data[i].mleng + "</td>\n" +
                             "                                    <td>" + data[i].uptime + "</td>\n" +
-                            "                                    <td>" + data[i].details + "</td>\n" +
+                            "                                     <td>" + data[i].details + "</td>\n" +
                             "                                    <td><img src='" + data[i].photo + "' height='150px' width='150px'></td>\n" +
-                            "                                    <td><span style='color:red '>"+dy+"</span><br>" + aa + "</lable></td>\n" +
+                            "                                    <td style='text-align: center'><span style='color:red '>导演:"+dy+"</span><br>演员:" + aa + "</lable></td>\n" +
                             "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].mid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
                             "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].mid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")

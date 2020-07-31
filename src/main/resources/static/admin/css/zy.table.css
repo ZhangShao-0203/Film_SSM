@@ -17,14 +17,13 @@
 .table thead tr th {
     border: 1px solid #DDD;
     text-align:left;
-    text-indent:20px;
     padding:10px 8px;font-size: 14px;
     color:#707070;
     font-weight: 700;
  
 }
 .table tbody tr td {
-    border: 1px solid #DDD;text-indent:20px;text-align:left;padding:10px 8px;font-size: 14px;
+    border: 1px solid #DDD;text-align:left;padding:10px 8px;font-size: 14px;
 }
 
 .table tbody tr:nth-child(2n+1) {

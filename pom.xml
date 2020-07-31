@@ -55,12 +55,7 @@
       <artifactId>tomcat-embed-jasper</artifactId>
       <version>8.5.31</version>
     </dependency>
-    <!--构造方法-->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.8</version>
-    </dependency>
+
     <!--Thymeleaf模块引擎-->
     <dependency>
       <groupId>org.springframework.boot</groupId>

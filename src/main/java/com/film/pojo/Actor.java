@@ -1,5 +1,7 @@
 package com.film.pojo;
 
+import java.util.List;
+
 public class Actor {
     private Long acid;
 
@@ -8,6 +10,16 @@ public class Actor {
     private String acphoto;
 
     private String acsort;
+
+    private List<Movie> movieList;
+
+    public List<Movie> getMovieList() {
+        return movieList;
+    }
+
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
+    }
 
     public Long getAcid() {
         return acid;
@@ -39,5 +51,15 @@ public class Actor {
 
     public void setAcsort(String acsort) {
         this.acsort = acsort;
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "acid=" + acid +
+                ", acname='" + acname + '\'' +
+                ", acphoto='" + acphoto + '\'' +
+                ", acsort='" + acsort + '\'' +
+                '}';
     }
 }

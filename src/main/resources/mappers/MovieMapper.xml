@@ -10,12 +10,21 @@
     <result column="UPTIME" property="uptime" jdbcType="VARCHAR" />
     <result column="DETAILS" property="details" jdbcType="VARCHAR" />
     <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <collection property="actorList" ofType="Actor">
+      <id column="acid" property="acid"></id>
+      <result column="acname" property="acname"></result>
+      <result column="acphoto" property="acphoto"></result>
+      <result column="acsort" property="acsort"></result>
+    </collection>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from MOVIE
     where MID = #{mid,jdbcType=DECIMAL}
   </delete>
-  <insert id="insert" parameterType="com.film.pojo.Movie" >
+  <insert id="insert" parameterType="com.film.pojo.Movie" useGeneratedKeys="true" keyProperty="mid">
+    <selectKey keyProperty="mid" order="BEFORE" resultType="Long">
+      SELECT MOVIE_SEQ.nextval FROM DUAL
+    </selectKey>
     insert into MOVIE (MID, MNAMEC, MNAMEE, 
       MSORT, MLENG, UPTIME, 
       DETAILS, PHOTO)
@@ -39,8 +48,8 @@
     from MOVIE
     where MID = #{mid,jdbcType=DECIMAL}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select MID, MNAMEC, MNAMEE, MSORT, MLENG, UPTIME, DETAILS, PHOTO
-    from MOVIE
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select a.*,m.*,m.MID MID,a.ACID ACID
+    from MOVIE m,ACTOR a,MOVIE_ACTOR ma WHERE ma.MID=m.MID AND  ma.ACID=a.ACID
   </select>
 </mapper>

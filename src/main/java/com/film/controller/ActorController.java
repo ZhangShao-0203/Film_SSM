@@ -64,17 +64,17 @@ public class ActorController {
         String originalFilename = doc.getOriginalFilename();
         String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
         String uuid = UUID.randomUUID().toString();
-        String savePath = request.getRealPath("/") + "docs/" + uuid + actor.getAcid() + substring;
+        String savePath = request.getRealPath("/") + "docs/" + uuid + actor.getAcname() + substring;
         File file = new File(savePath);
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdir();
         }
         doc.transferTo(file);
         //读取路径
-        String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/docs/" + uuid + actor.getAcid() + substring;
+        String readPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/docs/" + uuid + actor.getAcname() + substring;
         actor.setAcphoto(readPath);
         int i = actorService.add(actor);
-        return "/admin/actor";
+        return "/admin/actor.html";
     }
 
     @RequestMapping("/delete")

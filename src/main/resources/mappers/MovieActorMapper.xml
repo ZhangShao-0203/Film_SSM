@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.film.mapper.MovieActorMapper" >
   <resultMap id="BaseResultMap" type="com.film.pojo.MovieActor" >
-    <result column="MID" property="mid" jdbcType="DECIMAL" />
-    <result column="ACID" property="acid" jdbcType="DECIMAL" />
-  </resultMap>
-  <insert id="insert" parameterType="com.film.pojo.MovieActor" >
+  <result column="MID" property="mid" jdbcType="DECIMAL" />
+  <result column="ACID" property="acid" jdbcType="DECIMAL" />
+</resultMap>
+  <insert id="add" parameterType="map">
     insert into MOVIE_ACTOR (MID, ACID)
-    values (#{mid,jdbcType=DECIMAL}, #{acid,jdbcType=DECIMAL})
+    <foreach item="item" collection="list"  separator=",">
+      (SELECT #{mid},#{item.acid}) FROM  dual)
+    </foreach>
   </insert>
   <select id="selectAll" resultMap="BaseResultMap" >
     select MID, ACID

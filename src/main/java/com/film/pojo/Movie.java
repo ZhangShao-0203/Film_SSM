@@ -1,5 +1,7 @@
 package com.film.pojo;
 
+import java.util.List;
+
 public class Movie {
     private Long mid;
 
@@ -16,6 +18,16 @@ public class Movie {
     private String details;
 
     private String photo;
+
+    private List<Actor> actorList;
+
+    public List<Actor> getActorList() {
+        return actorList;
+    }
+
+    public void setActorList(List<Actor> actorList) {
+        this.actorList = actorList;
+    }
 
     public Long getMid() {
         return mid;
@@ -43,6 +55,21 @@ public class Movie {
 
     public String getMsort() {
         return msort;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "mid=" + mid +
+                ", mnamec='" + mnamec + '\'' +
+                ", mnamee='" + mnamee + '\'' +
+                ", msort='" + msort + '\'' +
+                ", mleng='" + mleng + '\'' +
+                ", uptime='" + uptime + '\'' +
+                ", details='" + details + '\'' +
+                ", photo='" + photo + '\'' +
+                ", actorList=" + actorList +
+                '}';
     }
 
     public void setMsort(String msort) {
