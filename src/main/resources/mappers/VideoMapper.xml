@@ -11,10 +11,11 @@
     where VIID = #{viid,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Video" >
-    insert into VIDEO (VIID, VINAME, CID
-      )
-    values (#{viid,jdbcType=DECIMAL}, #{viname,jdbcType=VARCHAR}, #{cid,jdbcType=DECIMAL}
-      )
+    <selectKey keyProperty="viid" order="BEFORE" resultType="Long">
+      SELECT VIDEO_SEQ.nextval FROM DUAL
+    </selectKey>
+    insert into VIDEO (VIID, VINAME, CID )
+    values (#{viid,jdbcType=DECIMAL}, #{viname,jdbcType=VARCHAR}, #{cid,jdbcType=DECIMAL} )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.film.pojo.Video" >
     update VIDEO

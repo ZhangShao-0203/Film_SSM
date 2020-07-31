@@ -14,6 +14,9 @@
     where SID = #{sid,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.film.pojo.Screen" >
+    <selectKey keyProperty="sid" order="BEFORE" resultType="Long">
+      SELECT SCREEN_SEQ.nextval FROM DUAL
+    </selectKey>
     insert into SCREEN (SID, CID, MID, 
       VIID, STIME, SPRICE
       )
