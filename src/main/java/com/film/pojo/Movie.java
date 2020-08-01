@@ -3,6 +3,7 @@ package com.film.pojo;
 import java.util.List;
 
 public class Movie {
+
     private Long mid;
 
     private String mnamec;

@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class Moviec {
+
     private Short mcid;
 
     private String mcname;

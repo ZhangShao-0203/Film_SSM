@@ -3,6 +3,7 @@ package com.film.pojo;
 import java.util.Date;
 
 public class Screen {
+
     private Long sid;
 
     private Long cid;

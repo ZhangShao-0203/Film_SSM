@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class Choose {
+
     private Long chid;
 
     private Long viid;

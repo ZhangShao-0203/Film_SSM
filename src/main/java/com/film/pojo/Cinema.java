@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class Cinema {
+
     private Long cid;
 
     private String cname;

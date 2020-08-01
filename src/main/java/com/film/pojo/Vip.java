@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class Vip {
+
     private Long vid;
 
     private String vname;

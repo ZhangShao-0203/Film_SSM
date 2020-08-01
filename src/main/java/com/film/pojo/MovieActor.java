@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class MovieActor {
+
     private Long mid;
 
     private Long acid;

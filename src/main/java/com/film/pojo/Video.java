@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class Video {
+
     private Long viid;
 
     private String viname;

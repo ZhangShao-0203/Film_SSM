@@ -1,6 +1,7 @@
 package com.film.pojo;
 
 public class Admin {
+
     private Long aid;
 
     private String aname;
