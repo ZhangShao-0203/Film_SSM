@@ -769,33 +769,10 @@
         <span class="textcolor_red"><h2>正在热映（1部）</h2></span>
       </span>
                     </div>
-                    <div class="panel-content">
-                        <dl class="movie-list">
-                            <dd>
-                                <div class="movie-item">
-                                    <a href="/films/1220983" target="_blank" data-act="playingMovie-click" data-val="{movieid:1220983}">
-                                        <div class="movie-poster">
-                                            <img class="poster-default" src="//s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:5788b470/image/loading_2.e3d934bf.png" />
-                                            <img class="movie-poster-img" data-src="https://p0.meituan.net/movie/584224ba10e6a450ad8d8ef35e22b8cd369031.jpg@160w_220h_1e_1c" alt="动物特工局电影海报" />
-                                            <div class="movie-overlay movie-overlay-bg">
-                                                <div class="movie-info">
-                                                    <div class="movie-score"><i class="integer">9.</i><i class="fraction">0</i></div>
-                                                    <div class="movie-title movie-title-padding"
-                                                         title="动物特工局" >动物特工局</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div class="movie-detail movie-detail-strong movie-sale">
-                                        <a href="/cinemas?movieId=1220983"
-                                           class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:1220983}" >购 票</a>
-                                    </div>
-                                    <div class="movie-ver"></div>
-                                </div>
+                    <div class="panel-content" >
+                        <dl class="movie-list"  id="showMovie">
 
                         </dl>
-
-
                     </div>
                 </div>
 
@@ -1239,6 +1216,7 @@
     })
 </script>
 <script src="//s0.meituan.net/bs/?f=myfe/canary:mojo-0.1.2.js"></script>
+<script th:src="@{/admin/js/jquery-1.7.2.min.js}" type="text/javascript"></script>
 <script>
     $(function() {
         show();
@@ -1251,30 +1229,28 @@
             dataType: "json",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    var aa="";
-                    var dy="";
-                    for (var a = 0; a < data[i].actorList.length; a++) {
-                        if(data[i].actorList[a].acsort=="演员"){
-                            aa += data[i].actorList[a].acname+" ";
-                        }
-                        if(data[i].actorList[a].acsort=="导演"){
-                            dy=data[i].actorList[a].acname;
-                        }
-                    }
+                    $("#showMovie").append("<dd>\n" +
+                "                                <div class=\"movie-item\">\n" +
+                "                                    <a href=\"/films/1220983\" target=\"_blank\" data-act=\"playingMovie-click\" data-val=\"{movieid:1220983}\">\n" +
+                "                                        <div class=\"movie-poster\">\n" +
+                "                                            <img class=\"poster-default\" src='" + data[i].photo + "'/>\n" +
+                "                                            <img class=\"movie-poster-img\" data-src='" + data[i].photo + "' alt=\"电影海报\" />\n" +
+                "                                            <div class=\"movie-overlay movie-overlay-bg\">\n" +
+                "                                                <div class=\"movie-info\">\n" +
+                "                                                    <div class=\"movie-score\"><i class=\"integer\">9.</i><i class=\"fraction\">0</i></div>\n" +
+                "                                                    <div class=\"movie-title movie-title-padding\"\n" +
+                "                                                         title=\"动物特工局\" >" + data[i].mnamec + "</div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "                                    </a>\n" +
+                "                                    <div class=\"movie-detail movie-detail-strong movie-sale\">\n" +
+                "                                        <a href=\"/cinemas?movieId=1220983\"\n" +
+                "                                           class=\"active\" target=\"_blank\" data-act=\"salePlayingMovie-click\" data-val=\"{movieid:1220983}\" >购 票</a>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"movie-ver\"></div>\n" +
+                "                                </div>")
 
-                    $("#showMovie").append("<tr>\n" +
-                        "                                    <td>" + data[i].mid + "</td>\n" +
-                        "                                    <td>" + data[i].mnamec + "</td>\n" +
-                        "                                    <td>" + data[i].mnamee + "</td>\n" +
-                        "                                    <td>" + data[i].msort + "</td>\n" +
-                        "                                    <td>" + data[i].mleng + "</td>\n" +
-                        "                                    <td>" + data[i].uptime + "</td>\n" +
-                        "                                     <td>" + data[i].details + "</td>\n" +
-                        "                                    <td><img src='" + data[i].photo + "' height='150px' width='150px'></td>\n" +
-                        "                                    <td style='text-align: center'><span style='color:red '>导演:"+dy+"</span><br>演员:" + aa + "</lable></td>\n" +
-                        "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].mid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                        "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].mid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
-                        "                                </tr>")
                 }
 
             }
