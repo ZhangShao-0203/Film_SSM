@@ -55,7 +55,18 @@
     <!--<artifactId>tomcat-embed-jasper</artifactId>-->
     <!--<version>8.5.31</version>-->
     <!--</dependency>-->
+    <!--切面-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.8.13</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.8.13</version>
+    </dependency>
     <!--Thymeleaf模块引擎-->
     <dependency>
       <groupId>org.springframework.boot</groupId>

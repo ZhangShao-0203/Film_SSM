@@ -255,8 +255,8 @@
                         "                                    <td>" + data[i].stime + "</td>\n" +
                         "                                    <td>" + data[i].etime + "</td>\n" +
                         "                                    <td>" + data[i].sprice + "</td>\n" +
-                        "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].acid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                        "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].acid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                        "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].sid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                        "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].sid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                         "                                </tr>")
                 }
             }
@@ -323,8 +323,8 @@
             btnOkClick: function () {
                 $.ajax({
                     type: "post",
-                    url: "../actor/delete",
-                    data: {"acid": id},
+                    url: "../screen/delete",
+                    data: {"sid": id},
                     success: function (data) {
                         show();
                     }
