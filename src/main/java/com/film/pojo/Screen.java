@@ -1,9 +1,8 @@
 package com.film.pojo;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
 public class Screen {
-
     private Long sid;
 
     private Long cid;
@@ -12,9 +11,11 @@ public class Screen {
 
     private Long viid;
 
-    private Date stime;
+    private String stime;
 
-    private Object sprice;
+    private String etime;
+
+    private BigDecimal sprice;
 
     public Long getSid() {
         return sid;
@@ -48,19 +49,27 @@ public class Screen {
         this.viid = viid;
     }
 
-    public Date getStime() {
+    public String getStime() {
         return stime;
     }
 
-    public void setStime(Date stime) {
+    public void setStime(String stime) {
         this.stime = stime;
     }
 
-    public Object getSprice() {
+    public String getEtime() {
+        return etime;
+    }
+
+    public void setEtime(String etime) {
+        this.etime = etime;
+    }
+
+    public BigDecimal getSprice() {
         return sprice;
     }
 
-    public void setSprice(Object sprice) {
+    public void setSprice(BigDecimal sprice) {
         this.sprice = sprice;
     }
 }

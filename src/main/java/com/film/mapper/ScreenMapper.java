@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 @Mapper
-public interface ScreenMapper {
+public interface  ScreenMapper {
     int deleteByPrimaryKey(Long sid);
 
     int insert(Screen record);

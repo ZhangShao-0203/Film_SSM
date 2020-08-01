@@ -12,16 +12,16 @@
         <javaModelGenerator targetPackage="com.film.pojo" targetProject="src/main/java"></javaModelGenerator>
         <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources"></sqlMapGenerator>
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.film.mapper" targetProject="src/main/java"></javaClientGenerator>
-        <table tableName="actor"></table>
-        <table tableName="admin"></table>
-        <table tableName="choose"></table>
-        <table tableName="cinema"></table>
-        <table tableName="movie"></table>
-        <table tableName="moviec"></table>
-        <table tableName="movie_actor"></table>
-        <table tableName="ordert"></table>
+        <!--<table tableName="actor"></table>-->
+        <!--<table tableName="admin"></table>-->
+        <!--<table tableName="choose"></table>-->
+        <!--<table tableName="cinema"></table>-->
+        <!--<table tableName="movie"></table>-->
+        <!--<table tableName="moviec"></table>-->
+        <!--<table tableName="movie_actor"></table>-->
+        <!--<table tableName="ordert"></table>-->
         <table tableName="screen"></table>
-        <table tableName="video"></table>
-        <table tableName="vip"></table>
+        <!--<table tableName="video"></table>-->
+        <!--<table tableName="vip"></table>-->
     </context>
 </generatorConfiguration>

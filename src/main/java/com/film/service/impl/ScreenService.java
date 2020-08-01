@@ -1,7 +1,6 @@
 package com.film.service.impl;
 
 import com.film.mapper.ScreenMapper;
-import com.film.pojo.Cinema;
 import com.film.pojo.Screen;
 import com.film.service.IScreenService;
 import org.springframework.beans.factory.annotation.Autowired;

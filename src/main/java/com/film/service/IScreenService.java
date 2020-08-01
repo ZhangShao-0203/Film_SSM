@@ -1,6 +1,5 @@
 package com.film.service;
 
-import com.film.pojo.Cinema;
 import com.film.pojo.Screen;
 
 import java.util.List;
