@@ -102,7 +102,7 @@
                 <img src="https://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                 <span class="caret"></span>
                 <ul class="user-menu no-login-menu">
-                    <li><a href="/login.jsp">登录</a></li>
+                    <li><a href="/user/login.html">登录</a></li>
 
                 </ul>
             </div>
@@ -1231,7 +1231,7 @@
                 for (var i = 0; i < data.length; i++) {
                     $("#showMovie").append("<dd>\n" +
                 "                                <div class=\"movie-item\">\n" +
-                "                                    <a href=\"/films/1220983\" target=\"_blank\" data-act=\"playingMovie-click\" data-val=\"{movieid:1220983}\">\n" +
+                "                                    <a th:href=\"@{/user/board.html}\" target=\"_blank\" data-act=\"playingMovie-click\" data-val=\"{movieid:1220983}\">\n" +
                 "                                        <div class=\"movie-poster\">\n" +
                 "                                            <img class=\"poster-default\" src='" + data[i].photo + "'/>\n" +
                 "                                            <img class=\"movie-poster-img\" data-src='" + data[i].photo + "' alt=\"电影海报\" />\n" +
@@ -1245,7 +1245,7 @@
                 "                                        </div>\n" +
                 "                                    </a>\n" +
                 "                                    <div class=\"movie-detail movie-detail-strong movie-sale\">\n" +
-                "                                        <a href=\"/cinemas?movieId=1220983\"\n" +
+                "                                        <a href=\"/user/board.html\" \n" +
                 "                                           class=\"active\" target=\"_blank\" data-act=\"salePlayingMovie-click\" data-val=\"{movieid:1220983}\" >购 票</a>\n" +
                 "                                    </div>\n" +
                 "                                    <div class=\"movie-ver\"></div>\n" +
