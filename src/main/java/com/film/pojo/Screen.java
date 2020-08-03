@@ -72,4 +72,17 @@ public class Screen {
     public void setSprice(BigDecimal sprice) {
         this.sprice = sprice;
     }
+
+    @Override
+    public String toString() {
+        return "Screen{" +
+                "sid=" + sid +
+                ", cid=" + cid +
+                ", mid=" + mid +
+                ", viid=" + viid +
+                ", stime='" + stime + '\'' +
+                ", etime='" + etime + '\'' +
+                ", sprice=" + sprice +
+                '}';
+    }
 }

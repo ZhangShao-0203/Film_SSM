@@ -44,16 +44,16 @@ public class ScreenController {
         return mav;
     }
 
-    @SneakyThrows
-    @DuplicateSubmitToken
+//    @DuplicateSubmitToken
     @RequestMapping("/add")
-    public void add(HttpServletRequest request, HttpServletResponse response, Screen screen) {
-        System.out.println("--------------------");
-        int i = screenService.add(screen);
-        request.getRequestDispatcher("/admin/screen").forward(request,response);
-//        response.sendRedirect("/admin/screen");
-
-
+    public ModelAndView add(HttpServletRequest request, HttpServletResponse response, Screen screen,ModelAndView mav) {
+        System.out.println("----------"+(screen==null));
+        System.out.println("----------"+(screen.toString()));
+        if(screen.getCid()!=null){
+            int i = screenService.add(screen);
+        }
+        mav.setViewName("/admin/screen");
+        return mav;
     }
 
     @RequestMapping("/delete")
