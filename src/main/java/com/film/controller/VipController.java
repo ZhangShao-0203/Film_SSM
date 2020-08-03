@@ -2,6 +2,7 @@ package com.film.controller;
 
 import com.film.pojo.Vip;
 import com.film.service.IVipService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/vip")
@@ -19,9 +21,11 @@ public class VipController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Vip> list(){
+    public String list(Map<String ,Object> map){
         List<Vip> vips = vipService.list(1,2);
-        return vips;
+        PageInfo<Vip> pageInfo = new PageInfo<Vip>(vips);
+        map.put("pageInfo",pageInfo);
+        return "/admin/vip";
     }
 
     @RequestMapping("/edit")

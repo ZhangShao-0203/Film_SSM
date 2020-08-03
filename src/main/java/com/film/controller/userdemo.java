@@ -42,4 +42,10 @@ public class userdemo {
         mav.setViewName("user/board");
         return mav;
     }
+    @RequestMapping("/choose.html")
+    public ModelAndView choose(ModelAndView mav){
+        System.out.println("choose");
+        mav.setViewName("user/choose");
+        return mav;
+    }
 }

@@ -114,9 +114,9 @@
                                                 <div class="am-form-group">
                                                     <label for="user-name1" class="am-u-sm-3 am-form-label">
                                                         座位信息</label>
-                                                    <div class="am-u-sm-9">
-                                                        <input type="text" id="" required
-                                                               placeholder="座位信息" name="seat">
+                                                    <div class="am-u-sm-9" id="addChoose">
+                                                        <!--<input type="text" id="" required
+                                                               placeholder="座位信息" name="seat">-->
                                                     </div>
                                                 </div>
                                                 <div class="am-form-group">
@@ -207,7 +207,7 @@
             showChoose();
             addVideo();
             addVideo2();
-
+            addChoose();
         });
 
 
@@ -321,7 +321,34 @@
                 }
             })
         }
+        var btn_add1 = function (id) {
+            function addChoose() {
+                $("#light").css({display: "block"})
+                $("#fade").css({display: "block"})
+                $.ajax({
+                    type: "post",
+                    url: "/list/choose",
+                    data: {},
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("#addChoose").append("<div class=\"seatsRow\">\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "            <a class=\"seat\"><img src=\"img/未选.jpg\"></a>\n" +
+                                "        </div>")
+                        }
+                    }
+                });
 
+            }
+        }
 
     </script>
 

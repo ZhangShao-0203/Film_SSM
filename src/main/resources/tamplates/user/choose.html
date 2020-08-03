@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>电影选票</title>
+
+    <link rel="stylesheet" th:href="@{/user/css/style.css}">
+    <script th:src="@{/user/js/jquery-3.2.0.min.js}"></script>
+
+</head>
+<body>
+
+<div id="left_div">
+    <!--左边的选座位-->
+
+    <div id="display">屏&nbsp;&nbsp;&nbsp;幕</div>
+
+    <div id="seat">
+        <!--可选座位-->
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat_no"><img src="img/空白.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat_true"><img src="img/有人.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_no"><img src="img/空白.jpg"></a>
+        </div>
+
+        <div class="seatsRow">
+            <a class="seat_no"><img src="img/空白.jpg"></a>
+            <a class="seat_no"><img src="img/空白.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat"><img src="img/未选.jpg"></a>
+            <a class="seat_no"><img src="img/空白.jpg"></a>
+            <a class="seat_no"><img src="img/空白.jpg"></a>
+        </div>
+
+    </div>
+
+    <div id="seat_msg">
+        <!--提示信息-->
+        <a class="seat_no"><img src="img/已选.jpg"></a>&nbsp;&nbsp;已选座位&nbsp;&nbsp;
+        <a class="seat_no"><img src="img/未选.jpg"></a>&nbsp;&nbsp;未选座位&nbsp;&nbsp;
+        <a class="seat_no"><img src="img/有人.jpg"></a>&nbsp;&nbsp;有人座位&nbsp;&nbsp;
+
+    </div>
+
+</div>
+
+<div id="right_div">
+    <!--右边的电影详情-->
+    <div class="boxr">
+        <div class="boxr1"><img src="img/film1.png"></div>
+        <div class="boxr2">
+            <li>中文名：<b>囧妈</b></li>
+            <li>英文名：Lost in Hong Kong</li>
+            <li>版本：中文</li>
+            <li>中国大陆/120分钟</li>
+            <li>2020 02</li>
+        </div>
+
+
+        <div class="boxr3">
+            <li>影视：万达影城</li>
+            <li>影厅：8号影厅</li>
+            <li>场次：2020年5月1日 (周一) 20：00</li>
+        </div>
+
+        <div id="buy">
+            <div id="seat_selected">
+                <p>座位： </p>
+                <div id="selected_seat"></div>
+                <br>
+
+                <div id="allseats">
+                    <a style="font-size:15px;"> 已选择 </a>
+                    <span style="color: red; font-size:15px">0</span>
+                    <a style="font-size: 15px;">个座位,</a>
+                    <a style="color: red; font-size:15px;font-weight:600;">再次点击可取消</a>
+                    <span2 style="color: red; font-size:15px;font-weight:600"></span2>
+                </div>
+            </div>
+
+            <div>
+                <a>单价: &nbsp;&nbsp;&nbsp;<b>￥&nbsp;&nbsp;38.00 元</b></a>
+
+                <div id="total">
+                    总价：
+                    <a style="color: red;">￥</a>
+                    <span> 0.00元 </span></div>
+            </div>
+
+
+            <div class="boxr4">
+                <button type="button" style="width: 80px; height: 30px; text-align: center; background-color: limegreen; color: white;"
+                        id="pay">立即支付</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+
+<script>
+    //等待页面加载完成
+    $(document).ready(function () {
+
+        var seat_array = new Array(5);
+
+        $('#bookNowButton').hide(); // 隐藏预定按钮
+
+        var seat_num;   //座位号
+        var totle_price = 0; //总票价
+        var ticket_price = 38;//票价
+        //var max_seat = 5; //最大预定的座位个数
+        var seat_count = 0;
+
+        //获取座位的编号
+        $('.seat').each(function () {
+            //获取行号
+            var row_num = parseInt($(this).index()) + 1;
+            var column_num = parseInt($(this).parent().index()) + 1;
+            //座位号 = 行-列
+            seat_num = row_num+"-"+column_num;
+        })
+
+
+        //选座位
+        $('.seat').click(function () {
+            //判断该座位是否被选中
+            if ($(this).hasClass('class_selected')){
+                //如果选中了，再次点击就是取消选中
+                $(this).removeClass('class_selected');
+                $(this).find('img').attr("src","img/未选.jpg");
+                //获取当前座位的坐标(在那一排，哪一个位置)
+                var column_num = parseInt( $(this).index() ) + 1;
+                var row_num = parseInt( $(this).parent().index() )+1;
+
+                //在页面上显示出来选中的座位信息
+                var seat_id = "seat_id_" +row_num+"-"+column_num;
+
+                console.log(seat_id);
+
+                //取消选择，然后将页面上显示的座位信息去掉
+                $( "#selected_seat ."+seat_id ).remove();
+
+                //计数器减1
+                seat_count--;
+
+                $("#allseats > span").html(seat_count);//更改显示出来的座位数
+
+
+                //判断已经选这的座位数是否超出限制5，并且即将要选中的这个座位，是没有选中的
+            }else if (seat_count < 5 && !$(this).hasClass('class_selected')){
+
+                //选中了 计数器+1
+                seat_count++;
+
+                $(this).addClass("class_selected"); // 添加选中css
+                //选中之后替换图片
+                $(this).find('img').attr("src","img/已选.jpg");
+
+                //获取当前座位的坐标(在那一排，哪一个位置)
+                var column_num = parseInt( $(this).index() ) + 1;
+                var row_num = parseInt( $(this).parent().index() )+1;
+
+
+                //在页面上显示出来选中的座位信息
+                var seat_id = "selected_" +row_num+"_"+column_num;
+
+                // $( "#selected_seat" ).append("<span style='border: 1px red solid; font-size:17px; font-weight:600; color:red; text-align: center; background-color: white;' class='seat_id"+row_num+"-"+column_num+" '>&nbsp;" + row_num+"排"+column_num  +"座&nbsp;</span>");
+
+                $("#selected_seat").append("<span style='border: 1px red solid; font-size:17px; font-weight:600; color:red; text-align: center; background-color: white;'  class='seat_id_" +row_num + "-" + column_num + " '>&nbsp;" + row_num + "排" + column_num + "座&nbsp;</span> ");
+
+
+
+                $("#allseats > span").html(seat_count);//更改显示出来的座位数
+
+            }else {
+                // alert("您选中的座位数已超出限制");
+                $('#allseats > span2').html(", 您一次最多只能买五张票");
+            }
+
+            //判断是否显示支付按钮
+            if (seat_count>0){
+                $('#bookNowButton').show(); // 显示预定按钮
+            }else {
+                $('#bookNowButton').hide(); // 隐藏预定按钮
+            }
+
+            //计算总价
+            total_bill = seat_count * ticket_price +".00 元";
+            $('#total > span').html(total_bill);
+
+        })
+
+    });
+
+</script>
+</html>
