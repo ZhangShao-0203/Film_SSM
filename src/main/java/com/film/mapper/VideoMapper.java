@@ -14,7 +14,7 @@ public interface VideoMapper {
 
     Video selectByPrimaryKey(Long viid);
 
-    List<Video> selectAll();
+    List<Video> selectAll(Video video);
 
     int updateByPrimaryKey(Video record);
 }

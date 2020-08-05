@@ -3,10 +3,13 @@ package com.film.controller;
 import com.film.pojo.Actor;
 import com.film.pojo.Movie;
 import com.film.service.IActorService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,11 +32,17 @@ public class ActorController {
         List<Actor> actors = actorService.list();
         return actors;
     }
+    @RequestMapping("/listmm")
+    @ResponseBody
+    public List<Actor> listm(@RequestParam(value = "start", defaultValue = "1")int start,@RequestParam(value = "size", defaultValue = "6")int size,@RequestParam(value = "seek")String seek) {
+        List<Actor> listm = actorService.listmm(start,size,seek);
+        return listm;
+    }
     @RequestMapping("/listm")
     @ResponseBody
-    public List<Actor> listm() {
-        List<Actor> actors = actorService.listm();
-        return actors;
+    public List<Actor> listmm(int mid) {
+        List<Actor> listm = actorService.listm(mid);
+        return listm;
     }
     @RequestMapping("/edit")
     @ResponseBody

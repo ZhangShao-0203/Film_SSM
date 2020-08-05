@@ -2,8 +2,11 @@ package com.film.service.impl;
 
 
 import com.film.mapper.MovieMapper;
+import com.film.pojo.Actor;
 import com.film.pojo.Movie;
 import com.film.service.IMovieService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +39,19 @@ public class MovieService implements IMovieService {
     @Override
     public List<Movie> list() {
         return movieMapper.selectAll();
+    }
+    @Override
+    public List<Movie> listm(int acid) {
+        return movieMapper.selectmAll(acid);
+    }
+    @Override
+    public List<Movie> listmm(int start, int size,String seek) {
+        PageHelper.startPage(start,size,"mid asc");
+        List<Movie> movies = movieMapper.selectmmAll(seek);
+        PageInfo pageInfo=new PageInfo(movies);
+        for (Movie m:movies){
+            m.setPages(pageInfo.getPages());
+        }
+        return movies;
     }
 }

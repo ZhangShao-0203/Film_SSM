@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 @Mapper
+
 public interface ActorMapper {
     int deleteByPrimaryKey(Long acid);
 
@@ -15,7 +16,10 @@ public interface ActorMapper {
     Actor selectByPrimaryKey(Long acid);
 
     List<Actor> selectAll();
-    List<Actor> selectMAll();
+
+    List<Actor> selectMAll(int mid);
+
+    List<Actor> selectMMAll(String seek);
 
     int updateByPrimaryKey(Actor record);
 }

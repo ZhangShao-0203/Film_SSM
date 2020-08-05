@@ -22,8 +22,8 @@ public class VideoController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Video> list(){
-        List<Video> videos = videoService.list();
+    public List<Video> list(Video video){
+        List<Video> videos = videoService.list(video);
         return videos;
     }
 

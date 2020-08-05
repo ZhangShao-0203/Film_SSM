@@ -6,10 +6,11 @@
         <result column="ACNAME" property="acname" jdbcType="VARCHAR"/>
         <result column="ACPHOTO" property="acphoto" jdbcType="VARCHAR"/>
         <result column="ACSORT" property="acsort" jdbcType="VARCHAR"/>
-        <collection property="movieList" ofType="Movie">
-            <id column="mid" property="mid"></id>
-            <result column="mnamee" property="mnamee"></result>
-            <result column="mnamec" property="mnamec"></result>
+        <collection property="movieList" select="com.film.mapper.MovieActorMapper.selectacid" column="mid"
+                    fetchType="eager">
+            <!--<id column="mid" property="mid"></id>-->
+            <!--<result column="mnamee" property="mnamee"></result>-->
+            <!--<result column="mnamec" property="mnamec"></result>-->
         </collection>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -18,7 +19,7 @@
   </delete>
     <insert id="insert" parameterType="com.film.pojo.Actor">
         <selectKey keyProperty="acid" order="BEFORE" resultType="Long">
-          SELECT ACTOR_SEQ.nextval FROM DUAL
+            SELECT ACTOR_SEQ.nextval FROM DUAL
         </selectKey>
         insert into ACTOR (ACID, ACNAME, ACPHOTO,
         ACSORT)
@@ -37,11 +38,13 @@
     from ACTOR
     where ACID = #{acid,jdbcType=DECIMAL}
   </select>
-    <select id="selectMAll" resultMap="BaseResultMap">
-  select a.*,m.mid mid,m.MNAMEE mnamee,m.MNAMEC mnamec  from ACTOR a LEFT JOIN  MOVIE_ACTOR ma ON a.acid=ma.acid LEFT JOIN  MOVIE m ON m.mid=ma.mid
--- select a.*,m.mid mid,m.MNAMEE mnamee,m.MNAMEC mnamec from  ACTOR a,MOVIE_ACTOR ma,MOVIE m where ma.acid=a.acid and ma.mid=m.mid ORDER BY a.ACID ASC
-  </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from ACTOR
+    <select id="selectMMAll" resultMap="BaseResultMap" parameterType="String">
+          SELECT * from ACTOR WHERE ACNAME like '%'||#{seek}||'%' or ACID like '%'||#{seek}||'%' or ACTOR.ACSORT like '%'||#{seek}||'%'
+</select>
+    <select id="selectAll" resultMap="BaseResultMap" >
+        SELECT * FROM  ACTOR
+    </select>
+    <select id="selectMAll" resultMap="BaseResultMap" parameterType="int">
+        select a.* from actor a,movie_actor ma where ma.acid=a.acid and ma.mid=#{mid}
     </select>
 </mapper>

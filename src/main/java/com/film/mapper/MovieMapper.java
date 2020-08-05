@@ -16,5 +16,9 @@ public interface MovieMapper {
 
     List<Movie> selectAll();
 
+    List<Movie> selectmAll(int acid);
+
+    List<Movie> selectmmAll(String seek);
+
     int updateByPrimaryKey(Movie record);
 }

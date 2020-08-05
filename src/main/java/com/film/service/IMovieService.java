@@ -15,4 +15,9 @@ public interface IMovieService {
     int update(Movie movie);
     //查看所有用户
     List<Movie> list();
+    //查看所有用户
+    List<Movie> listm(int acid);
+
+    //查看所有用户
+    List<Movie> listmm(int start, int size,String seek);
 }

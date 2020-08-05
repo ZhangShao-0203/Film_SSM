@@ -12,7 +12,17 @@ public class Actor {
 
     private String acsort;
 
+    private int pages;
+
     private List<Movie> movieList;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
 
     public List<Movie> getMovieList() {
         return movieList;

@@ -86,6 +86,15 @@
 
                             </table>
                         </div>
+                        <div class="fiter col-md-4" style="float:left;">
+                            <input type="text" name="acname" id="acname"><button id="btn_seek" onclick="btn_seek()">搜索</button>
+                        </div>
+                        <div class="fiter col-md-4" style="float: right">
+                            <a id="which">第<span id="page">1</span>页</a>/
+                            <a id="all">共<span id="pages">1</span>页</a>
+                            <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
+                            <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
+                        </div>
                         <!--分页显示角色信息 end-->
                     </li>
                 </ul>
@@ -300,9 +309,11 @@
 
         var num = 2;
         var num1= 2;
+        var start = 1;
+        var pages;
+        var seek="%";
         function btn_tj() {
                 $("#tj1").append($("#yy1").clone().attr({name: "actorList[" + num1 + "].acid",class:"aa",id:"yy"+num1+""}))
-
                 num1++;4
         }
         function btn_sc() {
@@ -321,9 +332,8 @@
                 $("#tj").append($("#yy").clone().attr("name", "actorList[" + num + "].acid"))
                 num++;
             })
-
-            
             showyy();
+            show(start);
             $(".tabs").slide({trigger: "click"});
             $("#doc").change(function (e) {
                 var imgBox = e.target;
@@ -341,24 +351,6 @@
                     $("#imgs").attr("src", imgSrc);
 
                 }
-//                $.ajaxFileUpload({
-//                    type: "post",
-//                    url: "addfileMovie",
-//                    secureuri: false,//一般设置为fals
-////                    cache:false,
-//                    fileElementId: 'doc',
-//                    dataType: "JSON",
-//                    success: function (data, status) {
-//                        var jsonObj = $.parseJSON(data.replace(/<.*?>/ig,""));
-//                        $("#photo").val(jsonObj);
-//
-//
-//                    },
-//                    error: function (data, status, e) {
-//                        alert("e")
-//                    }
-//                });
-
             })
             $("#doc1").change(function (e) {
                 var imgBox = e.target;
@@ -380,9 +372,37 @@
 
 
             $(".tabs").slide({trigger: "click"});
-            show();
-        });
 
+        });
+        function btn_last() {
+            if(start==1){
+                return false;
+            }
+            $("#page").empty();
+            start--;
+            show(start);
+
+            $("#page").append(start);
+
+        }
+        function btn_seek() {
+            if($("#acname").val()!=""){
+                seek=$("#acname").val();
+            }else{
+                seek="%";
+            }
+            show(1);
+        }
+        function btn_next() {
+            if(start==pages){
+                return false;
+            }
+            $("#page").empty();
+            start++;
+            show(start);
+
+            $("#page").append(start);
+        }
         function showyy() {
             $.ajax({
                 url: "/actor/list",
@@ -419,25 +439,22 @@
             })
         }
 
-        function show() {
+        function show(a) {
             $("#showMovie").empty();
             $.ajax({
-                url: "/movie/list",
+                url: "/movie/listmm",
+                data: {"start": a, "size": 5,"seek":seek},
                 type: "post",
                 dataType: "json",
                 success: function (data) {
+                    if(data.length==0){
+                        pages=1;
+                    }else{
+                        pages=data[0].pages;
+                    }
+                    $("#pages").empty();
+                    $("#pages").append(pages);
                     for (var i = 0; i < data.length; i++) {
-                        var aa="";
-                        var dy="";
-                        for (var a = 0; a < data[i].actorList.length; a++) {
-                            if(data[i].actorList[a].acsort=="演员"){
-                                aa += data[i].actorList[a].acname+" ";
-                            }
-                            if(data[i].actorList[a].acsort=="导演"){
-                                dy=data[i].actorList[a].acname;
-                            }
-                        }
-
                         $("#showMovie").append("<tr>\n" +
                             "                                    <td>" + data[i].mid + "</td>\n" +
                             "                                    <td>" + data[i].mnamec + "</td>\n" +
@@ -446,11 +463,31 @@
                             "                                    <td>" + data[i].mleng + "</td>\n" +
                             "                                    <td>" + data[i].uptime + "</td>\n" +
                             "                                    <td>" + data[i].details + "</td>\n" +
-                            "                                    <td><img src='" + data[i].photo + "' height='150px' width='150px'></td>\n" +
-                            "                                    <td style='text-align: center'><span style='color:red '>导演:"+dy+"</span><br>演员:" + aa + "</lable></td>\n" +
+                            "                                    <td><img src='" + data[i].photo + "' height='100px' width='150px'></td>\n" +
+                            "                                    <td style='text-align: center' id='"+data[i].mid+"'></td>\n" +
                             "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].mid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
                             "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].mid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
-                            "                                </tr>")
+                            "                                </tr>");
+                        $.ajax({
+                            url: "/actor/listm",
+                            data: {"mid": data[i].mid},
+                            type: "post",
+                            async:false,
+                            dataType: "json",
+                            success: function (data1) {
+                                var aa="";
+                                var dy="";
+                                for (var a = 0; a < data1.length; a++) {
+                                    if(data1[a].acsort=="演员"){
+                                        aa += data1[a].acname+" ";
+                                    }
+                                    if(data1[a].acsort=="导演"){
+                                        dy=data1[a].acname;
+                                    }
+                                }
+                                $("#"+data[i].mid+"").append("<span style='color:red '>导演:"+dy+"</span><br>演员:" + aa + "</lable>")
+                            }
+                        })
                     }
 
                 }
@@ -501,7 +538,10 @@
                         url: "/movie/delete",
                         data: {"mid": id},
                         success: function (data) {
-                            show();
+                            $("#page").empty();
+                            start--;
+                            $("#page").append(start);
+                            show(start);
                         }
                     });
                 }

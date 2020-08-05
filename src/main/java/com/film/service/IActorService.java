@@ -1,6 +1,7 @@
 package com.film.service;
 
 import com.film.pojo.Actor;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface IActorService {
     int update(Actor actor);
     //查看所有用户
     List<Actor> list();
-    List<Actor> listm();
+    List<Actor> listm(int mid);
+    List<Actor> listmm(int start, int size,String seek);
 }

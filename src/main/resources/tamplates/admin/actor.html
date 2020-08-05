@@ -68,21 +68,23 @@
                                     <th>演员姓名</th>
                                     <th>演员照片</th>
                                     <th>类型</th>
-                                    <th>电影<br><span  style="color: #2bb8aa">id:中文名:英文名</span></th>
+                                    <th>电影<br><span style="color: #2bb8aa">id:中文名:英文名</span></th>
                                     <th>编辑</th>
                                     <th>删除</th>
                                 </tr>
                                 </thead>
                                 <tbody id="show">
                                 </tbody>
-
                             </table>
                         </div>
+                        <div class="fiter col-md-4" style="float:left;">
+                            <input type="text" name="acname" id="acname"><button id="btn_seek" onclick="btn_seek()">搜索</button>
+                        </div>
                         <div class="fiter col-md-4" style="float: right">
-                            <a id="which">第1页</a>/
-                            <a id="all">第1页</a>
-                            <button id="last" class="btn btn-success">上一页</button>
-                            <button id="next" class="btn btn-success">下一页</button>
+                            <a id="which">第<span id="page">1</span>页</a>/
+                            <a id="all">共<span id="pages">1</span>页</a>
+                            <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
+                            <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
                         </div>
                         <!--分页显示角色信息 end-->
                     </li>
@@ -102,7 +104,7 @@
                                         </div>
                                         <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"
                                              style="padding-top: 30px;">
-                                                <form class="am-form am-form-horizontal"
+                                            <form class="am-form am-form-horizontal"
                                                   action="/actor/add1" method="post" enctype="multipart/form-data"
                                             >
 
@@ -214,7 +216,11 @@
 <script th:src="@{/admin/js/plugs/jquery.SuperSlide.source.js}"></script>
 <script>
     var num = 1;
+    var start = 1;
+    var pages;
+    var seek="%";
     $(function () {
+
         $("#chanpinzhutu").change(function (e) {
             var imgBox = e.target;
             uploadImg($('#bcd'), imgBox)
@@ -257,30 +263,80 @@
         }
 
         $(".tabs").slide({trigger: "click"});
-        show();
-    });
+        show(start);
 
-    function show() {
+    });
+    function btn_last() {
+        if(start==1){
+            return false;
+        }
+        $("#page").empty();
+        start--;
+        show(start);
+
+        $("#page").append(start);
+    }
+    function btn_seek() {
+        if($("#acname").val()!=""){
+            seek=$("#acname").val();
+        }else{
+            seek="%";
+        }
+        show(1);
+    }
+    function btn_next() {
+        if(start==pages){
+            return false;
+        }
+        $("#page").empty();
+        start++;
+        show(start);
+
+        $("#page").append(start);
+    }
+    function show(a) {
         $("#show").empty();
         $.ajax({
-            url: "/actor/listm",
+            url: "/actor/listmm",
+            data: {"start": a, "size": 5,"seek":seek},
             type: "post",
             dataType: "json",
-            success: function (data) {
+            success: function   (data) {
+
+                if(data.length==0){
+                    pages=1;
+                }else{
+                    pages=data[0].pages;
+                }
+                $("#pages").empty();
+                $("#pages").append(pages);
                 for (var i = 0; i < data.length; i++) {
-                    var dy="";
-                    for (var a = 0; a < data[i].movieList.length; a++) {
-                           dy+=data[i].movieList[a].mid+"<span style='color: red;'><b> : </b></span>"+data[i].movieList[a].mnamec+"<span style='color: red '> <b>:</b> </span>"+data[i].movieList[a].mnamee+"<br>";
-                    }
+                    var dy = "";
                     $("#show").append("<tr>\n" +
                         "                                    <td>" + data[i].acid + "</td>\n" +
                         "                                    <td>" + data[i].acname + "</td>\n" +
                         "                                    <td><img src='" + data[i].acphoto + "' width='150px' height='100px'></td>\n" +
                         "                                    <td>" + data[i].acsort + "</td>\n" +
-                        "                                    <td>" + dy + "</td>\n" +
+                        "                                    <td id='" + data[i].acid + "'>" + dy + "</td>\n" +
                         "                                    <td class=\"edit\"><button onclick=\"btn_edit(" + data[i].acid + ")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
                         "                                    <td class=\"delete\"><button onclick=\"btn_delete(" + data[i].acid + ")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
-                        "                                </tr>")
+                        "                                </tr>");
+                    $.ajax({
+                        url: "/movie/listm",
+                        data: {"acid": data[i].acid},
+                        type: "post",
+                        async:false,
+                        dataType: "json",
+                        success: function (data1) {
+                            for (var a = 0; a < data1.length; a++) {
+                                dy += data1[a].mid + "<span style='color: red;'><b> : </b></span>" + data1[a].mnamec + "<span style='color: red '> <b>:</b> </span>" + data1[a].mnamee + "<br>";
+                            }
+                            $("#"+data[i].acid+"").append(dy)
+                            dy = "";
+                        }
+                    })
+
+
                 }
             }
         })
@@ -301,7 +357,9 @@
         });
 
     }
-
+    //    function show_movie(acid) {
+    //
+    //    }
     var btn_delete = function (id) {
         $.jq_Confirm({
             message: "您确定要删除吗?",
@@ -311,7 +369,10 @@
                     url: "../actor/delete",
                     data: {"acid": id},
                     success: function (data) {
-                        show();
+                        $("#page").empty();
+                        start--;
+                        $("#page").append(start);
+                        show(start);
                     }
                 });
             }

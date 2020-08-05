@@ -19,9 +19,16 @@ public class Movie {
     private String details;
 
     private String photo;
-
+    private int pages;
     private List<MovieActor> actorList;
 
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
 
     public List<MovieActor> getActorList() {
         return actorList;

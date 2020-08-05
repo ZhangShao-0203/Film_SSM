@@ -31,5 +31,8 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select VIID, VINAME, CID
     from VIDEO
+    <if test="cid!=null">
+    where cid=#{cid}
+  </if>
   </select>
 </mapper>

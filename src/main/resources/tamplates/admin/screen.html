@@ -236,7 +236,9 @@
         show();
         show_cinema();
         show_movie();
-        show_video();
+        $("#cinema").change(function () {
+            show_video($("#cinema").val());
+        })
     });
 
     function show() {
@@ -272,11 +274,14 @@
                 for (var i = 0; i < data.length; i++) {
                     $("#cinema").append("<option value='"+data[i].cid+"'>"+data[i].cname+"</option>");
                 }
+                $(this).find("option").eq(1).prop("selected",true)
+                show_video($("#cinema").val());
             }
         })
+
     }
     function show_movie() {
-        $("#cinema").empty();
+        $("#movie").empty();
         $.ajax({
             url: "/movie/list",
             type: "post",
@@ -288,10 +293,11 @@
             }
         })
     }
-    function show_video() {
-        $("#cinema").empty();
+    function show_video(id) {
+        $("#video").empty();
         $.ajax({
             url: "/video/list",
+            data:{"cid":id},
             type: "post",
             dataType: "json",
             success: function (data) {

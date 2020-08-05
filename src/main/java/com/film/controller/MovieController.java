@@ -9,6 +9,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +36,19 @@ public class MovieController {
         List<Movie> movies = movieService.list();
         return movies;
     }
-
+    @RequestMapping("/listm")
+    @ResponseBody
+    public List<Movie> listm(String acid) {
+        Integer i=Integer.parseInt(acid);
+        List<Movie> movies = movieService.listm(i);
+        return movies;
+    }
+    @RequestMapping("/listmm")
+    @ResponseBody
+    public List<Movie> listmm(@RequestParam(value = "start", defaultValue = "1")int start, @RequestParam(value = "size", defaultValue = "6")int size,@RequestParam(value = "seek")String seek) {
+        List<Movie> movies = movieService.listmm(start, size,seek);
+        return movies;
+    }
     @RequestMapping("/edit")
     @ResponseBody
     public Movie edit(int mid) {

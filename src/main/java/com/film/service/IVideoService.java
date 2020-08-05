@@ -14,5 +14,5 @@ public interface IVideoService {
     //修改用户
     int update(Video video);
     //查看所有用户
-    List<Video> list();
+    List<Video> list(Video video);
 }

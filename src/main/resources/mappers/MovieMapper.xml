@@ -49,7 +49,12 @@
     where MID = #{mid,jdbcType=DECIMAL}
   </select>
   <select id="selectAll"  resultMap="BaseResultMap" >
-    select a.*,m.*,m.MID MID,a.ACID ACID
-    from MOVIE m,ACTOR a,MOVIE_ACTOR ma WHERE ma.MID=m.MID AND  ma.ACID=a.ACID
+    SELECT  * from MOVIE
+  </select>
+  <select id="selectmAll"  resultMap="BaseResultMap" parameterType="int">
+  select m.* from movie m,movie_actor ma where ma.mid=m.mid and ma.acid=#{acid}
+  </select>
+  <select id="selectmmAll"  resultMap="BaseResultMap" parameterType="String">
+    select * from movie WHERE MNAMEC like '%'||#{seek}||'%' or MOVIE.MNAMEE like '%'||#{seek}||'%' or MOVIE.MID like '%'||#{seek}||'%' or MOVIE.MSORT like '%'||#{seek}||'%'
   </select>
 </mapper>
