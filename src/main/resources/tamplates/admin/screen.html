@@ -295,6 +295,7 @@
     }
     function show_video(id) {
         $("#video").empty();
+
         $.ajax({
             url: "/video/list",
             data:{"cid":id},
