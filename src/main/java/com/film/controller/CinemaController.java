@@ -19,8 +19,15 @@ public class CinemaController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Cinema> list(){
-        List<Cinema> cinemas = cinemaService.list();
+    public List<Cinema> list(int currPage,int pageSize){
+        List<Cinema> cinemas = cinemaService.list(currPage,pageSize);
+        return cinemas;
+    }
+
+    @RequestMapping("/listOther")
+    @ResponseBody
+    public List<Cinema> listOther(){
+        List<Cinema> cinemas = cinemaService.listOther();
         return cinemas;
     }
 

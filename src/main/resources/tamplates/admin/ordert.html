@@ -46,6 +46,12 @@
 
                             </table>
                         </div>
+                        <div class="fiter col-md-4" style="float: right">
+                            <a id="which">第1页</a>/
+                            <a id="all">第1页</a>
+                            <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
+                            <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
+                        </div>
                         <!--分页显示角色信息 end-->
                     </li>
                 </ul>
@@ -108,9 +114,6 @@
                         </div>
                     </div>
 
-
-
-
                     <a href="javascript:void(0)"
                        onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">点这里关闭本窗口</a>
                 </div>
@@ -129,18 +132,28 @@
     <script th:src="@{/admin/js/plugs/jquery.SuperSlide.source.js}"></script>
     <script>
         var num = 1;
+        var currPage = 1;
         $(function() {
 
             $(".tabs").slide({ trigger: "click" });
-            showOrdert();
+            showOrdert(currPage);
         });
 
-        function showOrdert(){
+        function btn_last() {
+            currPage--;
+            showOrdert(currPage);
+        }
+
+        function btn_next() {
+            currPage++;
+            showOrdert(currPage);
+        }
+        function showOrdert(a){
             $("#show").empty();
             $.ajax({
                 url:"/ordert/list",
                 type:"post",
-                data:{},
+                data:{"currPage":a,"pageSize":2},
                 dataType:"json",
                 success:function(data) {
                     for (var i = 0; i <data.length ; i++) {
@@ -218,7 +231,7 @@
                         url: "/ordert/delete",
                         data: {oid:id },
                         success: function(data) {
-                            showOrdert();
+                            showOrdert(currPage);
                         }
                     });
                 }

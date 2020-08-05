@@ -77,10 +77,15 @@
                                 <tbody id="showVip">
 
                                 </tbody>
-
                             </table>
                         </div>
-                        当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span th:text="${pageInfo.pages}"></span> 页
+
+                        <div class="fiter col-md-4" style="float: right">
+                            <a id="which">第1页</a>/
+                            <a id="all">第1页</a>
+                            <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
+                            <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
+                        </div>
                         <!--分页显示角色信息 end-->
                     </li>
                 </ul>
@@ -201,17 +206,28 @@
     <script th:src="@{/admin/js/plugs/jquery.SuperSlide.source.js}"></script>
     <script>
         var num = 1;
+        var currPage = 1;
         $(function() {
 
             $(".tabs").slide({ trigger: "click" });
-            showVip();
+            showVip(currPage);
         });
-        function showVip(){
+
+        function btn_last() {
+            currPage--;
+            showVip(currPage);
+        }
+
+        function btn_next() {
+            currPage++;
+            showVip(currPage);
+        }
+        function showVip(a){
             $("#showVip").empty();
             $.ajax({
                 url:"/vip/list",
                 type:"post",
-                data:{},
+                data:{"currPage":a,"pageSize":2},
                 dataType:"json",
                 success:function(data) {
                     for (var i = 0; i <data.length ; i++) {
@@ -255,7 +271,6 @@
                     }
                 }
             });
-            alert(t);
         }
 
         var btn_edit = function (id) {
@@ -272,7 +287,6 @@
                     $("#user-tel1").val(data.tel);
                 }
             });
-
         }
         var btn_delete = function(id) {
             $.jq_Confirm({
@@ -283,7 +297,7 @@
                         url: "/vip/delete",
                         data: {"vid":id },
                         success: function(data) {
-                            showVip();
+                            showVip(currPage);
                         }
                     });
                 }

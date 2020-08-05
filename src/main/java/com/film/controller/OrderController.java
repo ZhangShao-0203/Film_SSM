@@ -19,8 +19,8 @@ public class OrderController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Ordert> list(){
-        List<Ordert> orderts = orderService.list();
+    public List<Ordert> list(int currPage,int pageSize){
+        List<Ordert> orderts = orderService.list(currPage,pageSize);
         return orderts;
     }
 

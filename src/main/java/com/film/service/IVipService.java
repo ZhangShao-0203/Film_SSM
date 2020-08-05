@@ -15,4 +15,5 @@ public interface IVipService {
     int update(Vip vip);
     //查看所有用户
     List<Vip> list(int currPage,int pageSize);
+
 }

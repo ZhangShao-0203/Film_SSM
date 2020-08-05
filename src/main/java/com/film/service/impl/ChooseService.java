@@ -3,6 +3,7 @@ package com.film.service.impl;
 import com.film.mapper.ChooseMapper;
 import com.film.pojo.Choose;
 import com.film.service.IChooseService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,9 @@ public class ChooseService implements IChooseService {
     }
 
     @Override
-    public List<Choose> list() {
+    public List<Choose> list(int currPage,int pageSize) {
+        //分页
+        PageHelper.startPage(currPage,pageSize);//自动修改sql语句
         return chooseMapper.selectAll();
     }
 }

@@ -14,5 +14,5 @@ public interface IScreenService {
     //修改用户
     int update(Screen screen);
     //查看所有用户
-    List<Screen> list();
+    List<Screen> list(int currPage,int pageSize);
 }

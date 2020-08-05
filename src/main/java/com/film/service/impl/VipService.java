@@ -45,4 +45,5 @@ public class VipService implements IVipService {
 
         return vipMapper.selectAll();
     }
+
 }

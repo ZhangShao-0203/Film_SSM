@@ -36,8 +36,8 @@ public class AdminController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Admin> list(){
-        List<Admin> admins = adminService.list();
+    public List<Admin> list(int currPage,int pageSize){
+        List<Admin> admins = adminService.list(currPage,pageSize);
         return admins;
     }
 

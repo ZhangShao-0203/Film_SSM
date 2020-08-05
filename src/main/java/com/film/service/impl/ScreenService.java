@@ -3,6 +3,7 @@ package com.film.service.impl;
 import com.film.mapper.ScreenMapper;
 import com.film.pojo.Screen;
 import com.film.service.IScreenService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,9 @@ public class ScreenService implements IScreenService {
     }
 
     @Override
-    public List<Screen> list() {
+    public List<Screen> list(int  currPage, int pageSize) {
+        //分页
+        PageHelper.startPage(currPage,pageSize);//自动修改sql语句
         return screenMapper.selectAll();
     }
 }

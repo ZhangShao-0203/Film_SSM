@@ -3,6 +3,7 @@ package com.film.service.impl;
 import com.film.mapper.CinemaMapper;
 import com.film.pojo.Cinema;
 import com.film.service.ICinemaService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,14 @@ public class CinemaService implements ICinemaService {
     }
 
     @Override
-    public List<Cinema> list() {
+    public List<Cinema> list(int currPage,int pageSize) {
+        //分页
+        PageHelper.startPage(currPage,pageSize);//自动修改sql语句
+        return cinemaMapper.selectAll();
+    }
+
+    @Override
+    public List<Cinema> listOther() {
         return cinemaMapper.selectAll();
     }
 }

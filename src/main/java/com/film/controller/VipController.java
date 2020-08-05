@@ -2,6 +2,8 @@ package com.film.controller;
 
 import com.film.pojo.Vip;
 import com.film.service.IVipService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +23,9 @@ public class VipController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public String list(Map<String ,Object> map){
-        List<Vip> vips = vipService.list(1,2);
-        PageInfo<Vip> pageInfo = new PageInfo<Vip>(vips);
-        map.put("pageInfo",pageInfo);
-        return "/admin/vip";
+    public List<Vip> list(int currPage,int pageSize){
+        List<Vip> vips = vipService.list(currPage,pageSize);
+        return vips;
     }
 
     @RequestMapping("/edit")

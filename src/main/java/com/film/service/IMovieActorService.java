@@ -17,5 +17,5 @@ public interface IMovieActorService {
     //修改用户
     int update(Map<String,Object> map);
     //查看所有用户
-    List<MovieActor> list();
+    List<MovieActor> list(int currPage,int pageSize);
 }

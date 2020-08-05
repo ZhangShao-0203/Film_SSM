@@ -20,8 +20,8 @@ public class ChooseController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Choose> list(){
-        List<Choose> chooses = chooseService.list();
+    public List<Choose> list(int currPage,int pageSize){
+        List<Choose> chooses = chooseService.list(currPage,pageSize);
         return chooses;
     }
 

@@ -4,6 +4,7 @@ package com.film.service.impl;
 import com.film.mapper.AdminMapper;
 import com.film.pojo.Admin;
 import com.film.service.IAdminService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,9 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public List<Admin> list() {
+    public List<Admin> list(int currPage,int pageSize) {
+        //分页
+        PageHelper.startPage(currPage,pageSize);//自动修改sql语句
         return adminMapper.selectAll();
     }
 

@@ -19,10 +19,16 @@ public class VideoController {
     @Autowired
     IVideoService videoService;
 
-
     @RequestMapping("/list")
     @ResponseBody
-    public List<Video> list(Video video){
+    public List<Video> list(int currPage,int pageSize){
+        List<Video> videos = videoService.list(currPage,pageSize);
+        return videos;
+    }
+
+    @RequestMapping("/listOther")
+    @ResponseBody
+    public List<Video> listOther(Video video){
         List<Video> videos = videoService.list(video);
         return videos;
     }
