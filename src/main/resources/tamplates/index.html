@@ -37,17 +37,14 @@
         el: '#div1',
         data: {
             message: gareen,
+        },
+        mounted: function () { //mounted　表示这个 Vue 对象加载成功了
+            var self = this
+            axios.get("/movie/list").then(function(response) {
+                self.heros= response.data; //此时还是字符串
+                self.message={"name":"20","hp":20}
+            })
         }
-//        mounted: function () { //mounted　表示这个 Vue 对象加载成功了
-//            var self = this
-//            axios.get("/movie/list").then(function(response) {
-//                self.heros= response.data; //此时还是字符串
-//                console.log(response.data);
-//                aaa="b";
-//                this.aaa="bbb";
-//                console.log(aaa)
-//            })
-//        }
     })
 </script>
 
