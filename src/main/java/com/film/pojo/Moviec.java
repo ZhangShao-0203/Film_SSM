@@ -9,7 +9,7 @@ public class Moviec {
     public Short getMcid() {
         return mcid;
     }
-
+    
     public void setMcid(Short mcid) {
         this.mcid = mcid;
     }

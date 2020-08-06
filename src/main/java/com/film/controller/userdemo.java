@@ -15,17 +15,10 @@ public class userdemo {
         return mav;
     }
 
-    @RequestMapping("/login.html")
-    public ModelAndView login(ModelAndView mav){
-        System.out.println("login");
-        mav.setViewName("user/login");
-        return mav;
-    }
-
-    @RequestMapping("/films.html")
-    public ModelAndView films(ModelAndView mav){
-        System.out.println("films");
-        mav.setViewName("user/films");
+    @RequestMapping("/cinemadatas.html")
+    public ModelAndView cinemadatas(ModelAndView mav){
+        System.out.println("cinemadatas");
+        mav.setViewName("user/cinemadatas");
         return mav;
     }
 
@@ -36,16 +29,41 @@ public class userdemo {
         return mav;
     }
 
-    @RequestMapping("/board.html")
-    public ModelAndView board(ModelAndView mav){
-        System.out.println("board");
-        mav.setViewName("user/board");
+    @RequestMapping("/login.html")
+    public ModelAndView login(ModelAndView mav){
+        System.out.println("login");
+        mav.setViewName("user/login");
         return mav;
     }
-    @RequestMapping("/choose.html")
-    public ModelAndView choose(ModelAndView mav){
-        System.out.println("choose");
-        mav.setViewName("user/choose");
+
+    @RequestMapping("/moviecinema.html")
+    public ModelAndView moviecinema(ModelAndView mav){
+        System.out.println("moviecinema");
+        mav.setViewName("user/moviecinema");
+        return mav;
+    }
+    @RequestMapping("/moviedatas.html")
+    public ModelAndView moviedatas(ModelAndView mav){
+        System.out.println("moviedatas");
+        mav.setViewName("user/moviedatas");
+        return mav;
+    }
+    @RequestMapping("/movies.html")
+    public ModelAndView movies(ModelAndView mav){
+        System.out.println("movies");
+        mav.setViewName("user/movies");
+        return mav;
+    }
+    @RequestMapping("/personal.html")
+    public ModelAndView personal(ModelAndView mav){
+        System.out.println("personal");
+        mav.setViewName("user/personal");
+        return mav;
+    }
+    @RequestMapping("/selectionSeat.html")
+    public ModelAndView selectionSeat(ModelAndView mav){
+        System.out.println("selectionSeat");
+        mav.setViewName("user/selectionSeat");
         return mav;
     }
 }
