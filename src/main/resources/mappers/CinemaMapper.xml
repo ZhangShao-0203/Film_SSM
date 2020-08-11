@@ -30,4 +30,10 @@
     select CID, CNAME
     from CINEMA  where CID like '%'||#{seek}||'%' or CNAME like '%'||#{seek}||'%'
   </select>
+
+  <select id="listOther" resultMap="BaseResultMap" >
+    select CID, CNAME
+    from CINEMA
+  </select>
+
 </mapper>

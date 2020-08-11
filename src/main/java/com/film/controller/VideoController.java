@@ -29,7 +29,7 @@ public class VideoController {
     @RequestMapping("/listOther")
     @ResponseBody
     public List<Video> listOther(Video video){
-        List<Video> videos = videoService.list();
+        List<Video> videos = videoService.listOther();
         return videos;
     }
 

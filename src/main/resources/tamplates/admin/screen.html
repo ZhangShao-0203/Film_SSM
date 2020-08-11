@@ -80,9 +80,13 @@
 
                             </table>
                         </div>
+                        <div class="fiter col-md-4" style="float:left;">
+                            <input type="text" name="abc" id="abc"><button id="btn_seek" onclick="btn_seek()">搜索</button>
+                        </div>
+
                         <div class="fiter col-md-4" style="float: right">
-                            <a id="which">第1页</a>/
-                            <a id="all">第1页</a>
+                            <a id="which">第<span id="page">1</span>页</a>/
+                            <a id="all">共<span id="pages">1</span>页</a>
                             <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
                             <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
                         </div>
@@ -109,42 +113,42 @@
                                             >
 
                                                 <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">电影院</label>
+                                                    <label  class="am-u-sm-3 am-form-label">电影院</label>
                                                     <div class="am-u-sm-9">
                                                         <select id="cinema" name="cid"></select>
                                                         <small>10字以内...</small>
                                                     </div>
                                                 </div>
                                                 <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                    <label  class="am-u-sm-3 am-form-label">
                                                         电影</label>
                                                     <div class="am-u-sm-9">
                                                         <select id="movie" name="mid"></select>
                                                     </div>
                                                 </div>
                                                 <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                    <label class="am-u-sm-3 am-form-label">
                                                         放映厅</label>
                                                     <div class="am-u-sm-9">
                                                         <select id="video" name="viid"></select>
                                                     </div>
                                                 </div>
                                                 <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                    <label  class="am-u-sm-3 am-form-label">
                                                         开始时间</label>
                                                     <div class="am-u-sm-9">
                                                         <input type="datetime-local" id="stime" name="stime">
                                                     </div>
                                                 </div>
                                                 <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                    <label  class="am-u-sm-3 am-form-label">
                                                         结束时间</label>
                                                     <div class="am-u-sm-9">
                                                         <input type="datetime-local" id="etime" name="etime">
                                                     </div>
                                                 </div>
                                                 <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                    <label  class="am-u-sm-3 am-form-label">
                                                         单价</label>
                                                     <div class="am-u-sm-9">
                                                         <input type="text" id="sprice" name="sprice">
@@ -175,31 +179,45 @@
                     >
 
                         <div class="am-form-group">
-                            <label for="user-name" class="am-u-sm-3 am-form-label">
-                                演员名称</label>
+                            <label  class="am-u-sm-3 am-form-label">电影院</label>
                             <div class="am-u-sm-9">
-                                <input type="hidden" name="acid" value="" id="acid">
-                                <input type="text" id="user-name1" required
-                                       placeholder="演员名称" name="acname">
+                                <select id="cinema1" name="cid"></select>
                                 <small>10字以内...</small>
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-name" class="am-u-sm-3 am-form-label">
-                                演员头像</label>
+                            <label  class="am-u-sm-3 am-form-label">
+                                电影</label>
                             <div class="am-u-sm-9">
-                                <input type="file" name="doc" id="chanpinzhutu1" required>
-                                <img src="#" width="80" height="80" id="imgs1"/>
+                                <select id="movie1" name="mid"></select>
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-name" class="am-u-sm-3 am-form-label">
-                                演员类型</label>
+                            <label class="am-u-sm-3 am-form-label">
+                                放映厅</label>
                             <div class="am-u-sm-9">
-                                <select class="textBox" name="acsort" id="state1">
-                                    <option value="导演">导演</option>
-                                    <option value="演员">演员</option>
-                                </select>
+                                <select id="video1" name="viid"></select>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label  class="am-u-sm-3 am-form-label">
+                                开始时间</label>
+                            <div class="am-u-sm-9">
+                                <input type="datetime-local" id="stime1" name="stime">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label  class="am-u-sm-3 am-form-label">
+                                结束时间</label>
+                            <div class="am-u-sm-9">
+                                <input type="datetime-local" id="etime1" name="etime">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label  class="am-u-sm-3 am-form-label">
+                                单价</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="sprice1" name="sprice">
                             </div>
                         </div>
                         <div class="am-form-group">
@@ -232,6 +250,8 @@
 <script>
     var num = 1;
     var currPage = 1;
+    var pages;
+    var seek="%";
     $(function () {
         $(".tabs").slide({trigger: "click"});
         show(currPage);
@@ -243,24 +263,52 @@
     });
 
     function btn_last() {
+        if(currPage==1){
+            return false;
+        }
+        $("#page").empty();
         currPage--;
-        showChoose(currPage);
+        show(currPage);
+
+        $("#page").append(currPage);
+    }
+
+    function btn_seek() {
+        if($("#aaa").val()!=""){
+            seek=$("#aaa").val();
+        }else{
+            seek="%";
+        }
+        show(1);
     }
 
     function btn_next() {
+        if(currPage==pages){
+            return false;
+        }
+        $("#page").empty();
         currPage++;
-        showChoose(currPage);
+        show(currPage);
+
+        $("#page").append(currPage);
     }
 
     function show(a) {
         $("#show").empty();
         $.ajax({
             url: "/screen/list",
-            data:{"currPage":a,"pageSize":2},
+            data:{"currPage":a,"pageSize":2,"seek":seek},
             type: "post",
             dataType: "json",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
+                    if(data.length==0){
+                        pages=1;
+                    }else{
+                        pages=data[0].pages;
+                    }
+                    $("#pages").empty();
+                    $("#pages").append(pages);
                     $("#show").append("<tr>\n" +
                         "                                    <td>" + data[i].sid + "</td>\n" +
                         "                                    <td>" + data[i].cid + "</td>\n" +
@@ -323,12 +371,15 @@
         $("#fade").css({display: "block"})
         $.ajax({
             type: "post",
-            url: "/actor/edit",
-            data: {"acid": id},
+            url: "/screen/edit",
+            data: {"sid": id},
             success: function (data) {
-                $("#acid").val(data.acid);
-                $("#user-name1").val(data.acname);
-                $("#state1 option[value='" + data.acsort + "']").attr("selected", true)
+                $("#cinema1 option[value='" + data.cid + "']").attr("selected", true)
+                $("#movie1 option[value='" + data.mid + "']").attr("selected", true)
+                $("#video1 option[value='" + data.viid + "']").attr("selected", true)
+                $("#stime").val(data.stime);
+                $("#etime").val(data.etime);
+                $("#sprice").val(data.sprice);
             }
         });
 
@@ -343,7 +394,10 @@
                     url: "../screen/delete",
                     data: {"sid": id},
                     success: function (data) {
-                        show();
+                        $("#page").empty();
+                        currPage--;
+                        $("#page").append(currPage);
+                        show(currPage);
                     }
                 });
             }

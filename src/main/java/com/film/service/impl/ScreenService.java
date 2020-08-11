@@ -49,8 +49,4 @@ public class ScreenService implements IScreenService {
         return screens;
     }
 
-    @Override
-    public List<Screen> list() {
-        return screenMapper.selectAll(null);
-    }
 }

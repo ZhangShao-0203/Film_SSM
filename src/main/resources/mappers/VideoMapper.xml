@@ -36,4 +36,9 @@
   </if>-->
 
   </select>
+
+  <select id="selectOther" resultMap="BaseResultMap" >
+    select VIID, VINAME, CID
+    from VIDEO
+  </select>
 </mapper>

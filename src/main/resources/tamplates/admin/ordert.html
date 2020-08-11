@@ -10,6 +10,42 @@
     <link rel="stylesheet" th:href="@{/admin/css/admin.css}"/>
 </head>
 
+<style>
+    #show tr td {
+        text-align: center;
+    }
+
+    #tbRecord tr th {
+        text-align: center;
+    }
+
+    .black_overlay {
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: .80;
+        filter: alpha(opacity=88);
+    }
+
+    .white_content {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 33%;
+        padding: 50px;
+        border: 2px solid orange;
+        background-color: white;
+        z-index: 1002;
+        overflow: auto;
+    }
+</style>
+
 <body>
 <div class="dvcontent">
 
@@ -46,9 +82,13 @@
 
                             </table>
                         </div>
+                        <div class="fiter col-md-4" style="float:left;">
+                            <input type="text" name="abc" id="abc"><button id="btn_seek" onclick="btn_seek()">搜索</button>
+                        </div>
+
                         <div class="fiter col-md-4" style="float: right">
-                            <a id="which">第1页</a>/
-                            <a id="all">第1页</a>
+                            <a id="which">第<span id="page">1</span>页</a>/
+                            <a id="all">共<span id="pages">1</span>页</a>
                             <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
                             <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
                         </div>
@@ -59,58 +99,56 @@
                 <div id="light" class="white_content">
 
                         <div class="am-form-group">
-                            <label for="user-name1" class="am-u-sm-3 am-form-label">
-                                订单编号</label>
+                            <label  class="am-u-sm-3 am-form-label">
+                                订单号</label>
                             <div class="am-u-sm-9">
-                                <input type="text" id="user-name1" required
-                                       placeholder="订单编号" name="oid">
+                                <input type="text"  required
+                                       placeholder="订单编号" id="oid">
                             </div>
                         </div>
 
                     <div class="am-form-group">
-                        <label for="user-name1" class="am-u-sm-3 am-form-label">
-                            会员编号</label>
+                        <label  class="am-u-sm-3 am-form-label">
+                            会员号</label>
                         <div class="am-u-sm-9">
-                            <input type="text" id="user-name1" required
-                                   placeholder="会员编号" name="vid">
+                            <input type="text" required
+                                   placeholder="会员编号" id="vid">
                         </div>
                     </div>
 
                     <div class="am-form-group">
-                        <label for="user-name1" class="am-u-sm-3 am-form-label">
-                            场次编号</label>
+                        <label  class="am-u-sm-3 am-form-label">
+                            场次号</label>
                         <div class="am-u-sm-9">
-                            <input type="text" id="user-name1" required
-                                   placeholder="场次编号" name="sid">
+                            <input type="text"  required
+                                   placeholder="场次编号" id="sid">
                         </div>
                     </div>
 
                     <div class="am-form-group">
-                        <label for="user-name1" class="am-u-sm-3 am-form-label">
-                            订票数量</label>
+                        <label  class="am-u-sm-3 am-form-label">
+                            订票数</label>
                         <div class="am-u-sm-9">
-                            <input type="text" id="user-name1" required
-                                   placeholder="订票数量" name="num">
+                            <input type="text"  required
+                                   placeholder="订票数量" id="num">
                         </div>
                     </div>
 
                     <div class="am-form-group">
-                        <label for="user-name1" class="am-u-sm-3 am-form-label">
+                        <label  class="am-u-sm-3 am-form-label">
                             订票时间</label>
                         <div class="am-u-sm-9">
-                            <input type="text" id="user-name1" required
-                                   placeholder="订票时间" name="otime">
-                            <small>10字以内...</small>
+                            <input type="text"  required
+                                   placeholder="订票时间" id="otime">
                         </div>
                     </div>
 
                     <div class="am-form-group">
-                        <label for="user-name1" class="am-u-sm-3 am-form-label">
+                        <label  class="am-u-sm-3 am-form-label">
                             选座信息</label>
                         <div class="am-u-sm-9">
-                            <input type="text" id="user-name1" required
-                                   placeholder="选座信息" name="chid">
-                            <small>10字以内...</small>
+                            <input type="text"  required
+                                   placeholder="选座信息" id="chid">
                         </div>
                     </div>
 
@@ -120,6 +158,7 @@
                 <div id="fade" class="black_overlay"></div>
 
             </div>
+        </div>
         </div>
         <!--tab end-->
 
@@ -133,6 +172,8 @@
     <script>
         var num = 1;
         var currPage = 1;
+        var pages;
+        var seek="%";
         $(function() {
 
             $(".tabs").slide({ trigger: "click" });
@@ -140,23 +181,51 @@
         });
 
         function btn_last() {
+            if(currPage==1){
+                return false;
+            }
+            $("#page").empty();
             currPage--;
             showOrdert(currPage);
+
+            $("#page").append(currPage);
+        }
+
+        function btn_seek() {
+            if($("#aaa").val()!=""){
+                seek=$("#aaa").val();
+            }else{
+                seek="%";
+            }
+            showOrdert(1);
         }
 
         function btn_next() {
+            if(currPage==pages){
+                return false;
+            }
+            $("#page").empty();
             currPage++;
             showOrdert(currPage);
+
+            $("#page").append(currPage);
         }
         function showOrdert(a){
             $("#show").empty();
             $.ajax({
                 url:"/ordert/list",
                 type:"post",
-                data:{"currPage":a,"pageSize":2},
+                data:{"currPage":a,"pageSize":2,"seek":seek},
                 dataType:"json",
                 success:function(data) {
                     for (var i = 0; i <data.length ; i++) {
+                        if(data.length==0){
+                            pages=1;
+                        }else{
+                            pages=data[0].pages;
+                        }
+                        $("#pages").empty();
+                        $("#pages").append(pages);
                         $("#show").append("<tr>\n" +
                             "                                    <td>"+data[i].oid+"</td>\n" +
                             "                                    <td>"+data[i].vid+"</td>\n" +
@@ -170,38 +239,6 @@
                     }
                 }
             })
-        }
-
-
-
-        var btn_save = function() {
-            var pid = $("#RawMaterialsTypePageId  option:selected").val();
-            var name = $("#RawMaterialsTypeName").val();
-            var desc = $("#RawMaterialsTypeDescription").val();
-            var ramark = $("#Ramark").val();
-            $.ajax({
-                type: "post",
-                url: "/RawMaterialsType/AddRawMaterialsType",
-                data: { name: name, pid: pid, desc: desc, ramark: ramark },
-                success: function(data) {
-                    if(data > 0) {
-                        $.jq_Alert({
-                            message: "添加成功",
-                            btnOktext: "确认",
-                            dialogModal: true,
-                            btnOkClick: function() {
-                                //$("#RawMaterialsTypeName").val("");
-                                //$("#RawMaterialsTypeDescription").val("");
-                                //$("#Ramark").val("");
-                                //page1();
-                                location.reload();
-
-                            }
-                        });
-                    }
-                }
-            });
-            alert(t);
         }
 
         var btn_edit = function (id) {
@@ -231,6 +268,9 @@
                         url: "/ordert/delete",
                         data: {oid:id },
                         success: function(data) {
+                            $("#page").empty();
+                            currPage--;
+                            $("#page").append(currPage);
                             showOrdert(currPage);
                         }
                     });

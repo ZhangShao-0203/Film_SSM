@@ -52,6 +52,6 @@ public class CinemaService implements ICinemaService {
 
     @Override
     public List<Cinema> listOther() {
-        return cinemaMapper.selectAll(null);
+        return cinemaMapper.listOther();
     }
 }

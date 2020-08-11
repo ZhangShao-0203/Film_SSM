@@ -34,7 +34,6 @@ public class ScreenController {
     public Screen edit(int sid) {
         Screen screen = screenService.get(sid);
         return screen;
-
     }
 
     @RequestMapping("/update")

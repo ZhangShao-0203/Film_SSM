@@ -80,6 +80,10 @@
 
                             </table>
                         </div>
+                        <div class="fiter col-md-4" style="float:left;">
+                            <input type="text" name="abc" id="abc"><button id="btn_seek" onclick="btn_seek()">搜索</button>
+                        </div>
+
                         <div class="fiter col-md-4" style="float: right">
                             <a id="which">第<span id="page">1</span>页</a>/
                             <a id="all">共<span id="pages">1</span>页</a>
@@ -235,6 +239,8 @@
     <script>
         var num = 1;
         var currPage = 1;
+        var pages;
+        var seek="%";
         $(function() {
 
             $(".tabs").slide({ trigger: "click" });
@@ -242,6 +248,65 @@
             addVideo();
             addVideo2();
         });
+
+        function btn_last() {
+            if(currPage==1){
+                return false;
+            }
+            $("#page").empty();
+            currPage--;
+            show(currPage);;
+
+            $("#page").append(currPage);
+        }
+
+        function btn_seek() {
+            if($("#aaa").val()!=""){
+                seek=$("#aaa").val();
+            }else{
+                seek="%";
+            }
+            show(1);
+        }
+
+        function btn_next() {
+            if(currPage==pages){
+                return false;
+            }
+            $("#page").empty();
+            currPage++;
+            show(currPage);
+
+            $("#page").append(currPage);
+        }
+        function show(a){
+            $("#showChoose").empty();
+            $.ajax({
+                url:"/choose/list",
+                type:"post",
+                data:{"currPage":a,"pageSize":2,"seek":seek},
+                dataType:"json",
+                success:function(data) {
+                    for (var i = 0; i <data.length ; i++) {
+                        if(data.length==0){
+                            pages=1;
+                        }else{
+                            pages=data[0].pages;
+                        }
+                        $("#pages").empty();
+                        $("#pages").append(pages);
+                        $("#showChoose").append("<tr>\n" +
+                            "                                    <td>"+data[i].chid+"</td>\n" +
+                            "                                    <td>"+data[i].viid+"</td>\n" +
+                            "                                    <td>"+data[i].seat+"</td>\n" +
+                            "                                    <td>"+data[i].state+"</td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].chid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].chid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
+                            "                                </tr>")
+                    }
+                }
+            })
+        }
 
         var btn_edit = function (id) {
             $("#light").css({display: "block"})
@@ -268,48 +333,15 @@
                         url: "/choose/delete",
                         data: {"chid":id },
                         success: function(data) {
+                            $("#page").empty();
+                            currPage--;
+                            $("#page").append(currPage);
                             show(currPage);
                         }
                     });
                 }
             });
         }
-        function btn_last() {
-            currPage--;
-            show(currPage);
-        }
-
-        function btn_next() {
-            currPage++;
-            show(currPage);
-        }
-        function show(a){
-            $("#showChoose").empty();
-            $.ajax({
-                url:"/choose/list",
-                type:"post",
-                data:{"currPage":a,"pageSize":2},
-                dataType:"json",
-                success:function(data) {
-                    for (var i = 0; i <data.length ; i++) {
-                        $("#showChoose").append("<tr>\n" +
-                            "                                    <td>"+data[i].chid+"</td>\n" +
-                            "                                    <td>"+data[i].viid+"</td>\n" +
-                            "                                    <td>"+data[i].seat+"</td>\n" +
-                            "                                    <td>"+data[i].state+"</td>\n" +
-                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].chid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
-                            "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].chid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
-                            "                                </tr>")
-                    }
-                }
-            })
-        }
-
-        ("#page").click(function () {
-            ("#page").text();
-            show(currPage);
-        })
-
         function addVideo() {
             $.ajax({
                 url:"/video/listOther",

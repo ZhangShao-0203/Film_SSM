@@ -44,4 +44,5 @@
     select SID, CID, MID, VIID, STIME, ETIME, SPRICE
     from SCREEN  where SID like '%'||#{seek}||'%' or CID like '%'||#{seek}||'%'
   </select>
+
 </mapper>

@@ -16,5 +16,7 @@ public interface CinemaMapper {
 
     List<Cinema> selectAll(String seek);
 
+    List<Cinema> listOther();
+
     int updateByPrimaryKey(Cinema record);
 }
