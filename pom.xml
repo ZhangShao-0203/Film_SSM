@@ -117,6 +117,13 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
         </dependency>
+
+        <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>4.1.1.RELEASE</version>
+
+        </dependency>
         <!--<dependency>-->
         <!--<groupId>com.github.pagehelper</groupId>-->
         <!--<artifactId>pagehelper</artifactId>-->
@@ -168,7 +175,25 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <includeSystemScope>true</includeSystemScope>
+                <mainClass>com.film.SpringBootApp</mainClass>
+            </configuration>
+        </plugin>
+
+        <plugin>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-maven-plugin</artifactId>
         <version>1.3.2</version>

@@ -11,14 +11,7 @@
     <script th:src="@{https://how2j.cn/study/vue.min.js}"></script>
     <script th:src="@{https://unpkg.com/axios/dist/axios.min.js}"></script>
     <script th:src="@{https://how2j.cn/study/fetch.min.js}"></script>
-    <script>
-        $(function () {
-            
-        })
-        function show() {
-            
-        }
-    </script>
+
 </head>
 
 <body>
@@ -86,50 +79,40 @@
 </div>
 <!-- 页面主体 -->
 <div class="container">
-    <div class="main"   >
+    <div class="main">
         <!-- 正在热映 -->
         <div class="hot-movie">
-            <h2>正在热映（4部）</h2>
-            <div class="movies" id="h">
-
+            <div style="display: flex;justify-content: space-between;">
+                <h2>正在热映（<span id="fire"></span>部）</h2>
+                <a href="#" style="color: #ff0000;font-size: 16px;    margin-top: 10px;">
+                    <span>全部></span>
+                </a>
+            </div>
+            <div class="movies" id="hotmovies">
             </div>
         </div>
         <!-- 即将上映 -->
         <div class="movie-box">
             <div class="movie-header">
-                <h2>即将上映（115部）</h2>
+                <h2>即将上映（<span id="future"></span>部）</h2>
                 <a href="#">
                     <span>全部></span>
                 </a>
             </div>
-            <div class="movies">
-                <div class="movies-model">
-                    <a href="">
-                        <img src="images/hotmovie1.png" alt="" srcset="">
-                    </a>
-                    <p>46461661人想看</p>
-                    <button onclick="alert('123')">预告片</button>
-                    <button onclick="alert('123')">预售</button>
-                    <p>9月31日上映</p>
-                </div>
+            <div class="movies" id="future_show">
+
             </div>
         </div>
         <!-- 热播电影 -->
         <div class="movie-box">
             <div class="movie-header c hotmovie ">
-                <h2>热播电影（115部）</h2>
+                <h2>热播电影（<span id="firemovie"></span>部）</h2>
                 <a href="#">
                     <span>全部></span>
                 </a>
             </div>
-            <div class="movies movies-hot">
-                <div class="movies-model">
-                    <a href="">
-                        <img src="images/hotmovie1.png" alt="" srcset="">
-                    </a>
-                    <p>9.0分</p>
-                    <button class="buynow">立即购票</button>
-                </div>
+            <div class="movies movies-hot" id="firemovie_show">
+
             </div>
         </div>
 
@@ -189,15 +172,6 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <!-- 今日大盘 -->
-        <div class="aside-total">
-            <h2 class="total-nav">今日大盘</h2>
-            <div class="total-body">
-                <h2>0.6 <span>万</span></h2>
-                <span class="more">查看更多></span>
-                <p class="time"><span>北京时间14:48:31</span> <span>猫眼专业版实时票房数据</span></p>
             </div>
         </div>
         <!-- 最受期待 -->
@@ -302,95 +276,6 @@
                 </ul>
             </div>
         </div>
-        <!-- 热门影人 -->
-        <div class="people">
-            <h2>热门影人</h2>
-            <div class="peoplelist">
-                <ul class="peoples">
-                    <li class=" people-item-first clearfix">
-                        <a href="#">
-                            <div class="first-item clearfix">
-                                <img src="images/people.png" alt="" srcset="">
-                            </div>
-                            <p class="name">大张伟</p>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index index-hot">2</i>
-                                <span>蔡国庆</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index index-hot">3</i>
-                                <span>黄一山</span>
-                            </div>
-
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">4</i>
-                                <span>蔡轩正</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">5</i>
-                                <span>平安</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">6</i>
-                                <span>王源</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">7</i>
-                                <span>小黑</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">8</i>
-                                <span>郁可唯</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">9</i>
-                                <span>许魏洲</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="people-item">
-                        <a href="#">
-                            <div class="index-box">
-                                <i class="index">10</i>
-                                <span>王力宏</span>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 </div>
 <!-- 页面底部 -->
@@ -459,7 +344,7 @@
 <script th:src="@{/user/js/mock-min.js}"></script>
 <script th:src="@{/user/js/index.js}"></script>
 <script th:src="@{/user/js/jquery-3.3.1.min.js}"></script>
-
+<script th:src="@{/user/js/index-Zhang.js}"></script>
 
 </body>
 
