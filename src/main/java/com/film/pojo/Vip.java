@@ -10,6 +10,16 @@ public class Vip {
 
     private String tel;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public Long getVid() {
         return vid;
     }
@@ -41,4 +51,5 @@ public class Vip {
     public void setTel(String tel) {
         this.tel = tel;
     }
+
 }

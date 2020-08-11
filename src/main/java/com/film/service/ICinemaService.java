@@ -14,7 +14,7 @@ public interface ICinemaService {
     //修改用户
     int update(Cinema cinema);
     //查看所有用户
-    List<Cinema> list(int currPage,int pageSize);
+    List<Cinema> list(int currPage,int pageSize,String seek);
 
     List<Cinema> listOther();
 }

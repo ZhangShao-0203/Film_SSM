@@ -14,7 +14,7 @@ public interface OrdertMapper {
 
     Ordert selectByPrimaryKey(Long oid);
 
-    List<Ordert> selectAll();
+    List<Ordert> selectAll(String seek);
 
     int updateByPrimaryKey(Ordert record);
 }

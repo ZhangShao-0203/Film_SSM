@@ -10,6 +10,16 @@ public class Choose {
 
     private String state;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public Long getChid() {
         return chid;
     }

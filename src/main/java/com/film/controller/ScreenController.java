@@ -24,8 +24,8 @@ public class ScreenController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Screen> list(int currPage,int pageSize) {
-        List<Screen> screens = screenService.list(currPage,pageSize);
+    public List<Screen> list(int currPage,int pageSize,String seek) {
+        List<Screen> screens = screenService.list(currPage,pageSize,seek);
         return screens;
     }
 

@@ -14,7 +14,7 @@ public interface IVideoService {
     //修改用户
     int update(Video video);
     //查看所有用户
-    List<Video> list(int currPage,int pageSize);
+    List<Video> list(int currPage,int pageSize,String seek);
 
-    List<Video> list(Video video);
+    List<Video> list();
 }

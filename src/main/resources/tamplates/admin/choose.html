@@ -8,7 +8,6 @@
     <link rel="stylesheet" th:href="@{/admin/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/admin/css/amazeui.min.css}"/>
     <link rel="stylesheet" th:href="@{/admin/css/admin.css}"/>
-    <link rel="stylesheet" th:href="@{/user/css/style.css}"/>
     <style>
         #showVip tr td {
             text-align: center;
@@ -82,8 +81,8 @@
                             </table>
                         </div>
                         <div class="fiter col-md-4" style="float: right">
-                            <a id="which">第1页</a>/
-                            <a id="all">第1页</a>
+                            <a id="which">第<span id="page">1</span>页</a>/
+                            <a id="all">共<span id="pages">1</span>页</a>
                             <button id="last" class="btn btn-success" onclick="btn_last()">上一页</button>
                             <button id="next" class="btn btn-success" onclick="btn_next()">下一页</button>
                         </div>
@@ -177,6 +176,7 @@
                             <a class="seat"><img src="img/未选.jpg"></a>
                         </div>-->
                 </div>
+                <div id="fade2" class="black_overlay"></div>
 
                 <div id="light" class="white_content">
                     <form class="am-form am-form-horizontal"
@@ -228,9 +228,7 @@
 
     </div>
 
-
     <script th:src="@{/admin/js/jquery-1.7.2.min.js}" type="text/javascript"></script>
-    <script th:src="@{/user/js/jquery-3.2.0.min.js}" type="text/javascript"></script>
     <script th:src="@{/admin/js/plugs/Jqueryplugs.js}" type="text/javascript"></script>
     <script th:src="@{/admin/js/_layout.js}"></script>
     <script th:src="@{/admin/js/plugs/jquery.SuperSlide.source.js}"></script>
@@ -240,41 +238,10 @@
         $(function() {
 
             $(".tabs").slide({ trigger: "click" });
-            showChoose(currPage);
+            show(currPage);
             addVideo();
             addVideo2();
         });
-
-
-        var btn_save = function() {
-            var pid = $("#RawMaterialsTypePageId  option:selected").val();
-            var name = $("#RawMaterialsTypeName").val();
-            var desc = $("#RawMaterialsTypeDescription").val();
-            var ramark = $("#Ramark").val();
-            $.ajax({
-                type: "post",
-                url: "/RawMaterialsType/AddRawMaterialsType",
-                data: { name: name, pid: pid, desc: desc, ramark: ramark },
-                success: function(data) {
-                    if(data > 0) {
-                        $.jq_Alert({
-                            message: "添加成功",
-                            btnOktext: "确认",
-                            dialogModal: true,
-                            btnOkClick: function() {
-                                //$("#RawMaterialsTypeName").val("");
-                                //$("#RawMaterialsTypeDescription").val("");
-                                //$("#Ramark").val("");
-                                //page1();
-                                location.reload();
-
-                            }
-                        });
-                    }
-                }
-            });
-            alert(t);
-        }
 
         var btn_edit = function (id) {
             $("#light").css({display: "block"})
@@ -301,7 +268,7 @@
                         url: "/choose/delete",
                         data: {"chid":id },
                         success: function(data) {
-                            showChoose(currPage);
+                            show(currPage);
                         }
                     });
                 }
@@ -309,14 +276,14 @@
         }
         function btn_last() {
             currPage--;
-            showChoose(currPage);
+            show(currPage);
         }
 
         function btn_next() {
             currPage++;
-            showChoose(currPage);
+            show(currPage);
         }
-        function showChoose(a){
+        function show(a){
             $("#showChoose").empty();
             $.ajax({
                 url:"/choose/list",
@@ -337,6 +304,11 @@
                 }
             })
         }
+
+        ("#page").click(function () {
+            ("#page").text();
+            show(currPage);
+        })
 
         function addVideo() {
             $.ajax({
@@ -369,7 +341,7 @@
             $("#light2").css({display: "block"})
             $.ajax({
                 type: "post",
-                url: "/choose/list",
+                url: "/choose/listOther",
                 data: {},
                 success: function (data) {
                     for (var i = 0; i < data.length; i++) {

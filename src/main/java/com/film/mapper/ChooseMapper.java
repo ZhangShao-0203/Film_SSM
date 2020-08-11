@@ -14,7 +14,7 @@ public interface ChooseMapper {
 
     Choose selectByPrimaryKey(Long chid);
 
-    List<Choose> selectAll();
+    List<Choose> selectAll(String seek);
 
     int updateByPrimaryKey(Choose record);
 }

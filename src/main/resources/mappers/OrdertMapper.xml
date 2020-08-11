@@ -35,6 +35,6 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select OID, VID, SID, NUM, OTIME ,CHID
-    from ORDERT
+    from ORDERT  where OID like '%'||#{seek}||'%' or VID like '%'||#{seek}||'%'
   </select>
 </mapper>

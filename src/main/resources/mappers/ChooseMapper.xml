@@ -34,6 +34,6 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select CHID, VIID, SEAT ,STATE
-    from CHOOSE
+    from CHOOSE  where CHID like '%'||#{seek}||'%' or VIID like '%'||#{seek}||'%'
   </select>
 </mapper>

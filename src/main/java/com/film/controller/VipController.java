@@ -23,8 +23,8 @@ public class VipController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Vip> list(int currPage,int pageSize){
-        List<Vip> vips = vipService.list(currPage,pageSize);
+    public List<Vip> list(int currPage,int pageSize,String seek){
+        List<Vip> vips = vipService.list(currPage,pageSize,seek);
         return vips;
     }
 

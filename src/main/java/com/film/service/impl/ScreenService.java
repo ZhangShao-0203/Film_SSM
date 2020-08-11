@@ -2,8 +2,10 @@ package com.film.service.impl;
 
 import com.film.mapper.ScreenMapper;
 import com.film.pojo.Screen;
+import com.film.pojo.Vip;
 import com.film.service.IScreenService;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +36,21 @@ public class ScreenService implements IScreenService {
     }
 
     @Override
-    public List<Screen> list(int  currPage, int pageSize) {
+    public List<Screen> list(int  currPage, int pageSize,String seek) {
         //分页
         PageHelper.startPage(currPage,pageSize);//自动修改sql语句
-        return screenMapper.selectAll();
+        List<Screen> screens = screenMapper.selectAll(seek);
+
+        PageInfo pageInfo=new PageInfo(screens);
+        for (Screen s:screens){
+            s.setPages(pageInfo.getPages());
+            System.out.println("-----"+s.getPages());
+        }
+        return screens;
+    }
+
+    @Override
+    public List<Screen> list() {
+        return screenMapper.selectAll(null);
     }
 }

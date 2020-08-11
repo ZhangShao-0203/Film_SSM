@@ -15,5 +15,7 @@ public interface IOrderService {
     //修改用户
     int update(Ordert ordert);
     //查看所有用户
-    List<Ordert> list(int currPage,int pageSize);
+    List<Ordert> list(int currPage,int pageSize,String seek);
+
+    List<Ordert> list();
 }

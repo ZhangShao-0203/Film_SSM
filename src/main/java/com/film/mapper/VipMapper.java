@@ -14,7 +14,7 @@ public interface VipMapper {
 
     Vip selectByPrimaryKey(Long vid);
 
-    List<Vip> selectAll();
+    List<Vip> selectAll(String seek);
 
     int updateByPrimaryKey(Vip record);
 }

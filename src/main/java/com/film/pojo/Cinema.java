@@ -6,6 +6,16 @@ public class Cinema {
 
     private String cname;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public Long getCid() {
         return cid;
     }

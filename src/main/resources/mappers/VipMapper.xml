@@ -36,4 +36,8 @@
     select VID, VNAME, VPASS, TEL
     from VIP
   </select>
+
+  <select id="selectByOther" resultMap="BaseResultMap" parameterType="string" >
+    select VID, VNAME, VPASS, TEL from VIP where VID like '%'||#{seek}||'%' or VNAME like '%'||#{seek}||'%'
+  </select>
 </mapper>

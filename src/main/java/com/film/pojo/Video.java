@@ -9,6 +9,16 @@ public class Video {
     private Long cid;
     private Cinema cinema;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public Long getViid() {
         return viid;
     }

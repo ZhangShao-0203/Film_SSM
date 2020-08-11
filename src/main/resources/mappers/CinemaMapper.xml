@@ -28,6 +28,6 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select CID, CNAME
-    from CINEMA
+    from CINEMA  where CID like '%'||#{seek}||'%' or CNAME like '%'||#{seek}||'%'
   </select>
 </mapper>

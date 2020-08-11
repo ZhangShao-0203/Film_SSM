@@ -252,7 +252,7 @@
         showChoose(currPage);
     }
 
-    function show() {
+    function show(a) {
         $("#show").empty();
         $.ajax({
             url: "/screen/list",
@@ -290,7 +290,6 @@
                 show_video($("#cinema").val());
             }
         })
-
     }
     function show_movie() {
         $("#movie").empty();

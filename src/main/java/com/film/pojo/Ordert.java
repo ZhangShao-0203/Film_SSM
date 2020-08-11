@@ -16,6 +16,16 @@ public class Ordert {
 
     private Long chid;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public Long getOid() {
         return oid;
     }

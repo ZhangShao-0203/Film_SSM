@@ -48,7 +48,7 @@ public class ActorService implements IActorService {
         List<Actor> actors = actorMapper.selectMMAll(seek);
         PageInfo pageInfo=new PageInfo(actors);
         for (Actor a:actors){
-            a.setPages(pageInfo.getPages    ());
+            a.setPages(pageInfo.getPages());
             System.out.println("-----"+a.getPages());
         }
         return actors;

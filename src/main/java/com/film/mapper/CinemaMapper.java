@@ -14,7 +14,7 @@ public interface CinemaMapper {
 
     Cinema selectByPrimaryKey(Long cid);
 
-    List<Cinema> selectAll();
+    List<Cinema> selectAll(String seek);
 
     int updateByPrimaryKey(Cinema record);
 }

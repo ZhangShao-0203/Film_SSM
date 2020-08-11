@@ -14,5 +14,7 @@ public interface IChooseService {
     //修改用户
     int update(Choose choose);
     //查看所有用户
-    List<Choose> list(int currPage,int pageSize);
+    List<Choose> list(int currPage,int pageSize,String seek);
+
+    List<Choose> listOther();
 }

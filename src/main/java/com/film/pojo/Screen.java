@@ -17,6 +17,16 @@ public class Screen {
 
     private BigDecimal sprice;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public Long getSid() {
         return sid;
     }

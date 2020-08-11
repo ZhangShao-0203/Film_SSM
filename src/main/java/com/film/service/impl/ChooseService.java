@@ -2,8 +2,11 @@ package com.film.service.impl;
 
 import com.film.mapper.ChooseMapper;
 import com.film.pojo.Choose;
+import com.film.pojo.Video;
+import com.film.pojo.Vip;
 import com.film.service.IChooseService;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +38,21 @@ public class ChooseService implements IChooseService {
     }
 
     @Override
-    public List<Choose> list(int currPage,int pageSize) {
+    public List<Choose> list(int currPage,int pageSize,String seek) {
         //分页
         PageHelper.startPage(currPage,pageSize);//自动修改sql语句
-        return chooseMapper.selectAll();
+        List<Choose> chooses = chooseMapper.selectAll(seek);
+
+        PageInfo pageInfo=new PageInfo(chooses);
+        for (Choose c:chooses){
+            c.setPages(pageInfo.getPages());
+            System.out.println("-----"+c.getPages());
+        }
+        return chooseMapper.selectAll(seek);
+    }
+
+    @Override
+    public List<Choose> listOther() {
+        return chooseMapper.selectAll(null);
     }
 }

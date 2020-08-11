@@ -42,6 +42,6 @@
   </select>
     <select id="selectAll" resultMap="BaseResultMap">
     select SID, CID, MID, VIID, STIME, ETIME, SPRICE
-    from SCREEN
+    from SCREEN  where SID like '%'||#{seek}||'%' or CID like '%'||#{seek}||'%'
   </select>
 </mapper>

@@ -30,9 +30,10 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select VIID, VINAME, CID
-    from VIDEO
-    <if test="cid!=null">
+    from VIDEO  where VIID like '%'||#{seek}||'%' or VINAME like '%'||#{seek}||'%'
+    <!--<if test="cid!=null">
     where cid=#{cid}
-  </if>
+  </if>-->
+
   </select>
 </mapper>

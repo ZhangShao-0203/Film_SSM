@@ -21,15 +21,15 @@ public class VideoController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Video> list(int currPage,int pageSize){
-        List<Video> videos = videoService.list(currPage,pageSize);
+    public List<Video> list(int currPage,int pageSize,String seek){
+        List<Video> videos = videoService.list(currPage,pageSize,seek);
         return videos;
     }
 
     @RequestMapping("/listOther")
     @ResponseBody
     public List<Video> listOther(Video video){
-        List<Video> videos = videoService.list(video);
+        List<Video> videos = videoService.list();
         return videos;
     }
 
