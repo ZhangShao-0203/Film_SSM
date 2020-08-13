@@ -46,7 +46,7 @@ public class MovieController {
     @RequestMapping("/listmm")
     @ResponseBody
     public List<Movie> listmm(@RequestParam(value = "start", defaultValue = "1")int start, @RequestParam(value = "size", defaultValue = "6")int size,@RequestParam(value = "seek")String seek) {
-        List<Movie> movies = movieService.listmm(start, size,seek);
+        List<Movie> movies = movieService.listmm(start,size,seek);
         return movies;
     }
     @RequestMapping("/edit")

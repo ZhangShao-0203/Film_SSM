@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-
+        </div>
     </header>
     <!-- 电影简介 -->
     <div class="movie-top">
@@ -411,38 +411,10 @@
         </div>
     </div>
 
-    <script src="js/ajax.js"></script>
     <script src="js/mock-min.js"></script>
-    <script src="js/server.js"></script>
-    <script src="js/movieCinema.js"></script>
+    <script th:src="@{/user/js/moviesCinema-Zhang.js}"></script>
     <script>
-        // 获取电影院信息并渲染至页面
-        var url = decodeURI(window.location.href);
-        var backToPreUrl = url.split("?");
-        if (backToPreUrl[1] == null) {
-            alert(123)
-        } else {
-            moviename = decodeURIComponent(backToPreUrl[1]);
-            ajax({
-                url: '/moviescinema/getmoviescinema',
-                type: 'get',
-                data: moviename,
-                success: function(msg) {
-                    if (msg.isable) {
-                        let arr = {...msg.data[0]
-                        };
-                        document.getElementById('movie-img').src = arr.url;
-                        document.getElementById('englishname').innerText = arr.name;
-                        document.getElementById('moviename').innerText = arr.name;
-                        document.getElementById('kind').innerText = arr.kind;
-                        document.getElementById('adress').innerText = arr.adress;
-                        document.getElementById('time').innerText = arr.time;
-                    } else {
-                        alert('获取信息失败');
-                    }
-                }
-            });
-        }
+
     </script>
 </body>
 

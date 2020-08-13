@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/movies.css">
-    <link rel="stylesheet" href="css/clear.css">
+    <link rel="stylesheet" th:href="@{/user/css/index.css}">
+    <link rel="stylesheet" th:href="@{/user/css/movies.css}">
+    <link rel="stylesheet" th:href="@{/user/css/clear.css}">
     <title>电影页面</title>
     <link rel="icon" href="images/title-lolg.png">
 </head>
@@ -253,15 +253,6 @@
 <!-- 电影列表 -->
 <div class="movies-body">
     <ul id="movies-body">
-        <li class="othermovie-model">
-            <div class="movies-model">
-                <a href="${encodeURI('moviedatas.html?'+value.name)}">
-                    <img src="http://localhost:8099/movies/da24b79c-0b3a-4fb9-8aba-804fa842b9dd小丑.png" width="170px"
-                         height='210.33px'>
-                </a>
-                <a class="movieName" style="font-size: 16px">电影名</a>
-            </div>
-        </li>
 
     </ul>
 </div>
@@ -327,12 +318,10 @@
     </div>
 </div>
 
-<script src="js/ajax.js"></script>
-<script src="js/mock-min.js"></script>
-<script src="js/server.js"></script>
-<script src="js/movies.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
+<script th:src="@{/user/js/mock-min.js}"></script>
+<script th:src="@{/user/js/jquery-3.3.1.min.js}"></script>
 <script th:src="@{/user/js/vue.js}"></script>
+<script th:src="@{/user/js/movies-Zhang.js}"></script>
 <script>
     $(function () {
 

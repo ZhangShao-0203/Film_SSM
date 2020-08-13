@@ -87,7 +87,6 @@ public class AdminController {
         SimpleHash simpleHash = new SimpleHash("MD5",admin.getApass(),admin.getAname());
         admin.setApass(simpleHash.toString());
         int i = adminService.add(admin);
-
         long id = admin.getAid();
         System.out.println("id:::::"+id);
         mav.setViewName("/admin/login");
