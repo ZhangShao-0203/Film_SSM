@@ -10,7 +10,6 @@
     <result column="UPTIME" property="uptime" jdbcType="VARCHAR" />
     <result column="DETAILS" property="details" jdbcType="VARCHAR" />
     <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
-    <result column="VIDEOPATH" property="videopath" jdbcType="VARCHAR" />
     <collection property="actorList" ofType="Actor">
       <id column="acid" property="acid"></id>
       <result column="acname" property="acname"></result>
@@ -28,10 +27,10 @@
     </selectKey>
     insert into MOVIE (MID, MNAMEC, MNAMEE, 
       MSORT, MLENG, UPTIME, 
-      DETAILS, PHOTO,VIDEOPATH)
+      DETAILS, PHOTO)
     values (#{mid,jdbcType=DECIMAL}, #{mnamec,jdbcType=VARCHAR}, #{mnamee,jdbcType=VARCHAR}, 
       #{msort,jdbcType=VARCHAR}, #{mleng,jdbcType=VARCHAR}, #{uptime,jdbcType=VARCHAR}, 
-      #{details,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{videopath,jdbcType=VARCHAR})
+      #{details,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.film.pojo.Movie" >
     update MOVIE
@@ -41,12 +40,11 @@
       MLENG = #{mleng,jdbcType=VARCHAR},
       UPTIME = #{uptime,jdbcType=VARCHAR},
       DETAILS = #{details,jdbcType=VARCHAR},
-      PHOTO = #{photo,jdbcType=VARCHAR},
-      VIDEOPATH = #{videopath,jdbcType=VARCHAR}
+      PHOTO = #{photo,jdbcType=VARCHAR}
     where MID = #{mid,jdbcType=DECIMAL}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select MID, MNAMEC, MNAMEE, MSORT, MLENG, UPTIME, DETAILS, PHOTO, VIDEOPATH
+    select MID, MNAMEC, MNAMEE, MSORT, MLENG, UPTIME, DETAILS, PHOTO
     from MOVIE
     where MID = #{mid,jdbcType=DECIMAL}
   </select>

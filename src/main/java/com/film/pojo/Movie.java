@@ -20,7 +20,6 @@ public class Movie {
 
     private String photo;
 
-    private String videopath;
     private int pages;
     private List<MovieActor> actorList;
 
@@ -66,14 +65,6 @@ public class Movie {
 
     public String getMsort() {
         return msort;
-    }
-
-    public String getVideopath() {
-        return videopath;
-    }
-
-    public void setVideopath(String videopath) {
-        this.videopath = videopath;
     }
 
     public void setMsort(String msort) {
@@ -123,7 +114,6 @@ public class Movie {
                 ", uptime='" + uptime + '\'' +
                 ", details='" + details + '\'' +
                 ", photo='" + photo + '\'' +
-                ", videopath='" + videopath + '\'' +
                 ", pages=" + pages +
                 ", actorList=" + actorList +
                 '}';
