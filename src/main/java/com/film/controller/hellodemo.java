@@ -4,66 +4,126 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/admin")
 public class hellodemo {
     @RequestMapping("/index.html")
-    public ModelAndView update(ModelAndView mav){
+    public ModelAndView update(ModelAndView mav, HttpSession session) {
         System.out.println("update");
-        mav.setViewName("admin/index");
+        if (session == null || session.getAttribute("admin") == null) {
+            mav.setViewName("admin/login");
+        } else {
+            mav.setViewName("admin/index");
+        }
         return mav;
     }
 
     @RequestMapping("/login.html")
-    public ModelAndView login(ModelAndView mav){
+    public ModelAndView login(ModelAndView mav) {
         System.out.println("login");
         mav.setViewName("admin/login");
         return mav;
     }
+
     @RequestMapping("/actor.html")
-    public String actor(){
+    public String actor(HttpSession session) {
         System.out.println("actor");
-        return "admin/actor";
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/actor";
+        }
+
     }
+
     @RequestMapping("/cinema.html")
-    public String cinema(){
+    public String cinema(HttpSession session) {
         System.out.println("cinema");
-        return "admin/cinema";
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/cinema";
+        }
+
     }
+
     @RequestMapping("/choose.html")
-    public String choose(){
+    public String choose(HttpSession session) {
         System.out.println("choose");
-        return "admin/choose";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/choose";
+        }
     }
+
     @RequestMapping("/movie.html")
-    public String movie(){
+    public String movie(HttpSession session) {
         System.out.println("movie");
-        return "admin/movie";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/movie";
+        }
     }
+
     @RequestMapping("/ordert.html")
-    public String ordert(){
+    public String ordert(HttpSession session) {
         System.out.println("ordert");
-        return "admin/ordert";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/ordert";
+        }
     }
+
     @RequestMapping("/screen.html")
-    public String screen(){
+    public String screen(HttpSession session) {
         System.out.println("screen");
-        return "admin/screen";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/screen";
+        }
     }
+
     @RequestMapping("/update.html")
-    public String update(){
+    public String update(HttpSession session) {
         System.out.println("update");
-        return "admin/update";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/update";
+        }
     }
+
     @RequestMapping("/video.html")
-    public String video(){
+    public String video(HttpSession session) {
         System.out.println("video");
-        return "admin/video";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/video";
+        }
     }
+
     @RequestMapping("/vip.html")
-    public String vip(){
+    public String vip(HttpSession session) {
         System.out.println("vip");
-        return "admin/vip";
+
+        if (session == null || session.getAttribute("admin") == null) {
+            return "admin/login";
+        } else {
+            return "admin/vip";
+        }
     }
 
 
