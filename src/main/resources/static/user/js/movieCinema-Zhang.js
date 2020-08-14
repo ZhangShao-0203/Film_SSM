@@ -5,7 +5,7 @@ $(function () {
 function show_movieCinema() {
     $.ajax({
         url: "/cinema/list",
-        data: {"start": 1, "size": 15, "seek": "%"},
+        data: {"currPage": 1, "pageSize": 15, "seek": "%"},
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
                 $("#cinemas-body").append("<div class='cineam-model'><div class=\"cineam-name\">\n" +

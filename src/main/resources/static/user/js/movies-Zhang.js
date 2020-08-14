@@ -9,7 +9,7 @@ function show_movie() {
             for(var i=0;i<data.length;i++){
                 $("#movies-body").append("<li class=\"othermovie-model\">\n" +
                     "            <div class=\"movies-model\">\n" +
-                    "                <a href=\"${encodeURI('moviedatas.html?'+value.name)}\">\n" +
+                    "                <a href=\"/user/moviedatas.html?"+data[i].mid+"\">\n" +
                     "                    <img src=\""+data[i].photo+"\" width=\"160px\"\n" +
                     "                         height='210.33px'>\n" +
                     "                </a>\n" +

@@ -15,7 +15,7 @@ function show_fire() {
                     break;
                 }
                 $("#hotmovies").append(" <div class=\"movies-model\">       " +
-                    " <a href=\"${encodeURI('moviedatas.html?'+value.name)}\">\n" +
+                    " <a href=\"/user/moviedatas.html?"+data[i].mid+"\">\n" +
                     "        <img src=\"" + data[i].photo + "\" alt=\"\" srcset=\"\" height='210.33px'>\n" +
                     "    </a>\n" +
                     "    <button data-id=\"${value.name}\" class=\"btn\">立即购票</button></div>");
@@ -34,7 +34,7 @@ function show_future() {
                     break;
                 }
                 $("#future_show").append(" <div class=\"movies-model\">       " +
-                    " <a href=\"${encodeURI('moviedatas.html?'+value.name)}\">\n" +
+                    " <a href=\"/user/moviedatas.html?"+data[i].mid+"\">\n" +
                     "        <img src=\"" + data[i].photo + "\" alt=\"\" srcset=\"\" height='210.33px'>\n" +
                     "    </a>\n" +
                     "    <button data-id=\"${value.name}\" class=\"btn\">立即购票</button></div>");
@@ -53,7 +53,7 @@ function show_firemovie() {
                     break;
                 }
                 $("#firemovie_show").append(" <div class=\"movies-model\">       " +
-                    " <a href=\"${encodeURI('moviedatas.html?'+value.name)}\">\n" +
+                    " <a href=\"/user/moviedatas.html?"+data[i].mid+"\">\n" +
                     "        <img src=\"" + data[i].photo + "\" alt=\"\" srcset=\"\" height='210.33px'>\n" +
                     "    </a>\n" +
                     "    <button data-id=\"${value.name}\" class=\"btn\">立即购票</button></div>");

@@ -49,6 +49,12 @@ public class MovieController {
         List<Movie> movies = movieService.listmm(start,size,seek);
         return movies;
     }
+    @RequestMapping("/get")
+    @ResponseBody
+    public Movie get(int mid) {
+        Movie movies = movieService.get(mid);
+        return movies;
+    }
     @RequestMapping("/edit")
     @ResponseBody
     public Movie edit(int mid) {
