@@ -23,8 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         //判断session
         HttpSession session = request.getSession(false);
-        Subject subject = SecurityUtils.getSubject();
-        if(session!=null && session.getAttribute("admin")!=null && subject!=null){
+        if(session!=null && session.getAttribute("admin")!=null){
             return true;
         }
 

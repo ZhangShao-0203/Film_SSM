@@ -22,7 +22,7 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.film.pojo.Admin" >
     update ADMIN
-    set APASS = #{apass,jdbcType=VARCHAR}, where AID = #{aid,jdbcType=DECIMAL}
+    set APASS = #{apass,jdbcType=VARCHAR}  where AID = #{aid,jdbcType=DECIMAL}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select AID, ANAME, APASS, TEL
