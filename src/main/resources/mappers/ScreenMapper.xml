@@ -45,4 +45,15 @@
     from SCREEN  where SID like '%'||#{seek}||'%' or CID like '%'||#{seek}||'%'
   </select>
 
+    <select id="listmm" resultMap="BaseResultMap" parameterType="Screen">
+        select SID, CID, MID, VIID, STIME, ETIME, SPRICE
+        from SCREEN
+        <where>
+            <if test="mid!=null">
+                and mid=#{mid}
+            </if>
+        </where>
+
+    </select>
+
 </mapper>

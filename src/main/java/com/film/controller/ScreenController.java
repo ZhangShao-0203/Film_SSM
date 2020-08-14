@@ -28,7 +28,12 @@ public class ScreenController {
         List<Screen> screens = screenService.list(currPage,pageSize,seek);
         return screens;
     }
-
+    @RequestMapping("/listmm")
+    @ResponseBody
+    public List<Screen> listmm(Screen screen){
+        System.out.println("-------------------------------------");
+        return screenService.listmm(screen);
+    }
     @RequestMapping("/edit")
     @ResponseBody
     public Screen edit(int sid) {
@@ -48,8 +53,6 @@ public class ScreenController {
 //    @DuplicateSubmitToken
     @RequestMapping("/add")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response, Screen screen,ModelAndView mav) {
-        System.out.println("----------"+(screen==null));
-        System.out.println("----------"+(screen.toString()));
         if(screen.getCid()!=null){
             int i = screenService.add(screen);
         }

@@ -16,6 +16,6 @@ public interface IVideoService {
     //查看所有用户
     List<Video> list(int currPage,int pageSize,String seek);
 
-    List<Video> listOther();
+    List<Video> listOther(Video video);
 
 }

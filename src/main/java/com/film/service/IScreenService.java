@@ -16,4 +16,6 @@ public interface IScreenService {
     //查看所有用户
     List<Screen> list(int currPage,int pageSize,String seek);
 
+    List<Screen> listmm(Screen screen);
+
 }

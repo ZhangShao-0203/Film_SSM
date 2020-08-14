@@ -15,6 +15,7 @@ public interface  ScreenMapper {
     Screen selectByPrimaryKey(Long sid);
 
     List<Screen> selectAll(String seek);
+    List<Screen> listmm(Screen screen);
 
     int updateByPrimaryKey(Screen record);
 }

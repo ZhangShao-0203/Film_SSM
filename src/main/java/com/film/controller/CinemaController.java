@@ -26,8 +26,8 @@ public class CinemaController {
 
     @RequestMapping("/listOther")
     @ResponseBody
-    public List<Cinema> listOther(){
-        List<Cinema> cinemas = cinemaService.listOther();
+    public List<Cinema> listOther(Cinema cinema){
+        List<Cinema> cinemas = cinemaService.listOther(cinema);
         return cinemas;
     }
 

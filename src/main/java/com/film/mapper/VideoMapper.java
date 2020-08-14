@@ -16,7 +16,7 @@ public interface VideoMapper {
 
     List<Video> selectAll(String seek);
 
-    List<Video> selectOther();
+    List<Video> selectOther(Video video);
 
     int updateByPrimaryKey(Video record);
 }

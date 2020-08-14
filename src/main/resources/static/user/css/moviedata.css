@@ -62,8 +62,8 @@
 
 .movie-top .movie-banner .movie-data .movie-btn {
     width: 250px;
-    margin: 50px auto;
-    display: flex;
+    margin: 10px auto;
+    /*display: flex;*/
     justify-content: space-between;
 }
 

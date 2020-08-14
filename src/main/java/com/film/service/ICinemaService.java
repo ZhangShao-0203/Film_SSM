@@ -16,5 +16,5 @@ public interface ICinemaService {
     //查看所有用户
     List<Cinema> list(int currPage,int pageSize,String seek);
 
-    List<Cinema> listOther();
+    List<Cinema> listOther(Cinema cinema);
 }

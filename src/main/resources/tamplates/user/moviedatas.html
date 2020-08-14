@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/moviedata.css">
+    <link rel="stylesheet" th:href="@{/user/css/moviedata.css}">
     <link rel="stylesheet" href="css/clear.css">
     <title id="title"></title>
     <link rel="icon" href="images/title-lolg.png">
@@ -87,8 +87,12 @@
             </div>
             <div class="movie-btn">
                 <a href="#"><i></i> <span>想看</span></a>
-                <a href="#"><i></i> <span>评分</span></a>
+                <a href="#"><i></i> <span>评分</span></a><br />
+                <div>
+                <a id="moviecinema" href="" style="margin:20px 20px;width:200px;background-color: #dc0300"><span>特惠购票</span></a>
+                </div>
             </div>
+
             <div class="watching">
                 <p class="name">想看数</p>
                 <p class="wantnum">12421424524</p>
@@ -118,12 +122,12 @@
         <div class="tab-contral">
             <div class="tab active" id="referral">介绍</div>
             <div class="tab" id="actor">演职人员</div>
-            <div class="tab" id="awards">奖项(未开)</div>
-            <div class="tab" id="imgs">图集(未开)</div>
+            <div class="tab" id="awards" onclick="alert('未开发')">奖项</div>
+            <div class="tab" id="imgs" onclick="alert('未开发')">图集</div>
         </div>
 
         <div class="border"></div>
-        <div style="display: none">
+        <div id="show1" style="display: block">
             <!-- 剧情简介 -->
             <div class="referral">
                 <div class="intro">
@@ -373,7 +377,7 @@
                 </div>
             </div>
         </div>
-        <div style="display: block">
+        <div id="show2" style="display: none">
             <!-- 演职人员 -->
             <div class="actor">
                 <div class="intro">
@@ -421,8 +425,8 @@
             </div>
             <div class="other-movie-body">
                 <ul>
-                    <li class="othermovie-model">
-                        <a href="#">
+                    <li class="othermovie-model" onclick="alert('未开发')">
+                        <a href="javascript:;">
                             <img alt="你的名字。海报封面"
                                  src="https://p1.meituan.net/movie/04de313fdd7f3835563d3c4bdfb980735556062.jpg@106w_145h_1e_1c">
                             <p>你的名字</p>
@@ -505,6 +509,14 @@
     $(".tab").click(function () {
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
+        if($(this).attr('id')=="actor"){
+            $("#show2").css("display","block");
+            $("#show1").css("display","none");
+        }
+        if($(this).attr('id')=="referral"){
+            $("#show2").css("display","none");
+            $("#show1").css("display","block");
+        }
     })
     // 获取电影信息并渲染至页面
     var url = decodeURI(window.location.href);
@@ -530,6 +542,7 @@
                 document.getElementById('adress').innerText = msg.mleng + "分钟";
                 document.getElementById('time').innerText = msg.uptime + "   上映时间";
                 $("#details").text(msg.details);
+                $("#moviecinema").attr("href","/user/moviecinema.html?"+msg.mid+"")
                 $.ajax({
                     url: "/actor/listm",
                     data: {"mid": msg.mid},

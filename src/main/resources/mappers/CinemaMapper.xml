@@ -31,9 +31,14 @@
     from CINEMA  where CID like '%'||#{seek}||'%' or CNAME like '%'||#{seek}||'%'
   </select>
 
-  <select id="listOther" resultMap="BaseResultMap" >
+  <select id="listOther" resultMap="BaseResultMap" parameterType="Cinema">
     select CID, CNAME
     from CINEMA
+    <where>
+      <if test="cid!=null">
+        and cid=#{cid}
+      </if>
+    </where>
   </select>
 
 </mapper>

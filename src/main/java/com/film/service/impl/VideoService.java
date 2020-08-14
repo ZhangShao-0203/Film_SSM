@@ -37,8 +37,8 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public List<Video> listOther() {
-        return videoMapper.selectOther();
+    public List<Video> listOther(Video video) {
+        return videoMapper.selectOther(video);
     }
 
     @Override

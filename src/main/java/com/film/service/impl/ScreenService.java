@@ -49,4 +49,9 @@ public class ScreenService implements IScreenService {
         return screens;
     }
 
+    @Override
+    public List<Screen> listmm(Screen screen) {
+        return screenMapper.listmm(screen);
+    }
+
 }
