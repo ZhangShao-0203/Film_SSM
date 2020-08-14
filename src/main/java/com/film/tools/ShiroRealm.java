@@ -21,33 +21,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     //授权
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-
-        /*String pid_str = principalCollection.toString();
-
-        Set<String> realmNames = principalCollection.getRealmNames();
-        for(String realmName:realmNames){
-            System.out.println("realmNames::::::::"+realmNames);
-        }
-        int id=Integer.parseInt(pid_str);
-        try {
-            Admin admin = adminService.get(id);
-            if (admin == null) {
-                throw new UnknownAccountException("没有此账户");
-            }else{
-                Set<String> roles=new HashSet<String>();
-                roles.add(admin.getRank());
-                //授权
-                SimpleAuthorizationInfo info=new SimpleAuthorizationInfo(roles);
-                return info;
-            }
-        }catch (Exception e){
-        }
-
-
-            return null;*/
-        return null;
-    }
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) { return null; }
 
     //认证--调用，去查询配置文件的用户信息--3
     @Override
@@ -55,24 +29,18 @@ public class ShiroRealm extends AuthorizingRealm {
 
         //从token中取出身份信息
         String aidStr = (String)authenticationToken.getPrincipal();
-        int id = Integer.parseInt(aidStr);
-        System.out.println("id::::::::"+id);
+        int aid = Integer.parseInt(aidStr);
 
         //调用service查询,数据库
 
-            Admin admin = adminService.get(id);
-            System.out.println("admin::::"+admin.getApass());
+            Admin admin = adminService.get(aid);
 
             if (admin == null) {
                 throw new UnknownAccountException("没有此账户");
             }
             //加盐
-            ByteSource salt = ByteSource.Util.bytes(admin.getAname());
-            System.out.println(salt+"4444444444444");
-            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(id,admin.getApass(), salt, this.getName());
-
-            System.out.println("info:::::" + info);//info---11(id)
-
+            //ByteSource salt = ByteSource.Util.bytes(admin.getAname());
+            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(aid,admin.getApass(),this.getName());
             return info;
     }
 }

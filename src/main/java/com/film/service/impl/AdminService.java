@@ -19,13 +19,13 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public Admin get(int id) {
-        return adminMapper.selectByPrimaryKey((long) id);
+    public Admin get(long aid) {
+        return adminMapper.selectByPrimaryKey((long) aid);
     }
 
     @Override
-    public int delete(int id) {
-        return adminMapper.deleteByPrimaryKey((long) id);
+    public int delete(long aid) {
+        return adminMapper.deleteByPrimaryKey((long) aid);
     }
 
     @Override

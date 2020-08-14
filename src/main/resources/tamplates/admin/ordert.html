@@ -38,7 +38,7 @@
         position: absolute;
         top: 25%;
         left: 33%;
-        padding: 50px;
+        padding: 20px;
         border: 2px solid orange;
         background-color: white;
         z-index: 1002;
@@ -97,7 +97,8 @@
                 </ul>
 
                 <div id="light" class="white_content">
-
+                    <form class="am-form am-form-horizontal"
+                          action="" method="" enctype="multipart/form-data" >
                         <div class="am-form-group">
                             <label  class="am-u-sm-3 am-form-label">
                                 订单号</label>
@@ -151,6 +152,7 @@
                                    placeholder="选座信息" id="chid">
                         </div>
                     </div>
+                 </form>
 
                     <a href="javascript:void(0)"
                        onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">点这里关闭本窗口</a>
@@ -158,7 +160,6 @@
                 <div id="fade" class="black_overlay"></div>
 
             </div>
-        </div>
         </div>
         <!--tab end-->
 
@@ -233,7 +234,7 @@
                             "                                    <td>"+data[i].num+"</td>\n" +
                             "                                    <td>"+data[i].otime+"</td>\n" +
                             "                                    <td>"+data[i].chid+"</td>\n" +
-                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].oid+")\"><i class=\"icon-edit bigger-120\"></i>编辑</button></td>\n" +
+                            "                                    <td class=\"edit\"><button onclick=\"btn_edit("+data[i].oid+")\"><i class=\"icon-edit bigger-120\"></i>查看</button></td>\n" +
                             "                                    <td class=\"delete\"><button onclick=\"btn_delete("+data[i].oid+")\"><i class=\"icon-trash bigger-120\"></i>删除</button></td>\n" +
                             "                                </tr>")
                     }

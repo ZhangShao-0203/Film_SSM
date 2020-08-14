@@ -19,6 +19,8 @@ public class Movie {
     private String details;
 
     private String photo;
+
+    private String videopath;
     private int pages;
     private List<MovieActor> actorList;
 
@@ -66,19 +68,12 @@ public class Movie {
         return msort;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "mid=" + mid +
-                ", mnamec='" + mnamec + '\'' +
-                ", mnamee='" + mnamee + '\'' +
-                ", msort='" + msort + '\'' +
-                ", mleng='" + mleng + '\'' +
-                ", uptime='" + uptime + '\'' +
-                ", details='" + details + '\'' +
-                ", photo='" + photo + '\'' +
-                ", actorList=" + actorList +
-                '}';
+    public String getVideopath() {
+        return videopath;
+    }
+
+    public void setVideopath(String videopath) {
+        this.videopath = videopath;
     }
 
     public void setMsort(String msort) {
@@ -115,5 +110,22 @@ public class Movie {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "mid=" + mid +
+                ", mnamec='" + mnamec + '\'' +
+                ", mnamee='" + mnamee + '\'' +
+                ", msort='" + msort + '\'' +
+                ", mleng='" + mleng + '\'' +
+                ", uptime='" + uptime + '\'' +
+                ", details='" + details + '\'' +
+                ", photo='" + photo + '\'' +
+                ", videopath='" + videopath + '\'' +
+                ", pages=" + pages +
+                ", actorList=" + actorList +
+                '}';
     }
 }

@@ -8,9 +8,9 @@ public interface IAdminService {
     //添加用户
     int add(Admin admin);
     //查询用户
-    Admin get(int id);
+    Admin get(long aid);
     //删除用户
-    int delete(int id);
+    int delete(long aid);
     //修改用户
     int update(Admin admin);
     //查看所有用户

@@ -2,7 +2,6 @@ package com.film.controller;
 
 import com.film.pojo.Admin;
 import com.film.service.IAdminService;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -24,33 +23,35 @@ public class AdminController {
     IAdminService adminService;
 
     @RequestMapping("/login")
-    @ResponseBody
-    public ModelAndView login(long aid,Admin admin,ModelAndView mav,HttpSession session){
+    public ModelAndView login(Admin admin,ModelAndView mav,HttpSession session) {
 
+        SimpleHash simpleHash = new SimpleHash("MD5",admin.getApass(),null,3);
+        String pwd = simpleHash.toString();
         Subject subject = SecurityUtils.getSubject();//认证主体--2
 
         //判断当前用户是否登录
-        if(subject.isAuthenticated()==false){
+        if (subject.isAuthenticated() == false) {
             //进行认证，准备token令牌
             //将当前用户密码封装
-            UsernamePasswordToken token = new UsernamePasswordToken(admin.getAid()+"",admin.getApass());
+            UsernamePasswordToken token = new UsernamePasswordToken(admin.getAid() + "",pwd);
             //执行认证提交
             subject.login(token);
-            session.setAttribute("aid",aid);
-        }
-        mav.setViewName("/admin/index");
-        return mav;
-
-        /*Admin admin1 = adminService.getAdmin(admin);
-
-        if (admin1!=null){
-            session.setAttribute("admin1",admin1);
+            session.setAttribute("aid", admin.getAid());
+            session.setAttribute("admin",admin);
             mav.setViewName("/admin/index");
-        }else {
-            mav.setViewName("/admin/login");
         }
-        return mav;*/
+        return mav;
+    }
 
+    //登出
+    @RequestMapping("/logout")
+    public ModelAndView logout(ModelAndView mav,HttpSession session){
+        Subject subject = SecurityUtils.getSubject();
+        if(subject !=null){
+            subject.logout();
+        }
+        mav.setViewName("admin/login");
+        return mav;
     }
 
     @RequestMapping("/list")
@@ -62,8 +63,8 @@ public class AdminController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public Admin edit(int id){
-        Admin admin = adminService.get(id);
+    public Admin edit(long aid){
+        Admin admin = adminService.get(aid);
         return admin;
 
     }
@@ -84,19 +85,20 @@ public class AdminController {
     public ModelAndView add(ModelAndView mav, Admin admin){
 
         //加密
-        SimpleHash simpleHash = new SimpleHash("MD5",admin.getApass(),admin.getAname());
-        admin.setApass(simpleHash.toString());
+        SimpleHash simpleHash = new SimpleHash("MD5",admin.getApass(),null,3);
+        String pwd = simpleHash.toString();
+        admin.setApass(pwd);
+
         int i = adminService.add(admin);
         long id = admin.getAid();
-        System.out.println("id:::::"+id);
         mav.setViewName("/admin/login");
         return mav;
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public int delete(int id){
-        int i = adminService.delete(id);
+    public int delete(long aid){
+        int i = adminService.delete(aid);
         return i;
     }
 

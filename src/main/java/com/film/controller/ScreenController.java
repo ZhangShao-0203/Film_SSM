@@ -33,6 +33,7 @@ public class ScreenController {
     @ResponseBody
     public Screen edit(int sid) {
         Screen screen = screenService.get(sid);
+        System.out.println("::::::::::::::::::1::::::::::::::");
         return screen;
     }
 
@@ -40,6 +41,7 @@ public class ScreenController {
     public ModelAndView update(Screen screen, ModelAndView mav) {
         int i = screenService.update(screen);
         mav.setViewName("/admin/screen");
+        System.out.println(":::::::::::2::::::::;;;");
         return mav;
     }
 

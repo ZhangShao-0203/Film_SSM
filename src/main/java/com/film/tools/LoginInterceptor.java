@@ -1,5 +1,7 @@
 package com.film.tools;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-    /*@Override
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         //请求路径
@@ -21,12 +23,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         //判断session
         HttpSession session = request.getSession(false);
-        if(session!=null && session.getAttribute("admin1")!=null){
+        Subject subject = SecurityUtils.getSubject();
+        if(session!=null && session.getAttribute("admin")!=null && subject!=null){
             return true;
         }
 
         //拦截
-        response.sendRedirect(request.getContextPath()+"/fail.jsp");
+        response.sendRedirect(request.getContextPath()+"/admin/fail");
         return false;
-    }*/
+    }
 }

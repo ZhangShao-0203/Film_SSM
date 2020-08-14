@@ -73,13 +73,13 @@ $(document).ready(function() {
 
 
 
-		if ($('#user').val().length < 4 || $('#user').val().length > 16) {
+		if ($('#user').val().length < 2 || $('#user').val().length > 8) {
 
 			$('#user').focus().css({
 				border: "1px solid red",
 				boxShadow: "0 0 2px red"
 			});
-			$('#userCue').html("<font color='red'><b>×用户名位4-16字符</b></font>");
+			$('#userCue').html("<font color='red'><b>×用户名为2-8位字符</b></font>");
 			return false;
 
 		}
