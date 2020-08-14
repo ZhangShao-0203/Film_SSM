@@ -49,6 +49,7 @@ public class AdminController {
         Subject subject = SecurityUtils.getSubject();
         if(subject !=null){
             subject.logout();
+            session.invalidate();
         }
         mav.setViewName("admin/login");
         return mav;
