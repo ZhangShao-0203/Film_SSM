@@ -21,6 +21,7 @@ public class Movie {
     private String photo;
 
     private int pages;
+    
     private List<MovieActor> actorList;
 
     public int getPages() {

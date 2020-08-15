@@ -52,6 +52,9 @@
             <if test="mid!=null">
                 and mid=#{mid}
             </if>
+            <if test="cid!=null">
+                and cid=#{cid}
+            </if>
         </where>
 
     </select>

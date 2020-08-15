@@ -6,6 +6,24 @@
     <script type="text/javascript" th:src="@{/admin/js/jquery-1.7.2.min.js}"></script>
     <script type="text/javascript" th:src="@{/admin/js/login.js}"></script>
     <link th:href="@{/admin/css/login2.css}" rel="stylesheet" type="text/css"/>
+    <script>
+       $(function () {
+           $("#sub").click(function () {
+               $.ajax({
+                   url: "/admin/login",
+                   data: {"aid": $("#u").val(), "apass": $("#p").val()},
+                   success: function (data) {
+                       if (data == "1") {
+                           window.location.href = "/admin/index.html ";
+                       } else {
+                           alert("账号或密码不对");
+                           window.location.href = "/admin/login.html";
+                       }
+                   }
+               })
+           })
+       })
+    </script>
 </head>
 <body>
 <h1>后台登录<sup>2020</sup></h1>
@@ -15,7 +33,7 @@
     <div class="header">
         <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin"
                                            tabindex="7">快速登录</a>
-            <a class="switch_btn" id="switch_login"  tabindex="8">快速注册</a>
+            <a class="switch_btn" id="switch_login" tabindex="8">快速注册</a>
             <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
         </div>
     </div>
@@ -46,9 +64,9 @@
                             </div>
                         </div>
 
-                        <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="登 录"
+                        <div style="padding-left:50px;margin-top:20px;"><input type="button" value="登 录"
                                                                                style="width:150px;"
-                                                                               class="button_blue"/></div>
+                                                                               class="button_blue" id="sub"/></div>
                     </form>
                 </div>
             </div>

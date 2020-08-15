@@ -12,7 +12,9 @@ public class hellodemo {
     @RequestMapping("/index.html")
     public ModelAndView update(ModelAndView mav, HttpSession session) {
         System.out.println("update");
-        if (session == null || session.getAttribute("admin") == null) {
+        System.out.println(session);
+        System.out.println(session.getAttribute("admin"));
+        if (session != null && session.getAttribute("admin") == null) {
             mav.setViewName("admin/login");
         } else {
             mav.setViewName("admin/index");
@@ -30,7 +32,7 @@ public class hellodemo {
     @RequestMapping("/actor.html")
     public String actor(HttpSession session) {
         System.out.println("actor");
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/actor";
@@ -41,7 +43,7 @@ public class hellodemo {
     @RequestMapping("/cinema.html")
     public String cinema(HttpSession session) {
         System.out.println("cinema");
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/cinema";
@@ -53,7 +55,7 @@ public class hellodemo {
     public String choose(HttpSession session) {
         System.out.println("choose");
 
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/choose";
@@ -64,7 +66,7 @@ public class hellodemo {
     public String movie(HttpSession session) {
         System.out.println("movie");
 
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/movie";
@@ -75,7 +77,7 @@ public class hellodemo {
     public String ordert(HttpSession session) {
         System.out.println("ordert");
 
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/ordert";
@@ -86,7 +88,7 @@ public class hellodemo {
     public String screen(HttpSession session) {
         System.out.println("screen");
 
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/screen";
@@ -108,7 +110,7 @@ public class hellodemo {
     public String video(HttpSession session) {
         System.out.println("video");
 
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/video";
@@ -119,7 +121,7 @@ public class hellodemo {
     public String vip(HttpSession session) {
         System.out.println("vip");
 
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session != null && session.getAttribute("admin") == null) {
             return "admin/login";
         } else {
             return "admin/vip";

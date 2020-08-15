@@ -21,9 +21,9 @@ public class AdminController {
 
     @Autowired
     IAdminService adminService;
-
+    @ResponseBody
     @RequestMapping("/login")
-    public ModelAndView login(Admin admin,ModelAndView mav,HttpSession session) {
+    public String login(Admin admin,HttpSession session) {
 
         SimpleHash simpleHash = new SimpleHash("MD5",admin.getApass(),null,3);
         String pwd = simpleHash.toString();
@@ -38,21 +38,22 @@ public class AdminController {
             subject.login(token);
             session.setAttribute("aid", admin.getAid());
             session.setAttribute("admin",admin);
-            mav.setViewName("/admin/index");
+            System.out.println("-----------------");
+            return "1";
         }
-        return mav;
+        return "0";
     }
 
     //登出
     @RequestMapping("/logout")
-    public ModelAndView logout(ModelAndView mav,HttpSession session){
-        Subject subject = SecurityUtils.getSubject();
-        if(subject !=null){
-            subject.logout();
+    @ResponseBody
+    public String logout(ModelAndView mav,HttpSession session){
+        try {
             session.invalidate();
+            return "1";
+        }catch (Exception e){
+            return "0";
         }
-        mav.setViewName("admin/login");
-        return mav;
     }
 
     @RequestMapping("/list")
